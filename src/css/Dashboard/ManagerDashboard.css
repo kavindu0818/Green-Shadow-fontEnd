@@ -18,6 +18,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
+    margin: 5px;
 }
 
 #navSet {
@@ -55,5 +57,14 @@ body {
 #logo{
     position: absolute;
     top: -40px;
-    width: 15vw;
+    width: 17vw;
+}
+
+#borderNav{
+    position: absolute;
+    width: 81vw;
+    top: 10px;
+    height: 70px;
+    background-color: #b5b5b5;
+    left: 18vw;
 }

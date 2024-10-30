@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Center elements vertically */
+    align-items: center;      /* Center elements horizontally */
+    height: 100vh;            /* Full viewport height */
+    background-color: #f5f5f5; /* Background color */
+}
+
+#image2 {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;              /* Set behind other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 6vw;
+    color: white;
+    margin: 0;
+}
+
+#log {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    height: 300px;
+    border-radius: 20px;
+    background-color: #b5b5b5;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow */
+    padding: 20px; /* Add padding for better spacing */
+}
+
+.input {
+    width: 16vw;
+    height: 20px; /* Increased height for better usability */
+    margin-bottom: 20px;
+    padding: 5px; /* Add padding inside the input */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size for better readability */
+}
+
+#lbl1 {
+    position: relative;
+    left: -7vw;
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Make label bold */
+}
+
+#lbl2 {
+    position: relative;
+    left: -6vw;
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Make label bold */
+}
+
+.login-btn {
+    width: 10vw; /* Match the width of input fields */
+    height: 35px; /* Increase height for button */
+    background-color:#080424; /* Bootstrap primary color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Larger font for button */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.login-btn:hover {
+
+    background-color: transparent;
+    color: black;
+}

@@ -48,7 +48,7 @@
 </section>
 
 
-<section id="viewDetails" style="display: block">
+<section id="viewDetails" style="display: none">
 <section id="search">
   <label id="lblCrop">Search Crop</label>
   <input id="sbar" placeholder="Enter crop Name">
@@ -141,5 +141,36 @@
 </section>
 
 </section>
+
+<section id="cropForm" style="display: block">
+    <section id="cropFormSection">
+        <label class="lblF" id="lblF1">Code</label>
+        <input placeholder="Enter crop code" type="text" class="form-control" id="inpF1">
+
+        <label class="lblF" id="lblF2">Crop name</label>
+        <input placeholder="Enter crop name" type="text" class="form-control" id="inpF2">
+
+        <label class="lblF" id="lblF3">Crop scientific name</label>
+        <input placeholder="Enter crop scientific name" type="text" class="form-control" id="inpF3">
+
+        <label class="lblF" id="lblF4">Upload Crop Image</label>
+        <input type="file" accept="image/*" class="form-control" id="inpF4">
+
+        <label class="lblF" id="lblF5">Category</label>
+        <input placeholder="Enter Category" type="text" class="form-control" id="inpF5">
+
+        <label class="lblF" id="lblF6">Crop season</label>
+        <input placeholder="Enter Crop season" type="text" class="form-control" id="inpF6">
+
+        <label class="lblF" id="lblF7">Field</label>
+        <select class="form-control" id="inpF7">
+            <option value="field1">Field 1</option>
+            <option value="field2">Field 2</option>
+            <option value="field3">Field 3</option>
+            <!-- Add more fields as needed -->
+        </select>
+    </section>
+</section>
+
 </body>
 </html>

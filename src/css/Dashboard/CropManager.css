@@ -149,4 +149,14 @@ body {
     font-weight: bold;
 }
 
+#cropFormSection{
+    position: absolute;
+    top: 200px;
+    left: 20vw;
+}
+
+.lblF{
+    font-weight: bold;
+}
+
 

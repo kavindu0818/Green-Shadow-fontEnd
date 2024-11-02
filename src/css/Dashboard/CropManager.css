@@ -69,6 +69,7 @@ body {
     height: 70px;
     background-color: #b5b5b5;
     left: 18vw;
+    z-index: 100;
 }
 /* Crop table styling */
 #cropTable {
@@ -311,15 +312,22 @@ body {
     width: 10vw;
     border-radius: 10px;
     color: white;
+    font-weight: bold;
 }
 
 #cleBtn{
     position: absolute;
     left: 50vw;
     top: 400px;
-    background-color: black;
-    width: 10vw;
+    background-color: transparent;
+    width: 9vw;
     border-radius: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+#cleBtn:hover{
+    background-color: black;
     color: white;
 }
 

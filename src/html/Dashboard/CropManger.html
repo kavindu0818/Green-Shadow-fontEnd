@@ -48,7 +48,7 @@
 </section>
 
 
-<section id="viewDetails" style="display: none">
+<section id="viewDetails" style="display: block">
 <section id="search">
   <label id="lblCrop">Search Crop</label>
   <input id="sbar" placeholder="Enter crop Name">
@@ -148,7 +148,7 @@
 </section>
 
 
-<section id="cropForm" style="display: block">
+<section id="cropForm" style="display: none">
     <section id="cropFormSection">
         <label class="lblF" id="lblF1">Code</label>
         <input placeholder="Enter crop code" type="text" class="form-control" id="inpF1">
@@ -202,6 +202,12 @@
         setTimeout(() => {
             document.getElementById('overlay').style.display = 'none';
         }, 3000); // Adjust delay as needed
+    });
+
+    document.getElementById('addBtn').addEventListener('click',function (){
+      document.getElementById('cropForm').style.display='block';
+      document.getElementById('viewDetails').style.display='none';
+
     });
 
 </script>

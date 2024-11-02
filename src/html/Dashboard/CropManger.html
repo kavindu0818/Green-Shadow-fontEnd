@@ -142,6 +142,12 @@
 
 </section>
 
+<section>
+    <img src="/Aseats/plant.png" id="imgPlant">
+    <h1 id="cropTop">ADD CROP</h1>
+</section>
+
+
 <section id="cropForm" style="display: block">
     <section id="cropFormSection">
         <label class="lblF" id="lblF1">Code</label>
@@ -172,27 +178,31 @@
             <option value="field3">Field 3</option>
             <!-- Add more fields as needed -->
         </select>
+
+        <button id="subBtn">Submit</button>
+        <button id="cleBtn">Clear</button>
+
+        <div id="overlay" style="display: none;">
+            <div class="overlay-content">
+                <div class="progress" role="progressbar" aria-label="Loading" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                </div>
+                <p>Processing, please wait...</p>
+            </div>
+        </div>
     </section>
 </section>
 
 <script>
-    function previewImage(event) {
-        const imagePreviewDiv = document.getElementById('imagePreview');
-        const previewImg = document.getElementById('previewImg');
-        const file = event.target.files[0];
+    document.getElementById('subBtn').addEventListener('click', function () {
+        // Show the overlay
+        document.getElementById('overlay').style.display = 'flex';
 
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImg.src = e.target.result;
-                imagePreviewDiv.style.display = 'block'; // Show the preview div
-            };
-            reader.readAsDataURL(file);
-        } else {
-            imagePreviewDiv.style.display = 'none'; // Hide if no file is selected
-            previewImg.src = ""; // Clear the preview
-        }
-    }
+        // Simulate a delay (e.g., for form submission) and then hide the overlay
+        setTimeout(() => {
+            document.getElementById('overlay').style.display = 'none';
+        }, 3000); // Adjust delay as needed
+    });
 
 </script>
 

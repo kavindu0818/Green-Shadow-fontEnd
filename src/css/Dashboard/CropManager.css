@@ -363,32 +363,66 @@ body {
     color: #ffffff;
 }
 
-/*#modal {*/
-/*    display: none; !* Hide modal by default *!*/
-/*    position: fixed; !* Stay in place *!*/
-/*    z-index: 10000; !* Sit on top *!*/
+#modal {
+    display: none; /* Hide modal by default */
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */ /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: white;
+    width: 10vw; /* Set to 80vw */
+    height: 70vh; /* Set to 70vh */
+    overflow-y: auto;
+     /* Add scroll if needed */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/*.modal {*/
+/*    display: none; !* Hidden by default *!*/
+/*    position: fixed;*/
+/*    z-index: 1;*/
 /*    left: 0;*/
 /*    top: 0;*/
-/*    width: 100%; !* Full width *!*/
-/*    height: 100%; !* Full height *!*/
-/*    overflow: auto; !* Enable scroll if needed *!*/
-/*    background-color: rgba(0, 0, 0, 0.4); !* Black w/ opacity *! !* Use flexbox *!*/
-/*    justify-content: center; !* Center horizontally *!*/
-/*    align-items: center; !* Center vertically *!*/
+/*    width: 100vw;*/
+/*    height: 100vh;*/
+/*    background-color: rgba(0, 0, 0, 0.5); !* Semi-transparent background *!*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
 /*}*/
 
-/*!* Modal content *!*/
+/*!* Modal content box *!*/
 /*.modal-content {*/
-/*    background-color: black;*/
-/*    width: 80vw; !* Set to 80vw *!*/
-/*    height: 70vh; !* Set to 70vh *!*/
-/*    overflow-y: auto; !* Add scroll if needed *!*/
+/*    position: relative;*/
+/*    width: 70vw; !* Set to 70% of viewport width *!*/
+/*    max-height: 500px; !* Fixed height *!*/
 /*    padding: 20px;*/
-/*    border: 1px solid #888;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    background: #fff;*/
+/*    border-radius: 8px;*/
+/*    overflow-y: auto; !* Scroll if content is too long *!*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); !* Optional shadow *!*/
 /*}*/
 
+/* Close button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
 
 
 

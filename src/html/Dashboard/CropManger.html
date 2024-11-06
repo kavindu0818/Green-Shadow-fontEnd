@@ -11,6 +11,45 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+
+    <style>
+        /* Modal background */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+        }
+
+        /* Modal content box */
+        .modal-content {
+            width: 80vw; /* 80% of viewport width */
+            height: 80vh; /* 80% of viewport height */
+            padding: 20px;
+            left: 10vw;
+            top: 90px;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
 <section id="nav">
@@ -78,7 +117,7 @@
                 <td>Cereal</td>
                 <td class="action-icons">
                     <i class="fas fa-edit" title="Update"></i>
-                    <i class="fas fa-eye" title="View"></i>
+                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
                     <i class="fas fa-trash-alt" title="Delete"></i>
                 </td>
             </tr>
@@ -88,6 +127,13 @@
     </section>
 
 </section>
+
+<div id="viewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>View Details</h2>
+    </div>
+</div>
 
 <section>
     <img src="/Aseats/plant.png" id="imgPlant">
@@ -158,6 +204,22 @@
         document.getElementById('cropTop').style.display='block';
 
     });
+
+    function openModal() {
+        document.getElementById("viewModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("viewModal").style.display = "none";
+    }
+
+    // Close modal if user clicks outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById("viewModal");
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
 
 </script>
 

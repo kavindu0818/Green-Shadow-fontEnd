@@ -63,13 +63,13 @@ body {
 }
 
 #borderNav{
-    position: fixed;
+    position: relative;
     width: 81vw;
     top: 10px;
     height: 70px;
     background-color: #b5b5b5;
     left: 18vw;
-    z-index: 100;
+    /*z-index: ;*/
 }
 /* Crop table styling */
 #cropTable {
@@ -110,6 +110,10 @@ body {
     font-size: 18px;
 }
 
+.action-icons .fas fa-eye {
+    color: #06357a;
+}
+
 .action-icons .fa-trash-alt {
     color: darkred;
 }
@@ -121,7 +125,7 @@ body {
 #search{
     position: absolute;
     left: 18vw;
-    width: 50vw;
+    width: 80vw;
     height: 70px;
     background-color: #daf2ed;
     top: 170px;
@@ -389,33 +393,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-/*.modal {*/
-/*    display: none; !* Hidden by default *!*/
-/*    position: fixed;*/
-/*    z-index: 1;*/
-/*    left: 0;*/
-/*    top: 0;*/
-/*    width: 100vw;*/
-/*    height: 100vh;*/
-/*    background-color: rgba(0, 0, 0, 0.5); !* Semi-transparent background *!*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
 
-/*!* Modal content box *!*/
-/*.modal-content {*/
-/*    position: relative;*/
-/*    width: 70vw; !* Set to 70% of viewport width *!*/
-/*    max-height: 500px; !* Fixed height *!*/
-/*    padding: 20px;*/
-/*    background: #fff;*/
-/*    border-radius: 8px;*/
-/*    overflow-y: auto; !* Scroll if content is too long *!*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); !* Optional shadow *!*/
-/*}*/
-
-/* Close button */
 .close {
     position: absolute;
     top: 10px;
@@ -424,5 +402,51 @@ body {
     cursor: pointer;
 }
 
+.viewLbl{
+    font-weight: bold;
+}
+#viewH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#viewDetailsLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 7vw;
+}
+
+#viewDetailsLbl lbl{
+    margin-bottom: 10px;
+}
+
+#viewDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 20vw;
+}
+
+#viewDetailsResultLbl lbl{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#imageView{
+    position: absolute;
+    width: 40vw;
+    height: 20vh;
+    left: -13vw;
+    background-color: #4f5050;
+    top: 240px;
+
+}
 
 

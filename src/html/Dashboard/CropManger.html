@@ -29,11 +29,12 @@
 
         /* Modal content box */
         .modal-content {
-            width: 80vw; /* 80% of viewport width */
-            height: 80vh; /* 80% of viewport height */
+            width: 50vw; /* 80% of viewport width */
+            height: 85vh; /* 80% of viewport height */
             padding: 20px;
-            left: 10vw;
-            top: 90px;
+            left: 25vw;
+            top: 50px;
+            z-index: 200000;
             background: #fff;
             border-radius: 8px;
             overflow-y: auto; /* Enables vertical scroll if content is too long */
@@ -101,8 +102,8 @@
     <section id="cropTable">
         <table class="table table table-borderless" >
             <thead class="table-light">
-            <tr>
-                <th>Crop ID</th>
+            <tr class="table-primary">
+                <th class="table-primary">Crop ID</th>
                 <th>Crop Name</th>
                 <th>Category</th>
                 <th>Action</th>
@@ -110,6 +111,17 @@
             </thead>
             <tbody>
 
+
+            <tr>
+                <td>1</td>
+                <td>Wheat</td>
+                <td>Cereal</td>
+                <td class="action-icons">
+                    <i class="fas fa-edit" title="Update"></i>
+                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
+                    <i class="fas fa-trash-alt" title="Delete"></i>
+                </td>
+            </tr>
 
             <tr>
                 <td>1</td>
@@ -131,7 +143,35 @@
 <div id="viewModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2>View Details</h2>
+        <h2 id="viewH2" class="animate__backInDown">CROP DETAILS </h2>
+
+
+        <section id="viewDetailsLbl">
+
+        <lbl class="viewLbl">Code: </lbl>
+        <lbl class="viewLbl">Name: </lbl>
+        <lbl class="viewLbl">Scientific Name: </lbl>
+        <lbl class="viewLbl">Category: </lbl>
+        <lbl class="viewLbl">Crop season: </lbl>
+        <lbl class="viewLbl">Field: </lbl>
+        <lbl class="viewLbl">Images: </lbl>
+
+        </section>
+
+
+    <section id="viewDetailsResultLbl">
+        <lbl class="viewLblR">C0000001</lbl>
+        <lbl class="viewLblR">Mango</lbl>
+        <lbl class="viewLblR">BBB</lbl>
+        <lbl class="viewLblR">CCCCC</lbl>
+        <lbl class="viewLblR">AAAAAAAAA</lbl>
+        <lbl class="viewLblR">AAAAAA</lbl>
+        <div id="imageView"></div>
+    </section>
+
+
+
+
     </div>
 </div>
 

@@ -159,6 +159,7 @@ body {
     border-radius: 100px;
     width: 5vw;
     height: 50px;
+    display: none;
 }
 
 #cropTop{
@@ -167,6 +168,7 @@ body {
     font-size: 35px;
     font-weight: bold;
     top: 100px;
+    display: none;
 
 }
 #cropFormSection {
@@ -360,6 +362,32 @@ body {
     margin-top: 10px;
     color: #ffffff;
 }
+
+/*#modal {*/
+/*    display: none; !* Hide modal by default *!*/
+/*    position: fixed; !* Stay in place *!*/
+/*    z-index: 10000; !* Sit on top *!*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 100%; !* Full width *!*/
+/*    height: 100%; !* Full height *!*/
+/*    overflow: auto; !* Enable scroll if needed *!*/
+/*    background-color: rgba(0, 0, 0, 0.4); !* Black w/ opacity *! !* Use flexbox *!*/
+/*    justify-content: center; !* Center horizontally *!*/
+/*    align-items: center; !* Center vertically *!*/
+/*}*/
+
+/*!* Modal content *!*/
+/*.modal-content {*/
+/*    background-color: black;*/
+/*    width: 80vw; !* Set to 80vw *!*/
+/*    height: 70vh; !* Set to 70vh *!*/
+/*    overflow-y: auto; !* Add scroll if needed *!*/
+/*    padding: 20px;*/
+/*    border: 1px solid #888;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*}*/
 
 
 

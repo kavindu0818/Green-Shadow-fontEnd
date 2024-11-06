@@ -20,8 +20,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
-    margin: 5px;
+    /*border-radius: 10px;*/
+    /*margin: 5px;*/
 }
 
 #navSet {
@@ -63,13 +63,41 @@ body {
 }
 
 #borderNav{
-    position: relative;
+    position: fixed;
     width: 81vw;
     top: 10px;
     height: 70px;
-    background-color: #b5b5b5;
+    background-color: #f2f5f2;
     left: 18vw;
     /*z-index: ;*/
+}
+
+#userImg{
+    position: absolute;
+    width: 4vw;
+    height: 50px;
+    background-color: white;
+    border: 1px solid black;
+    right: 11vw;
+    top: 10px;
+    border-radius: 100px;
+}
+
+#userName{
+    position: absolute;
+    font-weight: bold;
+    color: black;
+    right: 1vw;
+    font-size: 20px;
+    top: 20px;
+}
+
+#borderTopic{
+    position: absolute;
+    left: 1vw;
+    font-weight: bold;
+    top: 10px;
+
 }
 /* Crop table styling */
 #cropTable {
@@ -157,7 +185,7 @@ body {
 }
 
 #imgPlant{
-    position: relative;
+    position: absolute;
     left: 20vw;
     top: 100px;
     border-radius: 100px;

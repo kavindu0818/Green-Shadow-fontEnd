@@ -21,26 +21,34 @@
       top: 0;
       width: 17vw;
       height: 100vh;
-      background-color: #023614;
+      background-color: whitesmoke;
       color: white;
       padding-top: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      /*border-radius: 10px;*/
-      /*margin: 5px;*/
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
     }
+
 
     #navSet {
       position: relative;
       top: 120px; /* Adjusted top offset */
     }
-
     .nav-item {
       display: flex;
       align-items: center;
-      margin: 15px 0; /* Adjusted margin */
-      color: white;
+      margin: 10px ;
+      margin-left: 20px;/* Adjusted margin */
+      color: black; /* Default text color */
+      padding: 0px; /* Add padding for better hover area */
+      border-radius: 5px; /* Optional: Rounded corners for a polished look */
+      transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    }
+
+    .nav-item:hover {
+      background-color: black; /* Background changes to black */
+      color: white; /* Text changes to white */
     }
 
     .nav-item img {
@@ -50,18 +58,31 @@
       margin-right: 10px;
       left: -1vw;
       margin-bottom: 20px;
+      transition: filter 0.3s; /* Smooth transition for color change */
+    }
+
+    .nav-item:hover img {
+      filter: brightness(0) invert(1); /* Makes the image white */
     }
 
     .nav-item a {
-      color: white;
+      color: black; /* Default link color */
       text-decoration: none;
       font-size: 1em;
       margin-bottom: 20px;
+      font-weight: bold;
+      transition: color 0.3s; /* Smooth text color transition */
     }
 
     .nav-item a:hover {
-      text-decoration: underline;
+      /*text-decoration: underline; !* Optional underline effect *!*/
     }
+
+    /* Ensure links also change color on hover */
+    .nav-item:hover a {
+      color: white; /* Link text turns white */
+    }
+
 
     #logo{
       position: absolute;
@@ -71,22 +92,23 @@
 
     #borderNav{
       position: relative;
-      width: 81vw;
-      top: 10px;
-      height: 70px;
+      width: 82vw;
+      top: 0px;
+      height: 50px;
       background-color: white;
-      left: 18vw;
+      left: 17vw;
+      border-bottom: 1px solid black;
       /*z-index: ;*/
     }
 
     #userImg{
       position: absolute;
-      width: 4vw;
-      height: 50px;
+      width: 3vw;
+      height: 40px;
       background-color: white;
       border: 1px solid black;
       right: 10vw;
-      top: 10px;
+      top: 5px;
       border-radius: 100px;
     }
 
@@ -95,13 +117,41 @@
       font-weight: bold;
       color: black;
       right: 1vw;
+      top: -5px;
     }
 
     #borderTopic{
       position: absolute;
       left: 1vw;
       font-weight: bold;
+      font-size: 20px;
 
+    }
+
+    #viewDateAndTime{
+      position: absolute;
+      width: 22vw;
+      height: 30px;
+      left: 45vw;
+      top: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #calenderView{
+      position: absolute;
+      width: 2vw;
+      height: 30px;
+      top: 10px;
+      left: 41vw;
+      background-color: white;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #viewDateAndTimeBack{
+      position: absolute;
+      margin-top: 5px;
+      margin-left: 5px;
     }
   </style>
 </head>
@@ -109,7 +159,7 @@
 
 <section id="nav">
 
-  <img src="/Aseats/Green_Shadow_Logo.png" id="logo">
+  <img src="/Aseats/logo2-GreenShadow.png" id="logo">
   <section id="navSet">
     <div class="nav-item">
       <img src="/Aseats/plant.png" alt="Crop Icon" class="icon">
@@ -142,6 +192,15 @@
   <div id="userImg"></div>
   <h3 id="userName">Kavindu Mw</h3>
   <h2 id="borderTopic">Crop Management</h2>
+  <img src="../Aseats/staffe.png" id="calenderView">
+  <div id="viewDateAndTime">
+    <div id="viewDateAndTimeBack">
+    <label id="viewDay">Wendsday</label>
+    <label id="viewDate">17 November 2024</label>
+    <label id="atlbl"> at </label>
+    <label id="time">8.00 AM</label>
+    </div>
+  </div>
 </section>
 
 </body>

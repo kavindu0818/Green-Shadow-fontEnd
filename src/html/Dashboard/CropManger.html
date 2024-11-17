@@ -14,6 +14,43 @@
 
     <style>
         /* Modal background */
+        .upmodal {
+            display: flex; /* Enable flexbox */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+            position: fixed;
+            z-index: 1;
+            left: 25vw;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        /* Modal content box */
+        .upmodal-content {
+            width: 50vw; /* 50% of viewport width */
+            max-width: 600px; /* Optional: max width */
+            height: 85vh; /* 85% of viewport height */
+            padding: 20px;
+            left: 25vw;
+            top: 50px;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+            position: relative; /* Ensure the close button positions relative to the modal */
+        }
+
+        /* Close button */
+        .upclose {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -55,7 +92,7 @@
 <body>
 <section id="nav">
 
-    <img src="/Aseats/Green_Shadow_Logo.png" id="logo">
+    <img src="/Aseats/logo2-GreenShadow.png" id="logo">
     <section id="navSet">
         <div class="nav-item">
             <img src="/Aseats/plant.png" alt="Crop Icon" class="icon">
@@ -88,6 +125,15 @@
     <div id="userImg"></div>
     <h3 id="userName">Kavindu Mw</h3>
     <h2 id="borderTopic">Crop Management</h2>
+    <img src="/Aseats/calendar.png" id="calenderView">
+    <div id="viewDateAndTime">
+        <div id="viewDateAndTimeBack">
+            <label id="viewDay">Wendsday</label>
+            <label id="viewDate">17 November 2024</label>
+            <label id="atlbl"> at </label>
+            <label id="time">8.00 AM</label>
+        </div>
+    </div>
 </section>
 
 
@@ -104,9 +150,9 @@
 
     <section id="cropTable">
         <table class="table table table-borderless" >
-            <thead class="table-light">
-            <tr class="table-primary">
-                <th class="table-primary">Crop ID</th>
+            <thead class="table-dark">
+            <tr class="table-dark">
+                <th>Crop ID</th>
                 <th>Crop Name</th>
                 <th>Category</th>
                 <th>Action</th>
@@ -120,7 +166,7 @@
                 <td>Wheat</td>
                 <td>Cereal</td>
                 <td class="action-icons">
-                    <i class="fas fa-edit" title="Update"></i>
+                    <i class="fas fa-edit" title="Update" onclick="openUpdateModal()"></i>
                     <i class="fas fa-eye" title="View" onclick="openModal()"></i>
                     <i class="fas fa-trash-alt" title="Delete"></i>
                 </td>
@@ -163,14 +209,50 @@
 
 
     <section id="viewDetailsResultLbl">
-        <lbl class="viewLblR">C0000001</lbl>
-        <lbl class="viewLblR">Mango</lbl>
-        <lbl class="viewLblR">BBB</lbl>
-        <lbl class="viewLblR">CCCCC</lbl>
-        <lbl class="viewLblR">AAAAAAAAA</lbl>
-        <lbl class="viewLblR">AAAAAA</lbl>
+        <lbl class="viewLblR"></lbl>
+        <lbl class="viewLblR"></lbl>
+        <lbl class="viewLblR"></lbl>
+        <lbl class="viewLblR"></lbl>
+        <lbl class="viewLblR"></lbl>
+        <lbl class="viewLblR"></lbl>
         <div id="imageView"></div>
     </section>
+
+
+
+
+    </div>
+</div>
+
+
+<div id="updateModal" class="upmodal">
+    <div class="upmodal-content">
+        <span class="upclose" onclick="upcloseModal()">&times;</span>
+        <h2 id="updateH2" class="animate__backInDown">CROP UPDATE </h2>
+
+
+        <section id="updateDetailsLbl">
+
+            <lbl class="viewLbl">Code: </lbl>
+            <lbl class="viewLbl">Name: </lbl>
+            <lbl class="viewLbl">Scientific Name: </lbl>
+            <lbl class="viewLbl">Category: </lbl>
+            <lbl class="viewLbl">Crop season: </lbl>
+            <lbl class="viewLbl">Field: </lbl>
+            <lbl class="viewLbl">Images: </lbl>
+
+        </section>
+
+
+        <section id="updateDetailsResultLbl">
+            <input class="viewLblR" id="upCode"/>
+            <input class="viewLblR" id="upName"/>
+            <input class="viewLblR" id="upsName"/>
+            <input class="viewLblR" id="upCat"/>
+            <input class="viewLblR" id="upSea"/>
+            <input class="viewLblR" id="upField"/>
+            <div id="imageUpdateView" ></div>
+        </section>
 
 
 
@@ -197,9 +279,9 @@
 
         <label class="lblF" id="lblF4">Upload Crop Image</label>
         <input type="file" accept="image/*" class="form-control" id="inpF4">
-        <div id="imagePreview" style="display: none;">
-            <img id="previewImg" src="" alt="Image Preview" style="max-width: 100%; height: auto;"/>
-        </div>
+<!--        <div id="imagePreview" style="display: none;">-->
+<!--            <img id="previewImg" src="" alt="Image Preview" style="max-width: 100%; height: auto;"/>-->
+<!--        </div>-->
 
         <label class="lblF" id="lblF5">Category</label>
         <input placeholder="Enter Category" type="text" class="form-control" id="inpF5">
@@ -252,15 +334,30 @@
         document.getElementById("viewModal").style.display = "block";
     }
 
+    function openUpdateModal() {
+        document.getElementById("updateModal").style.display = "block";
+    }
     function closeModal() {
         document.getElementById("viewModal").style.display = "none";
     }
+
+    function upcloseModal() {
+        document.getElementById("updateModal").style.display = "none";
+    }
+
 
     // Close modal if user clicks outside of it
     window.onclick = function(event) {
         const modal = document.getElementById("viewModal");
         if (event.target == modal) {
             closeModal();
+        }
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("updateModal");
+        if (event.target == modal) {
+            upcloseModal();
         }
     }
 

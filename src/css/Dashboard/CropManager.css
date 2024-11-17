@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     display: flex;
@@ -14,26 +15,34 @@ body {
     top: 0;
     width: 17vw;
     height: 100vh;
-    background-color: #023614;
+    background-color: whitesmoke;
     color: white;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*border-radius: 10px;*/
-    /*margin: 5px;*/
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
 }
+
 
 #navSet {
     position: relative;
-    top: 120px; /* Adjusted top offset */
+    top: 90px; /* Adjusted top offset */
 }
-
 .nav-item {
     display: flex;
     align-items: center;
-    margin: 15px 0; /* Adjusted margin */
-    color: white;
+    margin: 5px ;
+    margin-left: 20px;/* Adjusted margin */
+    color: black; /* Default text color */
+    padding: 0px; /* Add padding for better hover area */
+    border-radius: 5px; /* Optional: Rounded corners for a polished look */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+.nav-item:hover {
+    background-color: black; /* Background changes to black */
+    color: white; /* Text changes to white */
 }
 
 .nav-item img {
@@ -43,43 +52,57 @@ body {
     margin-right: 10px;
     left: -1vw;
     margin-bottom: 20px;
+    transition: filter 0.3s; /* Smooth transition for color change */
+}
+
+.nav-item:hover img {
+    filter: brightness(0) invert(1); /* Makes the image white */
 }
 
 .nav-item a {
-    color: white;
+    color: black; /* Default link color */
     text-decoration: none;
     font-size: 1em;
     margin-bottom: 20px;
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth text color transition */
 }
 
 .nav-item a:hover {
-    text-decoration: underline;
+    /*text-decoration: underline; !* Optional underline effect *!*/
 }
+
+/* Ensure links also change color on hover */
+.nav-item:hover a {
+    color: white; /* Link text turns white */
+}
+
 
 #logo{
     position: absolute;
-    top: -40px;
+    top: -60px;
     width: 17vw;
 }
 
 #borderNav{
-    position: fixed;
-    width: 81vw;
-    top: 10px;
-    height: 70px;
-    background-color: #f2f5f2;
-    left: 18vw;
+    position: relative;
+    width: 82vw;
+    top: 0px;
+    height: 50px;
+    background-color: white;
+    left: 17vw;
+    border-bottom: 1px solid black;
     /*z-index: ;*/
 }
 
 #userImg{
     position: absolute;
-    width: 4vw;
-    height: 50px;
+    width: 3vw;
+    height: 40px;
     background-color: white;
     border: 1px solid black;
-    right: 11vw;
-    top: 10px;
+    right: 10vw;
+    top: 5px;
     border-radius: 100px;
 }
 
@@ -88,16 +111,51 @@ body {
     font-weight: bold;
     color: black;
     right: 1vw;
-    font-size: 20px;
-    top: 20px;
+    top: 10px;
+    font-size: 18px;
 }
 
 #borderTopic{
     position: absolute;
     left: 1vw;
     font-weight: bold;
-    top: 10px;
+    font-size: 15px;
+    top: 15px;
 
+}
+
+#viewDateAndTime{
+    position: absolute;
+    width: 22vw;
+    height: 30px;
+    left: 45vw;
+    top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#calenderView{
+    position: absolute;
+    width: 2vw;
+    height: 30px;
+    top: 10px;
+    left: 41vw;
+    background-color: white;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#calenderView image{
+    position: absolute;
+    width: 1vw;
+    height: 10px;
+}
+
+#viewDateAndTimeBack{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 /* Crop table styling */
 #cropTable {
@@ -118,8 +176,13 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+#cropTable thead {
+    background-color: black; /* Black background */
+    color: white; /* White text for contrast */
+}
+
 .table thead {
-    background-color:#8c9190;
+    background-color: black;
     color: #333;
     font-weight: bold;
 }
@@ -155,7 +218,7 @@ body {
     left: 18vw;
     width: 80vw;
     height: 70px;
-    background-color: #daf2ed;
+    background-color: #b5b5b5;
     top: 170px;
 }
 
@@ -211,7 +274,7 @@ body {
     top: 170px;
     left: 20vw;
     width: 75vw; /* Adjust the width as needed */
-    height: 450px;
+    height: 350px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow *//* Set a fixed height */
    /* Hides horizontal overflow if needed */
 }
@@ -287,26 +350,26 @@ body {
 
 #inpF4{
     position: absolute;
-    top: 166px;
-    width: 35vw;
+    top: 242px;
+    width: 73vw;
     left: 1vw;
 }
 
 #lblF4{
     position: absolute;
-    top: 142px;
+    top: 215px;
     left: 1vw;
 }
 
 #lblF6{
     position: absolute;
-    top: 300px;
+    top: 142px;
     left: 1vw;
 }
 
 #inpF6{
     position: absolute;
-    top: 325px;
+    top: 166px;
     width: 35vw;
     left: 1vw;
 
@@ -314,13 +377,13 @@ body {
 
 #lblF7{
     position: absolute;
-    top: 300px;
+    top: 142px;
     left: 39vw;
 }
 
 #inpF7{
     position: absolute;
-    top: 325px;
+    top: 166px;
     width: 35vw;
     left: 39vw;
 
@@ -341,7 +404,7 @@ body {
 #subBtn{
     position: absolute;
     left: 60vw;
-    top: 400px;
+    top: 300px;
     background-color: #06357a;
     width: 10vw;
     border-radius: 10px;
@@ -352,7 +415,7 @@ body {
 #cleBtn{
     position: absolute;
     left: 50vw;
-    top: 400px;
+    top: 300px;
     background-color: transparent;
     width: 9vw;
     border-radius: 10px;
@@ -477,4 +540,91 @@ body {
 
 }
 
+
+
+
+/*==============*/
+
+
+#updateModal {
+    display: none; /* Hide modal by default */
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */ /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Modal content */
+.upmodal-content{
+    background-color: white;
+    width: 10vw; /* Set to 80vw */
+    height: 70vh; /* Set to 70vh */
+    overflow-y: auto;
+    /* Add scroll if needed */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.viewLbl{
+    font-weight: bold;
+}
+#updateH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#updateDetailsLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 7vw;
+}
+
+#updateDetailsLbl lbl{
+    margin-bottom: 10px;
+}
+
+#viewDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 20vw;
+}
+
+#updateDetailsResultLbl lbl{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#imageView{
+    position: absolute;
+    width: 40vw;
+    height: 20vh;
+    left: -13vw;
+    background-color: #4f5050;
+    top: 240px;
+
+}
 

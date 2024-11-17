@@ -251,7 +251,15 @@
             <input class="viewLblR" id="upCat"/>
             <input class="viewLblR" id="upSea"/>
             <input class="viewLblR" id="upField"/>
-            <div id="imageUpdateView" ></div>
+            <div class="viewLblR" id="imageUpdateView">
+                <div id="camerBack">
+                     <img src="/Aseats/image-gallery.png" id="camera" onclick="triggerFileInput()" style="cursor: pointer;">
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">
+            </div>
+
+            <button id="cropUpdateBtn">Update</button>
+
         </section>
 
 
@@ -312,56 +320,12 @@
 </section>
 
 <script>
-    document.getElementById('subBtn').addEventListener('click', function () {
-        // Show the overlay
-        document.getElementById('overlay').style.display = 'flex';
-
-        // Simulate a delay (e.g., for form submission) and then hide the overlay
-        setTimeout(() => {
-            document.getElementById('overlay').style.display = 'none';
-        }, 3000); // Adjust delay as needed
-    });
-
-    document.getElementById('addBtn').addEventListener('click',function (){
-        document.getElementById('cropForm').style.display='block';
-        document.getElementById('viewDetails').style.display='none';
-        document.getElementById('imgPlant').style.display='block';
-        document.getElementById('cropTop').style.display='block';
-
-    });
-
-    function openModal() {
-        document.getElementById("viewModal").style.display = "block";
-    }
-
-    function openUpdateModal() {
-        document.getElementById("updateModal").style.display = "block";
-    }
-    function closeModal() {
-        document.getElementById("viewModal").style.display = "none";
-    }
-
-    function upcloseModal() {
-        document.getElementById("updateModal").style.display = "none";
-    }
 
 
-    // Close modal if user clicks outside of it
-    window.onclick = function(event) {
-        const modal = document.getElementById("viewModal");
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-
-    window.onclick = function(event) {
-        const modal = document.getElementById("updateModal");
-        if (event.target == modal) {
-            upcloseModal();
-        }
-    }
 
 </script>
+
+<script src="/script/CropManager.js"></script>
 
 </body>
 </html>

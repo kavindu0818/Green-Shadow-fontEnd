@@ -275,7 +275,8 @@ body {
     left: 20vw;
     width: 75vw; /* Adjust the width as needed */
     height: 350px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow *//* Set a fixed height */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #4f5050/* Add shadow *//* Set a fixed height */
    /* Hides horizontal overflow if needed */
 }
 
@@ -601,8 +602,18 @@ body {
     left: 7vw;
 }
 
+#updateDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 18vw;
+    width: 20vw;
+    /*margin-bottom: 40px;*/
+}
+
 #updateDetailsLbl lbl{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #viewDetailsResultLbl{
@@ -615,7 +626,11 @@ body {
 
 #updateDetailsResultLbl lbl{
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.viewLblR{
+    margin-bottom: 13px;
 }
 
 #imageView{
@@ -626,5 +641,46 @@ body {
     background-color: #4f5050;
     top: 240px;
 
+}
+#imageUpdateView{
+    position: absolute;
+    width: 10vw;
+    height: 80px;
+    border: 1px solid black;
+    background-color: #b5b5b5;
+    top: 260px;
+}
+
+#camera{
+    position: absolute;
+    top: 6px;
+    right: 0.5vw;
+    width: 1vw;
+    height: 10px;
+    z-index: 100;
+    /*background-color: white;*/
+    /*border-radius: 100px;*/
+}
+
+#camerBack{
+    position: absolute;
+    background-color: white;
+    width: 2vw;
+    height: 20px;
+    border-radius: 100px;
+    right: -1vw;
+    top: -10px;
+    border: 1px solid black;
+}
+
+#cropUpdateBtn{
+    position: absolute;
+    right: 1vw;
+    background-color: #06357a;
+    top: 350px;
+    width: 8vw;
+    border-radius: 10px;
+    border: 1px solid black;
+    color: white;
 }
 

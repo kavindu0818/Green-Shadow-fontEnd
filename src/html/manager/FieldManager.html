@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Field Manager</title>
+
+    <link rel="stylesheet" href="/css/manager/FieldManager.css">
+
+    <link rel="stylesheet" href="../../boostrap/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <style>
+        /* Modal background */
+        .upmodal {
+            display: none; /* Enable flexbox */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+            position: fixed;
+            z-index: 1;
+            left: 0vw;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        /* Modal content box */
+        .upmodal-content {
+            width: 50vw; /* 50% of viewport width */
+            max-width: 600px; /* Optional: max width */
+            height: 85vh; /* 85% of viewport height */
+            padding: 20px;
+            left: 25vw;
+            top: 50px;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+            position: relative; /* Ensure the close button positions relative to the modal */
+        }
+
+        /* Close button */
+        .upclose {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+        }
+
+        /* Modal content box */
+        .modal-content {
+            width: 50vw; /* 80% of viewport width */
+            height: 85vh; /* 80% of viewport height */
+            padding: 20px;
+            left: 25vw;
+            top: 50px;
+            z-index: 200000;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<section id="nav">
+
+    <img src="/Aseats/logo2-GreenShadow.png" id="logo">
+    <section id="navSet">
+        <div class="nav-item">
+            <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
+            <a href="../html/Dashboard/CropManger.htmlCrop">Crop</a>
+        </div>
+        <div class="nav-item">
+            <img src="/Aseats/fieldIcon.png" alt="Field Icon" class="icon">
+            <a href="../manager/FieldManager.html">Field</a>
+        </div>
+        <div class="nav-item">
+            <img src="/Aseats/staffe.png" alt="Staffe Icon" class="icon">
+            <a href="../manager/StaffManger.html">Staffe</a>
+        </div>
+        <div class="nav-item">
+            <img src="/Aseats/vehicelLogo.png" alt="Vehicle Icon" class="icon">
+            <a href="../manager/VehicleManger.html">Vehicle</a>
+        </div>
+        <div class="nav-item">
+            <img src="/Aseats/equipementIcon.png" alt="Equipment Icon" class="icon">
+            <a href="../manager/EquipmentManager.html">Equipment</a>
+        </div>
+        <div class="nav-item">
+            <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
+            <a href="../manager/MonitorLogManager.html">Monitoring Log</a>
+        </div>
+    </section>
+</section>
+
+<section id="borderNav">
+    <div id="userImg"></div>
+    <h3 id="userName">Kavindu Mw</h3>
+    <h2 id="borderTopic">Field Management</h2>
+    <img src="/Aseats/calendar.png" id="calenderView">
+    <div id="viewDateAndTime">
+        <div id="viewDateAndTimeBack">
+            <label id="viewDay">Wendsday</label>
+            <label id="viewDate">17 November 2024</label>
+            <label id="atlbl"> at </label>
+            <label id="time">8.00 AM</label>
+        </div>
+    </div>
+</section>
+
+
+<section id="viewDetails" style="display: block">
+    <section id="search">
+        <label id="lblField">Search Field</label>
+        <input id="Fieldsbar" placeholder="Enter Field Name">
+
+    </section>
+
+    <section>
+        <button id="FieldaddBtn">+ADD FIELD</button>
+    </section>
+
+    <section id="fieldTable">
+        <table class="table table table-borderless" >
+            <thead class="table-dark">
+            <tr class="table-dark">
+                <th>Field ID</th>
+                <th>Field Name</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr>
+                <td>1</td>
+                <td>Wheat</td>
+                <td>Cereal</td>
+                <td class="action-icons">
+                    <i class="fas fa-edit" title="Update" onclick="openUpdateModal()"></i>
+                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
+                    <i class="fas fa-trash-alt" title="Delete"></i>
+                </td>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Wheat</td>
+                <td>Cereal</td>
+                <td class="action-icons">
+                    <i class="fas fa-edit" title="Update"></i>
+                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
+                    <i class="fas fa-trash-alt" title="Delete"></i>
+                </td>
+            </tr>
+            <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </section>
+
+</section>
+
+<div id="fieldviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="viewH2" class="animate__backInDown">FIELD DETAILS </h2>
+
+
+        <section id="viewDetailsLbl">
+
+            <lbl class="field_viewLbl">Code: </lbl>
+            <lbl class="field_viewLbl">Name: </lbl>
+            <lbl class="field_viewLbl">Field location: </lbl>
+            <lbl class="field_viewLbl">Extent size of the Field: </lbl>
+            <lbl class="field_viewLbl">Crops: </lbl>
+            <lbl class="field_viewLbl">Staff: </lbl>
+            <lbl class="field_viewLbl">Image: </lbl>
+
+        </section>
+
+
+        <section id="field_viewDetailsResultLbl">
+            <lbl class="field_viewLblR"></lbl>
+            <lbl class="field_viewLblR"></lbl>
+            <lbl class="field_viewLblR"></lbl>
+            <lbl class="field_viewLblR"></lbl>
+            <lbl class="field_viewLblR"></lbl>
+            <lbl class="field_viewLblR"></lbl>
+            <div id="field_imageView"></div>
+        </section>
+
+
+
+
+    </div>
+</div>
+
+
+<div id="field_updateModal" class="upmodal">
+    <div class="upmodal-content">
+        <span class="upclose" onclick="upcloseModal()">&times;</span>
+        <h2 id="updateH2" class="animate__backInDown">FIELD UPDATE </h2>
+
+
+        <section id="field_updateDetailsLbl">
+
+            <lbl class="field_viewLbl">Code: </lbl>
+            <lbl class="field_viewLbl">Name: </lbl>
+            <lbl class="field_viewLbl">Field location: </lbl>
+            <lbl class="field_viewLbl">Extent size of the Field: </lbl>
+            <lbl class="field_viewLbl">Crop: </lbl>
+            <lbl class="field_viewLbl">Staff: </lbl>
+            <lbl class="field_viewLbl">Images: </lbl>
+
+        </section>
+
+
+        <section id="field_updateDetailsResultLbl">
+            <input class="field_viewLblR" id="upCode"/>
+            <input class="field_viewLblR" id="upName"/>
+            <input class="field_viewLblR" id="upsName"/>
+            <input class="field_viewLblR" id="upCat"/>
+            <input class="field_viewLblR" id="upSea"/>
+            <input class="field_viewLblR" id="upField"/>
+            <div class="field_viewLblR" id="imageUpdateView">
+                <div id="field_camerBack">
+                    <img src="/Aseats/image-gallery.png" id="field_camera" onclick="triggerFileInput()" style="cursor: pointer;">
+                </div>
+                <input type="file" id="field_fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">
+            </div>
+
+            <button id="field_cropUpdateBtn">Update</button>
+
+        </section>
+
+
+
+
+    </div>
+</div>
+
+<section>
+    <img src="/Aseats/field.png" id="imgfield">
+    <h1 id="fieldTop">ADD CROP</h1>
+</section>
+
+
+<section id="fieldForm" style="display: none">
+    <section id="fieldFormSection">
+        <label class="lblF" id="lblField1">Code</label>
+        <input placeholder="Enter field code" type="text" class="form-control" id="inpFe1">
+
+        <label class="lblF" id="lblField2">Field name</label>
+        <input placeholder="Enter field name" type="text" class="form-control" id="inpFe2">
+
+        <label class="lblF" id="lblField3">Field Location</label>
+        <input placeholder="Enter field Location" type="text" class="form-control" id="inpFe3">
+
+        <label class="lblF" id="lblField4">Upload Field Image 1</label>
+        <input type="file" accept="image/*" class="form-control" id="inpFe4">
+
+<!--        <label class="lblF" id="lblField8">Upload Field Image 2</label>-->
+<!--        <input type="file" accept="image/*" class="form-control" id="inpFe8">-->
+
+        <!--        <div id="imagePreview" style="display: none;">-->
+        <!--            <img id="previewImg" src="" alt="Image Preview" style="max-width: 100%; height: auto;"/>-->
+        <!--        </div>-->
+
+        <label class="lblF" id="lblField5">Extent size of the Field</label>
+        <input placeholder="Enter Extent size of the Field" type="text" class="form-control" id="inpFe5">
+
+        <label class="lblF" id="lblField6">Staff</label>
+        <select class="form-control" id="inpField6">
+            <option value="field1">Staff 1</option>
+            <option value="field2">Field 2</option>
+            <option value="field3">Field 3</option>
+            <!-- Add more fields as needed -->
+        </select>
+
+        <label class="lblF" id="lblField7">Crops</label>
+        <select class="form-control" id="inpFe7">
+            <option value="field1">Crop 1</option>
+            <option value="field2">Field 2</option>
+            <option value="field3">Field 3</option>
+            <!-- Add more fields as needed -->
+        </select>
+
+        <button id="field_subBtn">Submit</button>
+        <button id="field_cleBtn">Clear</button>
+
+        <div id="overlay" style="display: none;">
+            <div class="overlay-content">
+                <div class="progress" role="progressbar" aria-label="Loading" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                </div>
+                <p>Processing, please wait...</p>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script>
+
+    document.getElementById('field_subBtn').addEventListener('click', function () {
+        // Show the overlay
+        document.getElementById('overlay').style.display = 'flex';
+
+        // Simulate a delay (e.g., for form submission) and then hide the overlay
+        setTimeout(() => {
+            document.getElementById('overlay').style.display = 'none';
+        }, 3000); // Adjust delay as needed
+    });
+
+    document.getElementById('FieldaddBtn').addEventListener('click',function (){
+        document.getElementById('fieldForm').style.display='block';
+        document.getElementById('viewDetails').style.display='none';
+        document.getElementById('imgfield').style.display='block';
+        document.getElementById('fieldTop').style.display='block';
+
+    });
+
+    function openModal() {
+        document.getElementById("fieldviewModal").style.display = "block";
+    }
+
+    function openUpdateModal() {
+        document.getElementById("field_updateModal").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("fieldviewModal").style.display = "none";
+    }
+
+    function upcloseModal() {
+        document.getElementById("field_updateModal").style.display = "none";
+    }
+
+
+    // Close modal if user clicks outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById("fieldviewModal");
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("field_updateModal");
+        if (event.target == modal) {
+            upcloseModal();
+        }
+    }
+
+    function triggerFileInput() {
+        document.getElementById('fileInput').click();
+    }
+
+    function displaySelectedImage(event) {
+        const file = event.target.files[0]; // Get the selected file
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Create an image element and set its src to the selected file's data
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = "100%"; // Adjust size as needed
+                img.style.height = "auto"; // Maintain aspect ratio
+                img.style.borderRadius = "8px"; // Optional: Style the image
+
+                // Clear previous content in the div and append the new image
+                const imageUpdateView = document.getElementById('field_imageUpdateView');
+                imageUpdateView.innerHTML = '';
+                imageUpdateView.appendChild(img);
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    }
+
+</script>
+
+<!--<script src="/script/CropManager.js"></script>-->
+
+</body>
+</html>

@@ -35,55 +35,102 @@
       position: relative;
       top: 120px; /* Adjusted top offset */
     }
+    /*.nav-item {*/
+    /*  display: flex;*/
+    /*  align-items: center;*/
+    /*  margin: 5px ;*/
+    /*  margin-left: 20px;!* Adjusted margin *!*/
+    /*  color: black; !* Default text color *!*/
+    /*  padding: 0px; !* Add padding for better hover area *!*/
+    /*  border-radius: 5px; !* Optional: Rounded corners for a polished look *!*/
+    /*  transition: background-color 0.3s, color 0.3s; !* Smooth transitions *!*/
+    /*}*/
+
+    /*.nav-item:hover {*/
+    /*  left: -1vw;*/
+    /*  background-color: black; !* Background changes to black *!*/
+    /*  color: white; !* Text changes to white *!*/
+    /*}*/
+
+    /*.nav-item img {*/
+    /*  position: relative;*/
+    /*  width: 24px;*/
+    /*  height: 24px;*/
+    /*  margin-right: 10px;*/
+    /*  left: -1vw;*/
+    /*  margin-bottom: 20px;*/
+    /*  transition: filter 0.3s; !* Smooth transition for color change *!*/
+    /*}*/
+
+    /*.nav-item:hover img {*/
+    /*  filter: brightness(0) invert(1); !* Makes the image white *!*/
+    /*}*/
+
+    /*.nav-item a {*/
+    /*  color: black; !* Default link color *!*/
+    /*  text-decoration: none;*/
+    /*  font-size: 1em;*/
+    /*  margin-bottom: 20px;*/
+    /*  font-weight: bold;*/
+    /*  transition: color 0.3s; !* Smooth text color transition *!*/
+    /*}*/
+
+    /*.nav-item a:hover {*/
+    /*  !*text-decoration: underline; !* Optional underline effect *!*!*/
+    /*}*/
+
+    /*!* Ensure links also change color on hover *!*/
+    /*.nav-item:hover a {*/
+    /*  color: white; !* Link text turns white *!*/
+    /*}*/
+
+    /*==============================*/
+
+    #navSet {
+      display: flex;
+      flex-direction: column; /* Arrange items vertically */
+      width: 200px; /* Set a fixed width for the navigation */
+      background-color: #f4f4f4; /* Default background for the navigation */
+      padding: 10px 0; /* Add padding for spacing */
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+    }
+
     .nav-item {
       display: flex;
       align-items: center;
-      margin: 10px ;
-      margin-left: 20px;/* Adjusted margin */
+      padding: 10px 20px; /* Internal spacing */
+      border-radius: 5px; /* Rounded corners for a clean look */
       color: black; /* Default text color */
-      padding: 0px; /* Add padding for better hover area */
-      border-radius: 5px; /* Optional: Rounded corners for a polished look */
+      text-decoration: none; /* Remove underline for links */
       transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+      cursor: pointer;
+      margin-bottom: 10px;
     }
 
     .nav-item:hover {
-      background-color: black; /* Background changes to black */
-      color: white; /* Text changes to white */
+      background-color: black; /* Hover background color */
+      color: white; /* Text color changes to white */
     }
 
     .nav-item img {
-      position: relative;
       width: 24px;
       height: 24px;
-      margin-right: 10px;
-      left: -1vw;
-      margin-bottom: 20px;
-      transition: filter 0.3s; /* Smooth transition for color change */
+      margin-right: 10px; /* Space between the icon and the text */
+      transition: filter 0.3s; /* Smooth transition for icon color */
     }
 
     .nav-item:hover img {
-      filter: brightness(0) invert(1); /* Makes the image white */
+      filter: brightness(0) invert(1); /* Makes the icon white on hover */
     }
 
     .nav-item a {
-      color: black; /* Default link color */
-      text-decoration: none;
+      color: inherit; /* Inherit color from the parent */
+      text-decoration: none; /* No underline for links */
       font-size: 1em;
-      margin-bottom: 20px;
       font-weight: bold;
-      transition: color 0.3s; /* Smooth text color transition */
     }
 
-    .nav-item a:hover {
-      /*text-decoration: underline; !* Optional underline effect *!*/
-    }
-
-    /* Ensure links also change color on hover */
-    .nav-item:hover a {
-      color: white; /* Link text turns white */
-    }
-
-
+    /*===========================================================*/
     #logo{
       position: absolute;
       top: -40px;
@@ -186,6 +233,7 @@
       <a href="#">Monitoring Log</a>
     </div>
   </section>
+
 </section>
 
 <section id="borderNav">

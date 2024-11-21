@@ -1,13 +1,14 @@
 
 body {
-    margin: 0;
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #f5f5f5;
-    overflow-y: auto; /* Enables vertical scrolling */
-    overflow-x: hidden;
+    margin: 0; /* Removes default margins */
+    display: flex; /* Sets the body as a flex container */
+    height: 100vh; /* Ensures the body spans the full viewport height */
+    overflow: hidden; /* Prevents scrolling */
+    /*background: linear-gradient(135deg, #4e6956, #1f2633); !* Adds a gradient background *!*/
+    background-color: #b5b5b5;
+    color: white; /* Sets text color to white for readability */
 }
+
 
 #nav {
     position: fixed;
@@ -15,7 +16,9 @@ body {
     top: 0;
     width: 17vw;
     height: 100vh;
-    background-color: whitesmoke;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633);
+     !* Adds a gradient background *!*/
+    background-color: white;
     color: white;
     padding-top: 20px;
     display: flex;
@@ -26,55 +29,49 @@ body {
 
 
 #navSet {
-    position: relative;
-    top: 90px; /* Adjusted top offset */
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    width: 200px; /* Set a fixed width for the navigation */
+    /*background-color: #f4f4f4; !* Default background for the navigation *!*/
+    padding: 10px 0; /* Add padding for spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+    top: 100px;
 }
+
 .nav-item {
     display: flex;
     align-items: center;
-    margin: 5px ;
-    margin-left: 20px;/* Adjusted margin */
+    padding: 10px 20px; /* Internal spacing */
+    border-radius: 5px; /* Rounded corners for a clean look */
     color: black; /* Default text color */
-    padding: 0px; /* Add padding for better hover area */
-    border-radius: 5px; /* Optional: Rounded corners for a polished look */
+    text-decoration: none; /* Remove underline for links */
     transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    cursor: pointer;
+    margin-bottom: 6px;
 }
 
 .nav-item:hover {
-    background-color: black; /* Background changes to black */
-    color: white; /* Text changes to white */
+    background-color: black; /* Hover background color */
+    color: white; /* Text color changes to white */
 }
 
 .nav-item img {
-    position: relative;
     width: 24px;
     height: 24px;
-    margin-right: 10px;
-    left: -1vw;
-    margin-bottom: 20px;
-    transition: filter 0.3s; /* Smooth transition for color change */
+    margin-right: 10px; /* Space between the icon and the text */
+    transition: filter 0.3s; /* Smooth transition for icon color */
 }
 
 .nav-item:hover img {
-    filter: brightness(0) invert(1); /* Makes the image white */
+    filter: brightness(0) invert(1); /* Makes the icon white on hover */
 }
 
 .nav-item a {
-    color: black; /* Default link color */
-    text-decoration: none;
+    color: inherit; /* Inherit color from the parent */
+    text-decoration: none; /* No underline for links */
     font-size: 1em;
-    margin-bottom: 20px;
     font-weight: bold;
-    transition: color 0.3s; /* Smooth text color transition */
-}
-
-.nav-item a:hover {
-    /*text-decoration: underline; !* Optional underline effect *!*/
-}
-
-/* Ensure links also change color on hover */
-.nav-item:hover a {
-    color: white; /* Link text turns white */
 }
 
 
@@ -90,6 +87,7 @@ body {
     top: 0px;
     height: 50px;
     background-color: white;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633); !* Adds a gradient background *!*/
     left: 17vw;
     border-bottom: 1px solid black;
     /*z-index: ;*/
@@ -156,12 +154,13 @@ body {
     position: absolute;
     margin-top: 5px;
     margin-left: 5px;
+    /*color: black;*/
 }
 /* Crop table styling */
 #cropTable {
     position: absolute;
     left: 18vw;
-    top: 250px; /* Adjusted to fit within view */
+    top: 230px; /* Adjusted to fit within view */
     width: 80vw;
 }
 
@@ -213,18 +212,48 @@ body {
     color: #007bff; /* Highlight color on hover */
 }
 
+/*=========================================*/
+.action-icons {
+    display: flex;
+    gap: 20px; /* Adjust gap */
+    justify-content: center; /* Center icons */
+    align-items: center; /* Vertically align icons */
+    text-align: center;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=================================*/
 #search{
     position: absolute;
     left: 18vw;
     width: 80vw;
     height: 70px;
     background-color: #b5b5b5;
-    top: 170px;
+    top: 150px;
+    border-radius: 10px;
 }
 
 #lblCrop {
     position: absolute;
-    left: 0;
+    left: 1vw;
     font-family: Arial, sans-serif; /* Set a font family */
     font-style: revert;
     font-weight: bold; /* Make text bold */
@@ -234,23 +263,27 @@ body {
     position: absolute;
     top: 25px;
     width: 20vw;
+    left: 1vw;
+    border-radius: 10px;
 }
 
 #addBtn{
     position: absolute;
-    width: 10vw;
-    height: 40px;
+    width: 8vw;
+    height: 30px;
     right: 5vw;
-    top: 100px;
-    background-color: #06357a;
+    top: 90px;
+    font-size: 12px;
+    background-color: black;
     color: white;
     font-weight: bold;
 }
 
+
 #imgPlant{
     position: absolute;
     left: 20vw;
-    top: 100px;
+    top: 80px;
     border-radius: 100px;
     width: 5vw;
     height: 50px;
@@ -262,7 +295,7 @@ body {
     left: 26vw;
     font-size: 35px;
     font-weight: bold;
-    top: 100px;
+    top: 80px;
     display: none;
 
 }
@@ -271,12 +304,13 @@ body {
     flex-wrap: wrap;
     gap: 20px; /* Space between elements */
     position: absolute;
-    top: 170px;
+    top: 150px;
     left: 20vw;
     width: 75vw; /* Adjust the width as needed */
-    height: 350px;
+    height: 330px;
+    border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: #4f5050/* Add shadow *//* Set a fixed height */
+    background-color: #d2d4d9;/* Add shadow *//* Set a fixed height */
    /* Hides horizontal overflow if needed */
 }
 
@@ -404,10 +438,10 @@ body {
 
 #subBtn{
     position: absolute;
-    left: 60vw;
-    top: 300px;
-    background-color: #06357a;
-    width: 10vw;
+    left: 62vw;
+    top: 290px;
+    background-color: black;
+    width: 8vw;
     border-radius: 10px;
     color: white;
     font-weight: bold;
@@ -415,10 +449,10 @@ body {
 
 #cleBtn{
     position: absolute;
-    left: 50vw;
-    top: 300px;
+    left: 53vw;
+    top: 290px;
     background-color: transparent;
-    width: 9vw;
+    width: 8vw;
     border-radius: 10px;
     color: black;
     font-weight: bold;
@@ -427,6 +461,11 @@ body {
 #cleBtn:hover{
     background-color: black;
     color: white;
+}
+
+#subBtn:hover{
+    background-color: transparent;
+    color: black;
 }
 
 /* Overlay styles */
@@ -547,40 +586,40 @@ body {
 /*==============*/
 
 
-#updateModal {
-    display: none; /* Hide modal by default */
-    position: fixed; /* Stay in place */
-    z-index: 3; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */ /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
+/*.updateModal {*/
+/*    display: none; !* Hide modal by default *!*/
+/*    position: fixed; !* Stay in place *!*/
+/*    z-index: 3; !* Sit on top *!*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 100%; !* Full width *!*/
+/*    height: 100%; !* Full height *!*/
+/*    overflow: auto; !* Enable scroll if needed *!*/
+/*    background-color: rgba(0, 0, 0, 0.4); !* Black w/ opacity *! !* Use flexbox *!*/
+/*    justify-content: center; !* Center horizontally *!*/
+/*    align-items: center; !* Center vertically *!*/
+/*}*/
 
-/* Modal content */
-.upmodal-content{
-    background-color: white;
-    width: 10vw; /* Set to 80vw */
-    height: 70vh; /* Set to 70vh */
-    overflow-y: auto;
-    /* Add scroll if needed */
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+/*!* Modal content *!*/
+/*.upmodal-content{*/
+/*    background-color: white;*/
+/*    width: 10vw; !* Set to 80vw *!*/
+/*    height: 70vh; !* Set to 70vh *!*/
+/*    overflow-y: auto;*/
+/*    !* Add scroll if needed *!*/
+/*    padding: 20px;*/
+/*    border: 1px solid #888;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*}*/
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-}
+/*.close {*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 15px;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .viewLbl{
     font-weight: bold;

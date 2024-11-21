@@ -1,0 +1,158 @@
+body {
+    margin: 0; /* Removes default margins */
+    display: flex; /* Sets the body as a flex container */
+    height: 100vh; /* Ensures the body spans the full viewport height */
+    overflow: hidden; /* Prevents scrolling */
+    /*background: linear-gradient(135deg, #4e6956, #1f2633); !* Adds a gradient background *!*/
+    background-color: #b5b5b5;
+    color: white; /* Sets text color to white for readability */
+}
+
+
+#nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 17vw;
+    height: 100vh;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633);
+     !* Adds a gradient background *!*/
+    background-color: white;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+
+#navSet {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    width: 200px; /* Set a fixed width for the navigation */
+    /*background-color: #f4f4f4; !* Default background for the navigation *!*/
+    padding: 10px 0; /* Add padding for spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+    top: 100px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Internal spacing */
+    border-radius: 5px; /* Rounded corners for a clean look */
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.nav-item:hover {
+    background-color: black; /* Hover background color */
+    color: white; /* Text color changes to white */
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between the icon and the text */
+    transition: filter 0.3s; /* Smooth transition for icon color */
+}
+
+.nav-item:hover img {
+    filter: brightness(0) invert(1); /* Makes the icon white on hover */
+}
+
+.nav-item a {
+    color: inherit; /* Inherit color from the parent */
+    text-decoration: none; /* No underline for links */
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+#logo{
+    position: absolute;
+    top: -60px;
+    width: 17vw;
+}
+
+#borderNav{
+    position: relative;
+    width: 82vw;
+    top: 0px;
+    height: 50px;
+    background-color: white;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633); !* Adds a gradient background *!*/
+    left: 17vw;
+    border-bottom: 1px solid black;
+    /*z-index: ;*/
+}
+
+#userImg{
+    position: absolute;
+    width: 3vw;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    right: 10vw;
+    top: 5px;
+    border-radius: 100px;
+}
+
+#userName{
+    position: absolute;
+    font-weight: bold;
+    color: black;
+    right: 1vw;
+    top: 10px;
+    font-size: 18px;
+}
+
+#borderTopic{
+    position: absolute;
+    left: 1vw;
+    font-weight: bold;
+    font-size: 15px;
+    top: 15px;
+
+}
+
+#viewDateAndTime{
+    position: absolute;
+    width: 22vw;
+    height: 30px;
+    left: 45vw;
+    top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#calenderView{
+    position: absolute;
+    width: 2vw;
+    height: 30px;
+    top: 10px;
+    left: 41vw;
+    background-color: white;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#calenderView image{
+    position: absolute;
+    width: 1vw;
+    height: 10px;
+}
+
+#viewDateAndTimeBack{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: black;
+}
+

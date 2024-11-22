@@ -1,0 +1,767 @@
+
+body {
+    margin: 0; /* Removes default margins */
+    display: flex; /* Sets the body as a flex container */
+    height: 100vh; /* Ensures the body spans the full viewport height */
+    overflow: hidden; /* Prevents scrolling */
+    /*background: linear-gradient(135deg, #4e6956, #1f2633); !* Adds a gradient background *!*/
+    background-color: #b5b5b5;
+    color: white; /* Sets text color to white for readability */
+}
+
+
+#nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 17vw;
+    height: 100vh;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633);
+     !* Adds a gradient background *!*/
+    background-color: white;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+
+#navSet {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    width: 200px; /* Set a fixed width for the navigation */
+    /*background-color: #f4f4f4; !* Default background for the navigation *!*/
+    padding: 10px 0; /* Add padding for spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+    top: 100px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Internal spacing */
+    border-radius: 5px; /* Rounded corners for a clean look */
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.nav-item:hover {
+    background-color: black; /* Hover background color */
+    color: white; /* Text color changes to white */
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between the icon and the text */
+    transition: filter 0.3s; /* Smooth transition for icon color */
+}
+
+.nav-item:hover img {
+    filter: brightness(0) invert(1); /* Makes the icon white on hover */
+}
+
+.nav-item a {
+    color: inherit; /* Inherit color from the parent */
+    text-decoration: none; /* No underline for links */
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+#logo{
+    position: absolute;
+    top: -60px;
+    width: 17vw;
+}
+
+#borderNav{
+    position: relative;
+    width: 82vw;
+    top: 0px;
+    height: 50px;
+    background-color: white;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633); !* Adds a gradient background *!*/
+    left: 17vw;
+    border-bottom: 1px solid black;
+    /*z-index: ;*/
+}
+
+#userImg{
+    position: absolute;
+    width: 3vw;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    right: 10vw;
+    top: 5px;
+    border-radius: 100px;
+}
+
+#userName{
+    position: absolute;
+    font-weight: bold;
+    color: black;
+    right: 1vw;
+    top: 10px;
+    font-size: 18px;
+}
+
+#borderTopic{
+    position: absolute;
+    left: 1vw;
+    font-weight: bold;
+    font-size: 15px;
+    top: 15px;
+
+}
+
+#viewDateAndTime{
+    position: absolute;
+    width: 22vw;
+    height: 30px;
+    left: 45vw;
+    top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#calenderView{
+    position: absolute;
+    width: 2vw;
+    height: 30px;
+    top: 10px;
+    left: 41vw;
+    background-color: white;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#calenderView image{
+    position: absolute;
+    width: 1vw;
+    height: 10px;
+}
+
+#viewDateAndTimeBack{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    /*color: black;*/
+}
+/* Crop table styling */
+#equTable {
+    position: absolute;
+    left: 18vw;
+    top: 230px; /* Adjusted to fit within view */
+    width: 80vw;
+}
+
+.table {
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#equTable thead {
+    background-color: black; /* Black background */
+    color: white; /* White text for contrast */
+}
+
+.table thead {
+    background-color: black;
+    color: #333;
+    font-weight: bold;
+}
+
+.action-icons {
+    display: flex;
+    gap: 40px; /* Space between icons */
+    justify-content: center; /* Horizontally center icons */
+    align-items: center; /* Vertically center icons */
+    text-align: center;
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fas fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=========================================*/
+.action-icons {
+    display: flex;
+    gap: 20px; /* Adjust gap */
+    justify-content: center; /* Center icons */
+    align-items: center; /* Vertically align icons */
+    text-align: center;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=================================*/
+#search{
+    position: absolute;
+    left: 18vw;
+    width: 80vw;
+    height: 70px;
+    background-color: #b5b5b5;
+    top: 150px;
+    border-radius: 10px;
+}
+
+#lblCrop {
+    position: absolute;
+    left: 1vw;
+    font-family: Arial, sans-serif; /* Set a font family */
+    font-style: revert;
+    font-weight: bold; /* Make text bold */
+}
+
+#equ_sbar{
+    position: absolute;
+    top: 25px;
+    width: 20vw;
+    left: 1vw;
+    border-radius: 10px;
+}
+
+#equ_addBtn{
+    position: absolute;
+    width: 8vw;
+    height: 30px;
+    right: 5vw;
+    top: 90px;
+    font-size: 9px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+
+#addIcon{
+    position: absolute;
+    left: 20vw;
+    top: 80px;
+    border-radius: 100px;
+    width: 5vw;
+    height: 50px;
+    display: none;
+}
+
+#equTop{
+    position: absolute;
+    left: 26vw;
+    font-size: 35px;
+    font-weight: bold;
+    top: 80px;
+    display: none;
+
+}
+#equForm{
+    display: none;
+}
+#equFormSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between elements */
+    position: absolute;
+    top: 150px;
+    left: 20vw;
+    width: 75vw; /* Adjust the width as needed */
+    height: 270px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #d2d4d9;/* Add shadow *//* Set a fixed height */
+    /* Hides horizontal overflow if needed */
+}
+
+
+.lblF, .form-control {
+    flex: 1 1 45%; /* Each label and input takes up about 45% of the width */
+    margin-bottom: 10px;
+}
+
+.lblF {
+    font-weight: bold;
+    width: 100%;
+    /* Labels span full width of their column */
+}
+
+.form-control {
+    position: relative;
+    width: 30vw; /* Inputs take full width of their column */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#equ_inpF1{
+    position: absolute;
+    left: 1vw;
+    width: 35vw;
+    top: 24px;
+}
+
+#lblF1{
+    position: absolute;
+    top: 0px;
+    left: 1vw;
+}
+
+#lblF2{
+    position: absolute;
+    top: 0px;
+    left: 39vw;
+}
+#equ_inpF2{
+    position: absolute;
+    left: 39vw;
+    width: 35vw;
+    top: 24px;
+}
+
+#lblF3{
+    position: absolute;
+    top: 71px;
+    left: 1vw;
+}
+
+#equ_inpF3{
+    position: absolute;
+    top: 95px;
+    width: 35vw;
+    left: 1vw;
+}
+
+#equ_inpF5{
+    position: absolute;
+    top: 95px;
+    width: 35vw;
+    left: 39vw;
+}
+
+#lblF5{
+    position: absolute;
+    top: 71px;
+    left: 39vw;
+}
+
+#equ_inpF4{
+    position: absolute;
+    top: 242px;
+    width: 73vw;
+    left: 1vw;
+}
+
+#lblF4{
+    position: absolute;
+    top: 215px;
+    left: 1vw;
+}
+
+#lblF6{
+    position: absolute;
+    top: 142px;
+    left: 1vw;
+}
+
+#equ_inpF6{
+    position: absolute;
+    top: 166px;
+    width: 35vw;
+    left: 1vw;
+
+}
+
+#lblF7{
+    position: absolute;
+    top: 142px;
+    left: 39vw;
+}
+
+#equ_inpF7{
+    position: absolute;
+    top: 166px;
+    width: 35vw;
+    left: 39vw;
+
+}
+
+#equ_imagePreview {
+    position: absolute;
+    margin-top: 100px;
+    max-width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #4f5050;
+}
+
+#equ_subBtn{
+    position: absolute;
+    left: 62vw;
+    top: 230px;
+    background-color: black;
+    width: 8vw;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+#equ_cleBtn{
+    position: absolute;
+    left: 53vw;
+    top: 230px;
+    background-color: transparent;
+    width: 8vw;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+#equ_cleBtn:hover{
+    background-color: black;
+    color: white;
+}
+
+#equ_subBtn:hover{
+    background-color: transparent;
+    color: black;
+}
+
+/* Overlay styles */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+}
+
+.overlay-content .progress {
+    width: 100%;
+    height: 30px;
+}
+
+.overlay-content p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.viewLbl{
+    font-weight: bold;
+}
+#viewH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#viewDetailsLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 7vw;
+}
+
+#viewDetailsLbl lbl{
+    margin-bottom: 10px;
+}
+
+#viewDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 20vw;
+}
+
+#viewDetailsResultLbl lbl{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#imageView{
+    position: absolute;
+    width: 40vw;
+    height: 20vh;
+    left: -13vw;
+    background-color: #4f5050;
+    top: 240px;
+
+}
+
+
+
+
+/*==============*/
+
+
+/*.updateModal {*/
+/*    display: none; !* Hide modal by default *!*/
+/*    position: fixed; !* Stay in place *!*/
+/*    z-index: 3; !* Sit on top *!*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 100%; !* Full width *!*/
+/*    height: 100%; !* Full height *!*/
+/*    overflow: auto; !* Enable scroll if needed *!*/
+/*    background-color: rgba(0, 0, 0, 0.4); !* Black w/ opacity *! !* Use flexbox *!*/
+/*    justify-content: center; !* Center horizontally *!*/
+/*    align-items: center; !* Center vertically *!*/
+/*}*/
+
+/*!* Modal content *!*/
+/*.upmodal-content{*/
+/*    background-color: white;*/
+/*    width: 10vw; !* Set to 80vw *!*/
+/*    height: 70vh; !* Set to 70vh *!*/
+/*    overflow-y: auto;*/
+/*    !* Add scroll if needed *!*/
+/*    padding: 20px;*/
+/*    border: 1px solid #888;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+/*.close {*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 15px;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.viewLbl{
+    font-weight: bold;
+}
+#updateH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#updateDetailsLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 7vw;
+}
+
+#updateDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 18vw;
+    width: 20vw;
+    /*margin-bottom: 40px;*/
+}
+
+#updateDetailsLbl lbl{
+    margin-bottom: 20px;
+}
+
+#viewDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 20vw;
+}
+
+#updateDetailsResultLbl lbl{
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.equ_viewLblR{
+    margin-bottom: 13px;
+}
+
+#equ_imageView{
+    position: absolute;
+    width: 40vw;
+    height: 20vh;
+    left: -13vw;
+    background-color: #4f5050;
+    top: 240px;
+
+}
+#imageUpdateView{
+    position: absolute;
+    width: 10vw;
+    height: 80px;
+    border: 1px solid black;
+    background-color: #b5b5b5;
+    top: 260px;
+}
+
+#camera{
+    position: absolute;
+    top: 6px;
+    right: 0.5vw;
+    width: 1vw;
+    height: 10px;
+    z-index: 100;
+    /*background-color: white;*/
+    /*border-radius: 100px;*/
+}
+
+#camerBack{
+    position: absolute;
+    background-color: white;
+    width: 2vw;
+    height: 20px;
+    border-radius: 100px;
+    right: -1vw;
+    top: -10px;
+    border: 1px solid black;
+}
+
+#cropUpdateBtn{
+    position: absolute;
+    right: 1vw;
+    background-color: #06357a;
+    top: 350px;
+    width: 8vw;
+    border-radius: 10px;
+    border: 1px solid black;
+    color: white;
+}
+
+.upmodal {
+    display: none; /* Enable flexbox */
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+    position: fixed;
+    z-index: 1;
+    left: 0vw;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Modal content box */
+.upmodal-content {
+    width: 50vw; /* 50% of viewport width */
+    max-width: 600px; /* Optional: max width */
+    height: 85vh; /* 85% of viewport height */
+    padding: 20px;
+    left: 25vw;
+    top: 50px;
+    background: #fff;
+    border-radius: 8px;
+    overflow-y: auto; /* Enables vertical scroll if content is too long */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    position: relative; /* Ensure the close button positions relative to the modal */
+}
+
+/* Close button */
+.upclose {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/*.modal {*/
+/*    display: none; !* Hidden by default *!*/
+/*    position: fixed;*/
+/*    z-index: 1;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: rgba(0, 0, 0, 0.5); !* Semi-transparent background *!*/
+/*    align-items: center; !* Centers vertically *!*/
+/*    justify-content: center; !* Centers horizontally *!*/
+/*}*/
+
+/*!* Modal content box *!*/
+/*.modal-content {*/
+/*    position: absolute;*/
+/*    width: 50vw; !* Change to 50% of viewport width *!*/
+/*    height: 85vh; !* 85% of viewport height *!*/
+/*    padding: 20px;*/
+/*    left: 0vw;*/
+/*    top: 50px;*/
+/*    z-index: 200000;*/
+/*    background: #fff;*/
+/*    border-radius: 8px;*/
+/*    overflow-y: auto; !* Enables vertical scroll if content is too long *!*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); !* Optional shadow *!*/
+/*}*/
+
+/*!* Close button *!*/
+/*.close {*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 15px;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*}*/
+

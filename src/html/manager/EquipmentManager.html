@@ -3,6 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Equipment Manager</title>
+    <link rel="stylesheet" href="/css/manager/EquipmentManager.css">
+
+    <link rel="stylesheet" href="../boostrap/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+        }
+
+        /* Modal content box */
+        .modal-content {
+            position: absolute;
+            width: 50vw; /* Change to 50% of viewport width */
+            height: 85vh; /* 85% of viewport height */
+            padding: 20px;
+            left: 25vw;
+            top: 50px;
+            z-index: 200000;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <section id="nav">
@@ -11,7 +57,7 @@
     <section id="navSet">
         <div class="nav-item">
             <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
-            <a href="../html/Dashboard/CropManger.htmlCrop">Crop</a>
+            <a href="../manager/CropManger.html">Crop</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/fieldIcon.png" alt="Field Icon" class="icon">
@@ -39,7 +85,7 @@
 <section id="borderNav">
     <div id="userImg"></div>
     <h3 id="userName">Kavindu Mw</h3>
-    <h2 id="borderTopic">Field Management</h2>
+    <h2 id="borderTopic">Equipment Management</h2>
     <img src="/Aseats/calendar.png" id="calenderView">
     <div id="viewDateAndTime">
         <div id="viewDateAndTimeBack">
@@ -52,24 +98,25 @@
 </section>
 
 
-<section id="viewDetails" style="display: block">
+<section id="equ_viewDetails" style="display: block">
     <section id="search">
-        <label id="lblField">Search Field</label>
-        <input id="Fieldsbar" placeholder="Enter Field Name">
+        <label id="lblCrop">Search Equipment</label>
+        <input id="equ_sbar" placeholder="Enter Equipment Name">
 
     </section>
 
     <section>
-        <button id="FieldaddBtn">+ADD FIELD</button>
+        <button id="equ_addBtn">+ADD EQUIPMENT</button>
     </section>
 
-    <section id="fieldTable">
+    <section id="equTable">
         <table class="table table table-borderless" >
             <thead class="table-dark">
             <tr class="table-dark">
-                <th>Field ID</th>
-                <th>Field Name</th>
-                <th>Category</th>
+                <th>Equipment ID</th>
+                <th>Equipment Name</th>
+                <th>Image</th>
+                <th>equipmentType</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -80,6 +127,7 @@
                 <td>1</td>
                 <td>Wheat</td>
                 <td>Cereal</td>
+                <td></td>
                 <td class="action-icons">
                     <i class="fas fa-edit" title="Update" onclick="openUpdateModal()"></i>
                     <i class="fas fa-eye" title="View" onclick="openModal()"></i>
@@ -103,6 +151,152 @@
     </section>
 
 </section>
+
+<div id="viewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="viewH2" class="animate__backInDown">EQUIPMENT DETAILS </h2>
+
+
+        <section id="viewDetailsLbl">
+
+            <lbl class="viewLbl">id: </lbl>
+            <lbl class="viewLbl">Name: </lbl>
+            <lbl class="viewLbl">Equipment Type: </lbl>
+            <lbl class="viewLbl">status: </lbl>
+            <lbl class="viewLbl">Staff: </lbl>
+            <lbl class="viewLbl">Field: </lbl>
+            <lbl class="viewLbl">Images: </lbl>
+
+        </section>
+
+
+        <section id="viewDetailsResultLbl">
+            <lbl class="equ_viewLblR"></lbl>
+            <lbl class="equ_viewLblR"></lbl>
+            <lbl class="equ_viewLblR"></lbl>
+            <lbl class="equ_viewLblR"></lbl>
+            <lbl class="equ_viewLblR"></lbl>
+            <lbl class="equ_viewLblR"></lbl>
+            <div id="equ_imageView"></div>
+        </section>
+
+
+
+
+    </div>
+</div>
+
+
+<div id="updateModal" class="upmodal">
+    <div class="upmodal-content">
+        <span class="upclose" onclick="upcloseModal()">&times;</span>
+        <h2 id="updateH2" class="animate__backInDown">EQUIPMENT UPDATE </h2>
+
+
+        <section id="updateDetailsLbl">
+
+            <lbl class="viewLbl">id: </lbl>
+            <lbl class="viewLbl">Name: </lbl>
+            <lbl class="viewLbl">Equipment Type: </lbl>
+            <lbl class="viewLbl">status: </lbl>
+            <lbl class="viewLbl">Staff: </lbl>
+            <lbl class="viewLbl">Field: </lbl>
+            <lbl class="viewLbl">Images: </lbl>
+
+        </section>
+
+
+        <section id="updateDetailsResultLbl">
+            <input class="viewLblR" id="equ_upid"/>
+            <input class="viewLblR" id="equ_upName"/>
+            <input class="viewLblR" id="equ_upsName"/>
+            <input class="viewLblR" id="equ_upCat"/>
+            <input class="viewLblR" id="equ_upSea"/>
+            <input class="viewLblR" id="equ_upField"/>
+            <div class="viewLblR" id="equ_imageUpdateView">
+                <div id="camerBack">
+                    <img src="/Aseats/image-gallery.png" id="camera" onclick="triggerFileInput()" style="cursor: pointer;">
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">
+            </div>
+
+            <button id="cropUpdateBtn">Update</button>
+
+        </section>
+
+
+
+
+    </div>
+</div>
+
+<section>
+    <img src="/Aseats/addIcon.png" id="addIcon">
+    <h1 id="equTop">ADD EQUIPMENT</h1>
+</section>
+
+<section id="equForm" style="display: none">
+    <section id="equFormSection">
+        <label class="lblF" id="lblF1">Code</label>
+        <input placeholder="Enter Equipment  code" type="text" class="form-control" id="equ_inpF1">
+
+        <label class="lblF" id="lblF2">Equipment name</label>
+        <input placeholder="Enter Equipment name" type="text" class="form-control" id="equ_inpF2">
+
+        <label class="lblF" id="lblF3">Equipment Type</label>
+        <input placeholder="Enter Equipment Type" type="text" class="form-control" id="equ_inpF3">
+
+<!--        <label class="lblF" id="lblF4"></label>-->
+<!--        <input type="file" accept="image/*" class="form-control" id="inpF4">-->
+        <!--        <div id="imagePreview" style="display: none;">-->
+        <!--            <img id="previewImg" src="" alt="Image Preview" style="max-width: 100%; height: auto;"/>-->
+        <!--        </div>-->
+
+        <label class="lblF" id="lblF5">Status</label>
+        <input placeholder="Enter Equipment" type="text" class="form-control" id="equ_inpF5">
+
+        <label class="lblF" id="lblF7">Field</label>
+        <select class="form-control" id="equ_inpF7">
+            <option value="field1">Field 1</option>
+            <option value="field2">Field 2</option>
+            <option value="field3">Field 3</option>
+            <!-- Add more fields as needed -->
+        </select>
+
+        <label class="lblF" id="lblF6">Staff</label>
+        <select class="form-control" id="equ_inpF6">
+            <option value="field1">Staff 1</option>
+            <option value="field2">Staff 2</option>
+            <option value="field3">Staff 3</option>
+            <!-- Add more fields as needed -->
+        </select>
+
+        <button id="equ_subBtn">Submit</button>
+        <button id="equ_cleBtn">Clear</button>
+
+        <div id="overlay" style="display: none;">
+            <div class="overlay-content">
+                <div class="progress" role="progressbar" aria-label="Loading" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                </div>
+                <p>Processing, please wait...</p>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script>
+    document.getElementById('equ_addBtn').addEventListener('click',function (){
+        document.getElementById('equForm').style.display='block';
+        document.getElementById('equ_viewDetails').style.display='none';
+        document.getElementById('addIcon').style.display='block';
+        document.getElementById('equTop').style.display='block';
+
+    });
+</script>
+
+<script src="/js/EquipmentManager.js"></script>
 
 </body>
 </html>

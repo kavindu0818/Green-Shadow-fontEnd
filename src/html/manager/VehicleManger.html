@@ -98,25 +98,25 @@
 </section>
 
 
-<section id="staff_viewDetails" style="display: block">
+<section id="veh_viewDetails" style="display: block">
     <section id="search">
-        <label id="lblStaff">Search Staff</label>
-        <input id="staff_sbar" placeholder="Enter Equipment Name">
+        <label id="lblVeh">Search Staff</label>
+        <input id="veh_sbar" placeholder="Enter Vehicle Name">
 
     </section>
 
     <section>
-        <button id="staff_addBtn">+ADD STAFF</button>
+        <button id="veh_addBtn">+ADD VEHICLE</button>
     </section>
 
-    <section id="staffTable">
+    <section id="vehTable">
         <table class="table table table-borderless" >
             <thead class="table-dark">
             <tr class="table-dark">
-                <th>Staff ID</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Designation</th>
+                <th>Vehicle code</th>
+                <th>License plate number</th>
+                <th>Vehicle category</th>
+                <th>Fuel type</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -155,30 +155,30 @@
 <div id="viewModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="viewH2" class="animate__backInDown">STAFF DETAILS </h2>
+        <h2 id="viewH2" class="animate__backInDown">VEHICLE DETAILS </h2>
 
 
         <section id="viewDetailsLbl">
 
-            <lbl class="viewLbl">id: </lbl>
-            <lbl class="viewLbl">Name: </lbl>
-            <lbl class="viewLbl">Equipment Type: </lbl>
-            <lbl class="viewLbl">status: </lbl>
-            <lbl class="viewLbl">Staff: </lbl>
-            <lbl class="viewLbl">Field: </lbl>
-            <lbl class="viewLbl">Images: </lbl>
+            <lbl class="viewLbl">Vehicle code.: </lbl>
+            <lbl class="viewLbl">License plate number: </lbl>
+            <lbl class="viewLbl">Vehicle category: </lbl>
+            <lbl class="viewLbl">Fuel type: </lbl>
+            <lbl class="viewLbl">Status: </lbl>
+            <lbl class="viewLbl">Allocated staff member <br> details: </lbl>
+            <lbl class="viewLbl">Remarks: </lbl>
 
         </section>
 
 
         <section id="viewDetailsResultLbl">
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <div id="staff_imageView"></div>
+            <lbl class="veh_viewLblR"></lbl>
+            <lbl class="veh_viewLblR"></lbl>
+            <lbl class="veh_viewLblR"></lbl>
+            <lbl class="veh_viewLblR"></lbl>
+            <lbl class="veh_viewLblR"></lbl>
+            <lbl class="veh_viewLblR"></lbl>
+            <div id="veh_imageView"></div>
         </section>
 
 
@@ -196,32 +196,33 @@
 
         <section id="updateDetailsLbl">
 
-            <lbl class="viewLbl">id: </lbl>
-            <lbl class="viewLbl">Name: </lbl>
-            <lbl class="viewLbl">Equipment Type: </lbl>
-            <lbl class="viewLbl">status: </lbl>
-            <lbl class="viewLbl">Staff: </lbl>
-            <lbl class="viewLbl">Field: </lbl>
-            <lbl class="viewLbl">Images: </lbl>
+            <lbl class="viewLbl">Vehicle code.: </lbl>
+            <lbl class="viewLbl">License plate number: </lbl>
+            <lbl class="viewLbl">Vehicle category: </lbl>
+            <lbl class="viewLbl">Fuel type: </lbl>
+            <lbl class="viewLbl">Status: </lbl>
+            <lbl class="viewLbl">Allocated staff member <br> details: </lbl>
+            <lbl class="viewLbl">Remarks: </lbl>
 
         </section>
 
 
         <section id="updateDetailsResultLbl">
-            <input class="viewLblR" id="staff_upid"/>
-            <input class="viewLblR" id="staff_upName"/>
-            <input class="viewLblR" id="staff_upsName"/>
-            <input class="viewLblR" id="staff_upCat"/>
-            <input class="viewLblR" id="staff_upSea"/>
-            <input class="viewLblR" id="staff_upField"/>
-            <div class="viewLblR" id="staff_imageUpdateView">
-                <div id="camerBack">
-                    <img src="/Aseats/image-gallery.png" id="camera" onclick="triggerFileInput()" style="cursor: pointer;">
-                </div>
-                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">
-            </div>
+            <input class="viewLblR" id="veh_upCode"/>
+            <input class="viewLblR" id="veh_upPlateNumber"/>
+            <input class="viewLblR" id="veh_upCategory"/>
+            <input class="viewLblR" id="veh_upFuelType"/>
+            <input class="viewLblR" id="veh_upStatus"/>
+            <input class="viewLblR" id="veh_upStaffNum"/>
+            <input class="viewLblR" id="veh_upRemarks"/>
+<!--            <div class="viewLblR" id="veh_imageUpd">-->
+<!--                <div id="camerBack">-->
+<!--                    <img src="/Aseats/image-gallery.png" id="camera" onclick="triggerFileInput()" style="cursor: pointer;">-->
+<!--                </div>-->
+<!--                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">-->
+<!--            </div>-->
 
-            <button id="cropUpdateBtn">Update</button>
+            <button id="VehUpdateBtn">Update</button>
 
         </section>
 
@@ -233,65 +234,35 @@
 
 <section>
     <img src="/Aseats/addIcon.png" id="addIcon">
-    <h1 id="staffTop">ADD STAFF</h1>
+    <h1 id="vehTop">ADD VEHICLE</h1>
 </section>
 
-<section id="staffForm" style="display: none">
-    <section id="staffFormSection">
-        <label class="lblF" id="lblF1">Code</label>
-        <input placeholder="Enter Staff Id" type="text" class="form-control" id="staff_inpF1">
+<section id="vehForm" style="display: none">
+    <section id="vehFormSection">
+        <label class="lblF" id="lblF1">Vehicle code</label>
+        <input placeholder="Enter Vehicle code" type="text" class="form-control" id="veh_inpF1">
 
-        <label class="lblF" id="lblF2">First name</label>
-        <input placeholder="Enter First name" type="text" class="form-control" id="staff_inpF2">
+        <label class="lblF" id="lblF2">License plate number</label>
+        <input placeholder="Enter License plate number" type="text" class="form-control" id="veh_inpF2">
 
-        <label class="lblF" id="lblF3">Last name</label>
-        <input placeholder="Enter Last name" type="text" class="form-control" id="staff_inpF3">
+        <label class="lblF" id="lblF3">Vehicle category</label>
+        <input placeholder="Enter Vehicle category" type="text" class="form-control" id="veh_inpF3">
 
-        <label class="lblF" id="lblF4">Designation</label>
-        <input placeholder="Enter Designation" type="text" class="form-control" id="staff_inpF4">
+        <label class="lblF" id="lblF4">Fuel type</label>
+        <input placeholder="Enter Fuel type" type="text" class="form-control" id="veh_inpF4">
 
-        <label class="lblF" id="lblF5">Gender</label>
-        <input placeholder="Enter Gender" type="text" class="form-control" id="staff_inpF5">
+        <label class="lblF" id="lblF5">Status</label>
+        <input placeholder="Enter Status" type="text" class="form-control" id="veh_inpF5">
 
-        <label class="lblF" id="lblF6">DOB</label>
-        <input placeholder="Enter DOB" type="text" class="form-control" id="staff_inpF6">
+        <label class="lblF" id="lblF6">Allocated staff member details</label>
+        <input placeholder="Enter Allocated staff member details" type="text" class="form-control" id="veh_inpF6">
 
-        <label class="lblF" id="lblF7">Address Line 01</label>
-        <input placeholder="Enter Address Line 01" type="text" class="form-control" id="staff_inpF7">
+        <label class="lblF" id="lblF7">Remarks</label>
+        <input placeholder="Enter Remarks" type="text" class="form-control" id="veh_inpF7">
 
-        <label class="lblF" id="lblF8">Address Line 02</label>
-        <input placeholder="EnterAddress Line 02" type="text" class="form-control" id="staff_inpF8">
 
-        <label class="lblF" id="lblF9">Address Line 03</label>
-        <input placeholder="Enter Address Line 03" type="text" class="form-control" id="staff_inpF9">
-
-        <label class="lblF" id="lblF10">Contact No.</label>
-        <input placeholder="Enter Contact No." type="text" class="form-control" id="staff_inpF10">
-
-        <label class="lblF" id="lblF11">Email</label>
-        <input placeholder="Enter Contact No." type="text" class="form-control" id="staff_inpF11">
-
-        <label class="lblF" id="lblF12">Role</label>
-        <input placeholder="Enter Contact No." type="text" class="form-control" id="staff_inpF12">
-
-        <label class="lblF" id="lblF13">Field</label>
-        <select class="form-control" id="staff_inpF13">
-            <option value="field1">Field 1</option>
-            <option value="field2">Field 2</option>
-            <option value="field3">Field 3</option>
-            <!-- Add more fields as needed -->
-        </select>
-
-        <label class="lblF" id="lblF14">Vehicle</label>
-        <select class="form-control" id="staff_inpF14">
-            <option value="field1">Staff 1</option>
-            <option value="field2">Staff 2</option>
-            <option value="field3">Staff 3</option>
-            <!-- Add more fields as needed -->
-        </select>
-
-        <button id="staff_subBtn">Submit</button>
-        <button id="staff_cleBtn">Clear</button>
+        <button id="veh_subBtn">Submit</button>
+        <button id="veh_cleBtn">Clear</button>
 
         <div id="overlay" style="display: none;">
             <div class="overlay-content">
@@ -305,11 +276,11 @@
 </section>
 
 <script>
-    document.getElementById('staff_addBtn').addEventListener('click',function (){
-        document.getElementById('staffForm').style.display='block';
-        document.getElementById('staff_viewDetails').style.display='none';
+    document.getElementById('veh_addBtn').addEventListener('click',function (){
+        document.getElementById('vehForm').style.display='block';
+        document.getElementById('veh_viewDetails').style.display='none';
         document.getElementById('addIcon').style.display='block';
-        document.getElementById('staffTop').style.display='block';
+        document.getElementById('vehTop').style.display='block';
 
     });
 </script>

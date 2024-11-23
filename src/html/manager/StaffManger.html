@@ -162,23 +162,34 @@
 
             <lbl class="viewLbl">id: </lbl>
             <lbl class="viewLbl">Name: </lbl>
-            <lbl class="viewLbl">Equipment Type: </lbl>
-            <lbl class="viewLbl">status: </lbl>
-            <lbl class="viewLbl">Staff: </lbl>
+            <lbl class="viewLbl">Designation: </lbl>
+            <lbl class="viewLbl">Gender: </lbl>
+            <lbl class="viewLbl">Join date: </lbl>
+            <lbl class="viewLbl">DOB: </lbl>
+            <lbl class="viewLbl">Address: </lbl>
+            <lbl class="viewLbl">Contact No: </lbl>
+            <lbl class="viewLbl">Email: </lbl>
+            <lbl class="viewLbl">Role: </lbl>
             <lbl class="viewLbl">Field: </lbl>
-            <lbl class="viewLbl">Images: </lbl>
+            <lbl class="viewLbl">Vehicle: </lbl>
 
         </section>
 
 
         <section id="viewDetailsResultLbl">
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <lbl class="staff_viewLblR"></lbl>
-            <div id="staff_imageView"></div>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+            <lbl class="staff_viewLblR">a</lbl>
+<!--            <div id="staff_imageView"></div>-->
         </section>
 
 
@@ -197,36 +208,48 @@
         <section id="updateDetailsLbl">
 
             <lbl class="viewLbl">id: </lbl>
-            <lbl class="viewLbl">Name: </lbl>
-            <lbl class="viewLbl">Equipment Type: </lbl>
-            <lbl class="viewLbl">status: </lbl>
-            <lbl class="viewLbl">Staff: </lbl>
-            <lbl class="viewLbl">Field: </lbl>
-            <lbl class="viewLbl">Images: </lbl>
+            <lbl class="viewLbl">First name: </lbl>
+            <lbl class="viewLbl">Last name: </lbl>
+            <lbl class="viewLbl">Designation: </lbl>
+            <lbl class="viewLbl">Gender: </lbl>
+            <lbl class="viewLbl">Joined date: </lbl>
+            <lbl class="viewLbl">DOB: </lbl>
+            <lbl class="viewLbl">Contact No: </lbl>
+        </section>
 
+        <section id="updateDetailsLbl2">
+            <lbl class="viewLbl">Address Line 01: </lbl>
+            <lbl class="viewLbl">Address Line 02: </lbl>
+            <lbl class="viewLbl">Address Line 03: </lbl>
+            <lbl class="viewLbl">Email: </lbl>
+            <lbl class="viewLbl">Role: </lbl>
+            <lbl class="viewLbl">Field: </lbl>
+            <lbl class="viewLbl">Vehicle: </lbl>
         </section>
 
 
         <section id="updateDetailsResultLbl">
             <input class="viewLblR" id="staff_upid"/>
-            <input class="viewLblR" id="staff_upName"/>
-            <input class="viewLblR" id="staff_upsName"/>
-            <input class="viewLblR" id="staff_upCat"/>
-            <input class="viewLblR" id="staff_upSea"/>
-            <input class="viewLblR" id="staff_upField"/>
-            <div class="viewLblR" id="staff_imageUpdateView">
-                <div id="camerBack">
-                    <img src="/Aseats/image-gallery.png" id="camera" onclick="triggerFileInput()" style="cursor: pointer;">
-                </div>
-                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">
-            </div>
-
-            <button id="cropUpdateBtn">Update</button>
-
+            <input class="viewLblR" id="staff_upfirstName"/>
+            <input class="viewLblR" id="staff_uplastName"/>
+            <input class="viewLblR" id="staff_upDesignation"/>
+            <input class="viewLblR" id="staff_upGender"/>
+            <input class="viewLblR" id="staff_upJoinDate"/>
+            <input class="viewLblR" id="staff_upDob"/>
+            <input class="viewLblR" id="staff_upContactNo"/>
         </section>
 
+        <section id="updateDetailsResultLbl2">
+            <input class="viewLblR" id="staff_upAddress1"/>
+            <input class="viewLblR" id="staff_upAddress2"/>
+            <input class="viewLblR" id="staff_upAddress3"/>
+            <input class="viewLblR" id="staff_upEmail"/>
+            <input class="viewLblR" id="staff_upRole"/>
+            <input class="viewLblR" id="staff_upField"/>
+            <input class="viewLblR" id="staff_upVehicle"/>
+        </section>
 
-
+        <button id="staffUpdateBtn">Update</button>
 
     </div>
 </div>
@@ -314,7 +337,7 @@
     });
 </script>
 
-<script src="/js/S"></script>
+<script src="/js/StaffManger.js"></script>
 
 </body>
 </html>

@@ -85,7 +85,7 @@
 <section id="borderNav">
     <div id="userImg"></div>
     <h3 id="userName">Kavindu Mw</h3>
-    <h2 id="borderTopic">Equipment Management</h2>
+    <h2 id="borderTopic">Staff Management</h2>
     <img src="/Aseats/calendar.png" id="calenderView">
     <div id="viewDateAndTime">
         <div id="viewDateAndTimeBack">
@@ -100,13 +100,13 @@
 
 <section id="staff_viewDetails" style="display: block">
     <section id="search">
-        <label id="lblCrop">Search Equipment</label>
+        <label id="lblStaff">Search Staff</label>
         <input id="staff_sbar" placeholder="Enter Equipment Name">
 
     </section>
 
     <section>
-        <button id="staff_addBtn">+ADD EQUIPMENT</button>
+        <button id="staff_addBtn">+ADD STAFF</button>
     </section>
 
     <section id="staffTable">
@@ -233,7 +233,7 @@
 
 <section>
     <img src="/Aseats/addIcon.png" id="addIcon">
-    <h1 id="staffTop">ADD EQUIPMENT</h1>
+    <h1 id="staffTop">ADD STAFF</h1>
 </section>
 
 <section id="staffForm" style="display: none">
@@ -305,11 +305,11 @@
 </section>
 
 <script>
-    document.getElementById('equ_addBtn').addEventListener('click',function (){
-        document.getElementById('equForm').style.display='block';
-        document.getElementById('equ_viewDetails').style.display='none';
+    document.getElementById('staff_addBtn').addEventListener('click',function (){
+        document.getElementById('staffForm').style.display='block';
+        document.getElementById('staff_viewDetails').style.display='none';
         document.getElementById('addIcon').style.display='block';
-        document.getElementById('equTop').style.display='block';
+        document.getElementById('staffTop').style.display='block';
 
     });
 </script>

@@ -6,6 +6,7 @@ body {
     overflow: hidden; /* Prevents scrolling */
     /*background: linear-gradient(135deg, #4e6956, #1f2633); !* Adds a gradient background *!*/
     background-color: #b5b5b5;
+    overflow-y: auto;
     color: white; /* Sets text color to white for readability */
 }
 
@@ -82,7 +83,7 @@ body {
 }
 
 #borderNav{
-    position: relative;
+    position: fixed;
     width: 82vw;
     top: 0px;
     height: 50px;
@@ -157,7 +158,7 @@ body {
     /*color: black;*/
 }
 /* Crop table styling */
-#equTable {
+#staffTable {
     position: absolute;
     left: 18vw;
     top: 230px; /* Adjusted to fit within view */
@@ -175,7 +176,7 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-#equTable thead {
+#staffTable thead {
     background-color: black; /* Black background */
     color: white; /* White text for contrast */
 }
@@ -251,7 +252,7 @@ body {
     border-radius: 10px;
 }
 
-#lblCrop {
+#lblStaff {
     position: absolute;
     left: 1vw;
     font-family: Arial, sans-serif; /* Set a font family */
@@ -259,7 +260,7 @@ body {
     font-weight: bold; /* Make text bold */
 }
 
-#equ_sbar{
+#staff_sbar{
     position: absolute;
     top: 25px;
     width: 20vw;
@@ -267,7 +268,7 @@ body {
     border-radius: 10px;
 }
 
-#equ_addBtn{
+#staff_addBtn{
     position: absolute;
     width: 8vw;
     height: 30px;
@@ -290,7 +291,7 @@ body {
     display: none;
 }
 
-#equTop{
+#staffTop{
     position: absolute;
     left: 26vw;
     font-size: 35px;
@@ -299,10 +300,10 @@ body {
     display: none;
 
 }
-#equForm{
+#staffForm{
     display: none;
 }
-#equFormSection {
+#staffFormSection {
     display: flex;
     flex-wrap: wrap;
     gap: 20px; /* Space between elements */
@@ -310,7 +311,7 @@ body {
     top: 150px;
     left: 20vw;
     width: 75vw; /* Adjust the width as needed */
-    height: 270px;
+    height: 420px;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: #d2d4d9;/* Add shadow *//* Set a fixed height */
@@ -318,131 +319,209 @@ body {
 }
 
 
-.lblF, .form-control {
-    flex: 1 1 45%; /* Each label and input takes up about 45% of the width */
-    margin-bottom: 10px;
-}
-
-.lblF {
+/* Common styling for all labels (lblF1, lblF2, lblF3, etc.) */
+.lblF{
     font-weight: bold;
-    width: 100%;
-    /* Labels span full width of their column */
-}
-
-.form-control {
-    position: relative;
-    width: 30vw; /* Inputs take full width of their column */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-#equ_inpF1{
-    position: absolute;
-    left: 1vw;
-    width: 35vw;
-    top: 24px;
 }
 
 #lblF1{
     position: absolute;
-    top: 0px;
     left: 1vw;
+}
+
+#staff_inpF1{
+    position: absolute;
+    left: 1vw;
+    top: 25px;
+    width: 23vw;
 }
 
 #lblF2{
     position: absolute;
-    top: 0px;
-    left: 39vw;
+    left: 26vw;
 }
-#equ_inpF2{
+
+#staff_inpF2{
     position: absolute;
-    left: 39vw;
-    width: 35vw;
-    top: 24px;
+    left: 26vw;
+    top: 25px;
+    width: 23vw;
 }
 
 #lblF3{
     position: absolute;
-    top: 71px;
-    left: 1vw;
+    left: 50vw;
 }
 
-#equ_inpF3{
+#staff_inpF3{
     position: absolute;
-    top: 95px;
-    width: 35vw;
-    left: 1vw;
-}
-
-#equ_inpF5{
-    position: absolute;
-    top: 95px;
-    width: 35vw;
-    left: 39vw;
-}
-
-#lblF5{
-    position: absolute;
-    top: 71px;
-    left: 39vw;
-}
-
-#equ_inpF4{
-    position: absolute;
-    top: 242px;
-    width: 73vw;
-    left: 1vw;
+    left: 50vw;
+    top: 25px;
+    width: 23vw;
 }
 
 #lblF4{
     position: absolute;
-    top: 215px;
     left: 1vw;
+    top: 75px;
+}
+
+#staff_inpF4{
+    position: absolute;
+    left: 1vw;
+    top: 100px;
+    width: 23vw;
+}
+
+#lblF5{
+    position: absolute;
+    left: 26vw;
+    top: 75px;
+}
+
+#staff_inpF5{
+    position: absolute;
+    left: 26vw;
+    top: 100px;
+    width: 23vw;
 }
 
 #lblF6{
     position: absolute;
-    top: 142px;
-    left: 1vw;
+    left: 50vw;
+    top: 75px;
 }
 
-#equ_inpF6{
+#staff_inpF6{
     position: absolute;
-    top: 166px;
-    width: 35vw;
-    left: 1vw;
-
+    left: 50vw;
+    top: 100px;
+    width: 23vw;
 }
 
 #lblF7{
     position: absolute;
-    top: 142px;
-    left: 39vw;
+    left: 1vw;
+    top: 150px;
 }
 
-#equ_inpF7{
+#staff_inpF7{
     position: absolute;
-    top: 166px;
-    width: 35vw;
-    left: 39vw;
-
+    left: 1vw;
+    top: 175px;
+    width: 23vw;
 }
 
-#equ_imagePreview {
+#lblF8{
     position: absolute;
-    margin-top: 100px;
-    max-width: 100%;
-    height: 50px;
-    text-align: center;
-    padding: 5px;
+    left: 26vw;
+    top: 150px;
+}
+
+#staff_inpF8{
+    position: absolute;
+    left: 26vw;
+    top: 175px;
+    width: 23vw;
+}
+
+#lblF9{
+    position: absolute;
+    left: 50vw;
+    top: 150px;
+}
+
+#staff_inpF9{
+    position: absolute;
+    left: 50vw;
+    top: 175px;
+    width: 23vw;
+}
+
+#lblF10{
+    position: absolute;
+    left: 1vw;
+    top: 225px;
+}
+
+#staff_inpF10{
+    position: absolute;
+    left: 1vw;
+    top: 250px;
+    width: 23vw;
+}
+
+#lblF11{
+    position: absolute;
+    left: 26vw;
+    top: 225px;
+}
+
+#staff_inpF11{
+    position: absolute;
+    left: 26vw;
+    top: 250px;
+    width: 23vw;
+}
+
+#lblF12{
+    position: absolute;
+    left: 50vw;
+    top: 225px;
+}
+
+#staff_inpF12{
+    position: absolute;
+    left: 50vw;
+    top: 250px;
+    width: 23vw;
+}
+
+#lblF13{
+    position: absolute;
+    left: 1vw;
+    top: 300px;
+}
+
+#staff_inpF13{
+    position: absolute;
+    left: 1vw;
+    top: 325px;
+    width: 23vw;
+}
+
+#lblF14{
+    position: absolute;
+    left: 26vw;
+    top: 300px;
+}
+
+#staff_inpF14{
+    position: absolute;
+    left: 26vw;
+    top: 325px;
+    width: 23vw;
+}
+/* Input file container styling */
+#staff_imageUpdateView {
+    position: absolute;
+    top: 242px;
+    left: 1vw;
+    width: 73vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #4f5050;
+    padding: 5px;
+    background-color: #f8f8f8;
 }
 
-#equ_subBtn{
+
+#staff_subBtn{
     position: absolute;
     left: 62vw;
-    top: 230px;
+    top: 380px;
     background-color: black;
     width: 8vw;
     border-radius: 10px;
@@ -450,10 +529,10 @@ body {
     font-weight: bold;
 }
 
-#equ_cleBtn{
+#staff_cleBtn{
     position: absolute;
     left: 53vw;
-    top: 230px;
+    top: 380px;
     background-color: transparent;
     width: 8vw;
     border-radius: 10px;
@@ -461,12 +540,12 @@ body {
     font-weight: bold;
 }
 
-#equ_cleBtn:hover{
+#staff_cleBtn:hover{
     background-color: black;
     color: white;
 }
 
-#equ_subBtn:hover{
+#staff_subBtn:hover{
     background-color: transparent;
     color: black;
 }

@@ -4,7 +4,8 @@ body {
     display: flex;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(135deg, #f2f4f7, #1f2633);
+    /*background: linear-gradient(135deg, #f2f4f7, #1f2633);*/
+    background-color: #b5b5b5;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -220,11 +221,12 @@ body {
     height: 70px;
     background-color: #b5b5b5;
     top: 170px;
+    border-radius: 10px;
 }
 
 #lblField {
     position: absolute;
-    left: 0;
+    left: 1vw;
     font-family: Arial, sans-serif; /* Set a font family */
     font-style: revert;
     font-weight: bold; /* Make text bold */
@@ -234,15 +236,18 @@ body {
     position: absolute;
     top: 25px;
     width: 20vw;
+    left: 1vw;
+    border-radius: 10px;
 }
 
 #FieldaddBtn{
     position: absolute;
-    width: 10vw;
-    height: 40px;
+    width: 8vw;
+    height: 30px;
     right: 5vw;
-    top: 100px;
-    background-color: #06357a;
+    top: 90px;
+    font-size: 9px;
+    background-color: black;
     color: white;
     font-weight: bold;
 }
@@ -439,7 +444,7 @@ body {
     position: absolute;
     left: 60vw;
     top: 300px;
-    background-color: #06357a;
+    background-color: black;
     width: 10vw;
     border-radius: 10px;
     color: white;
@@ -457,9 +462,14 @@ body {
     font-weight: bold;
 }
 
-#fieldcleBtn:hover{
+#field_cleBtn:hover{
     background-color: black;
     color: white;
+}
+
+#field_subBtn:hover{
+    background-color: transparent;
+    color: black;
 }
 
 /* Overlay styles */

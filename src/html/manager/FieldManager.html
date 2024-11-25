@@ -151,9 +151,9 @@
     </section>
 
     <section id="fieldTable">
-        <table class="table table table-borderless" >
+        <table class="table table-borderless">
             <thead class="table-dark">
-            <tr class="table-dark">
+            <tr>
                 <th>Field ID</th>
                 <th>Field Name</th>
                 <th>Category</th>
@@ -161,30 +161,7 @@
             </tr>
             </thead>
             <tbody>
-
-
-            <tr>
-                <td>1</td>
-                <td>Wheat</td>
-                <td>Cereal</td>
-                <td class="action-icons">
-                    <i class="fas fa-edit" title="Update" onclick="openUpdateModal()"></i>
-                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
-                    <i class="fas fa-trash-alt" title="Delete"></i>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Wheat</td>
-                <td>Cereal</td>
-                <td class="action-icons">
-                    <i class="fas fa-edit" title="Update"></i>
-                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
-                    <i class="fas fa-trash-alt" title="Delete"></i>
-                </td>
-            </tr>
-            <!-- Add more rows as needed -->
+            <!-- Rows will be dynamically populated -->
             </tbody>
         </table>
     </section>
@@ -330,85 +307,11 @@
     </section>
 </section>
 
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../boostrap/js/bootstrap.js"></script>
+<script src="/js/FieldManager.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    document.getElementById('field_subBtn').addEventListener('click', function () {
-        // Show the overlay
-        document.getElementById('overlay').style.display = 'flex';
-
-        // Simulate a delay (e.g., for form submission) and then hide the overlay
-        setTimeout(() => {
-            document.getElementById('overlay').style.display = 'none';
-        }, 3000); // Adjust delay as needed
-    });
-
-    document.getElementById('FieldaddBtn').addEventListener('click',function (){
-        document.getElementById('fieldForm').style.display='block';
-        document.getElementById('viewDetails').style.display='none';
-        document.getElementById('imgfield').style.display='block';
-        document.getElementById('fieldTop').style.display='block';
-
-    });
-
-    function openModal() {
-        document.getElementById("fieldviewModal").style.display = "block";
-    }
-
-    function openUpdateModal() {
-        document.getElementById("field_updateModal").style.display = "block";
-    }
-    function closeModal() {
-        document.getElementById("fieldviewModal").style.display = "none";
-    }
-
-    function upcloseModal() {
-        document.getElementById("field_updateModal").style.display = "none";
-    }
-
-
-    // Close modal if user clicks outside of it
-    window.onclick = function(event) {
-        const modal = document.getElementById("fieldviewModal");
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-
-    window.onclick = function(event) {
-        const modal = document.getElementById("field_updateModal");
-        if (event.target == modal) {
-            upcloseModal();
-        }
-    }
-
-    function triggerFileInput() {
-        document.getElementById('fileInput').click();
-    }
-
-    function displaySelectedImage(event) {
-        const file = event.target.files[0]; // Get the selected file
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Create an image element and set its src to the selected file's data
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.width = "100%"; // Adjust size as needed
-                img.style.height = "auto"; // Maintain aspect ratio
-                img.style.borderRadius = "8px"; // Optional: Style the image
-
-                // Clear previous content in the div and append the new image
-                const imageUpdateView = document.getElementById('field_imageUpdateView');
-                imageUpdateView.innerHTML = '';
-                imageUpdateView.appendChild(img);
-            };
-            reader.readAsDataURL(file); // Read the file as a data URL
-        }
-    }
-
-</script>
-
-<!--<js src="/js/CropManager.js"></js>-->
 
 </body>
 </html>

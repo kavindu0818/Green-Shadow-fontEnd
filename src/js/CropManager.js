@@ -71,3 +71,106 @@ function displaySelectedImage(event) {
         reader.readAsDataURL(file); // Read the file as a data URL
     }
 }
+// =================================================================== crud section==============
+$("#subBtn").on('click', function() {
+    // Get values from input fields
+    var cropCode = $("#inpF1").val();
+    var cropName = $("#inpF2").val();
+    var cropScientificName = $("#inpF3").val();
+    var cropCategory = $("#inpF5").val();
+    var cropSeason = $("#inpF6").val();
+    var cropField = $("#inpF7").val();
+
+    // Collect file input
+    var cropImage = $("#inpF4")[0].files[0];
+
+    // Create a FormData object for file upload
+    var formData = new FormData();
+    formData.append("cropCode", cropCode);
+    formData.append("commonName", cropName);
+    formData.append("scientificName", cropScientificName);
+    formData.append("image", cropImage);
+    formData.append("category", cropCategory);
+    formData.append("season", cropSeason);
+    formData.append("field_code", cropField);
+
+
+    // Send AJAX POST request to the backend
+    $.ajax({
+        url: "http://localhost:5050/green/api/v1/crop", // Backend endpoint
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: formData, // Form data with fields and file
+        success: (response) => {
+            console.log("Crop added successfully:", response);
+            alert("Crop added successfully!");
+            clearFields(); // Clear input fields after success
+        },
+        error: (error) => {
+            console.error("Error adding crop:", error);
+            alert("Failed to add crop. Please try again.");
+        }
+    });
+});
+
+// Function to clear input fields
+function clearFields() {
+    $("#inpF1").val('');
+    $("#inpF2").val('');
+    $("#inpF3").val('');
+    $("#inpF5").val('');
+    $("#inpF6").val('');
+    $("#inpF7").val('');
+    $("#inpF4").val('');
+}
+
+
+// =====================================Loard value in table===========
+loadCropTable();
+function loadCropTable() {
+    $.ajax({
+        url: "http://localhost:5050/green/api/v1/crop",
+        type: "GET",
+        dataType: "json",
+        success: (response) => {
+            console.log("Crops fetched successfully:", response);
+            populateCropTable(response);
+        },
+        error: (xhr, status, error) => {
+            console.error("Error fetching crops:", xhr.responseText || error);
+            alert("Failed to load crops.");
+        }
+    });
+}
+
+
+function populateCropTable(crops) {
+
+    console.log(crops)
+    try {
+        const tableBody = $("#cropTable tbody");
+        tableBody.empty(); // Clear existing rows
+
+        crops.forEach((crop) => {
+            const row = `
+                <tr>
+                    <td>${crop.cropCode}</td>
+                    <td>${crop.commonName}</td>
+                    <td><img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 50px; height: 50px;"></td>
+                    <td>${crop.category}</td>
+                    <td class="action-icons">
+                        <i class="fas fa-edit" title="Update" onclick="openUpdateModal('${crop.cropCode}')"></i>
+                        <i class="fas fa-eye" title="View" onclick="openViewModal('${crop.cropCode}')"></i>
+                        <i class="fas fa-trash-alt" title="Delete" onclick="deleteCrop('${crop.cropCode}')"></i>
+                    </td>
+                </tr>
+            `;
+            tableBody.append(row);
+        });
+    } catch (e) {
+        console.error("Error populating table:", e);
+    }
+}
+
+

@@ -16,12 +16,38 @@ document.getElementById('addBtn').addEventListener('click',function (){
 
 });
 
-function openModal() {
+function viewCropDetails(cropCode) {
+
     document.getElementById("viewModal").style.display = "block";
+
+    $.ajax({
+        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint
+        type: "GET",
+        contentType: "application/json",
+        success: (crop) => {
+            if (!crop) {
+                alert("No data found for the selected crop.");
+                return;
+            }
+            // Populate the details section with the fetched crop data
+            $("#cropCode").text(crop.cropCode);
+            $("#comName").text(crop.commonName);
+            $("#csiName").text(crop.scientificName || "N/A");
+            $("#cropCat").text(crop.category || "N/A");
+            $("#cropSeason").text(crop.season || "N/A");
+            $("#cropField").text(crop.field || "N/A");
+            $("#imageView").html(`<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 150px; height: 150px;">`);
+        },
+        error: (xhr, status, error) => {
+            console.error("Error fetching crop details:", error);
+            alert("Failed to fetch crop details. Please try again.");
+        }
+    });
 }
 
-function openUpdateModal() {
+function openUpdateModal(cropCode) {
     document.getElementById("updateModal").style.display = "block";
+
 }
 function closeModal() {
     document.getElementById("viewModal").style.display = "none";
@@ -161,7 +187,7 @@ function populateCropTable(crops) {
                     <td>${crop.category}</td>
                     <td class="action-icons">
                         <i class="fas fa-edit" title="Update" onclick="openUpdateModal('${crop.cropCode}')"></i>
-                        <i class="fas fa-eye" title="View" onclick="openViewModal('${crop.cropCode}')"></i>
+                        <i class="fas fa-eye" title="View"  onclick="viewCropDetails('${crop.cropCode}')"></i>
                         <i class="fas fa-trash-alt" title="Delete" onclick="deleteCrop('${crop.cropCode}')"></i>
                     </td>
                 </tr>

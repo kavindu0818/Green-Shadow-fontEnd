@@ -36,7 +36,7 @@ function viewCropDetails(cropCode) {
             $("#cropCat").text(crop.category || "N/A");
             $("#cropSeason").text(crop.season || "N/A");
             $("#cropField").text(crop.field || "N/A");
-            $("#imageView").html(`<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 150px; height: 150px;">`);
+            $("#imageView").html(`<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 150px; height: 100px;">`);
         },
         error: (xhr, status, error) => {
             console.error("Error fetching crop details:", error);
@@ -47,6 +47,34 @@ function viewCropDetails(cropCode) {
 
 function openUpdateModal(cropCode) {
     document.getElementById("updateModal").style.display = "block";
+
+    $.ajax({
+        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint
+        type: "GET",
+        contentType: "application/json",
+        success: (crop) => {
+            if (!crop) {
+                alert("No data found for the selected crop.");
+                return;
+            }
+            // Populate the details section with the fetched crop data
+            $("#upCode").val(crop.cropCode);
+            $("#upName").val(crop.commonName);
+            $("#upsName").val(crop.scientificName || "N/A");
+            $("#upCat").val(crop.category || "N/A");
+            $("#upSea").val(crop.season || "N/A");
+            $("#upField").val(crop.field || "N/A");
+
+            // Display the image
+            $("#imageUpdateView").html(
+                `<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 200px; height: 80px;">`
+            );
+        },
+        error: (xhr, status, error) => {
+            console.error("Error fetching crop details:", error);
+            alert("Failed to fetch crop details. Please try again.");
+        }
+    });
 
 }
 function closeModal() {
@@ -170,7 +198,6 @@ function loadCropTable() {
     });
 }
 
-
 function populateCropTable(crops) {
 
     console.log(crops)
@@ -198,5 +225,20 @@ function populateCropTable(crops) {
         console.error("Error populating table:", e);
     }
 }
+
+// =================================Search in Table========================================================
+$(document).ready(function () {
+    // Attach a keyup event listener to the search bar
+    $("#sbar").on("keyup", function () {
+        const searchValue = $(this).val().toLowerCase(); // Get the search value and convert to lowercase
+
+        // Loop through the table rows
+        $("#cropTable tbody tr").filter(function () {
+            // Show or hide rows based on the search value
+            $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1);
+        });
+    });
+});
+
 
 

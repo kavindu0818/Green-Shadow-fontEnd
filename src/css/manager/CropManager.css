@@ -566,7 +566,7 @@ body {
 }
 
 #viewDetailsResultLbl lbl{
-    font-weight: bold;
+    /*font-weight: bold;*/
     margin-bottom: 10px;
 }
 
@@ -670,15 +670,16 @@ body {
 
 .viewLblR{
     margin-bottom: 13px;
+    font-weight: normal;
 }
 
 #imageView{
     position: absolute;
-    width: 40vw;
+    width: 11vw;
     height: 20vh;
-    left: -13vw;
-    background-color: #4f5050;
-    top: 240px;
+    left: 0vw;
+    background-color: white;
+    top: 210px;
 
 }
 #imageUpdateView{

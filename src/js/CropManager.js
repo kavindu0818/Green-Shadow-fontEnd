@@ -67,18 +67,38 @@ function openUpdateModal(cropCode) {
             $("#upSea").val(crop.season || "N/A");
             $("#upField").val(crop.field || "N/A");
 
-            // Display the image
+            // Display the image (in a separate div or img tag)
             $("#imageUpdateView").html(
-                `<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 200px; height: 80px;">`
+                `<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 130px; height: 80px;">`
             );
+
+            // Clear any previously selected file from the file input
+            $("#fileInput").val("");
         },
         error: (xhr, status, error) => {
             console.error("Error fetching crop details:", error);
             alert("Failed to fetch crop details. Please try again.");
         }
     });
-
 }
+
+
+// Handle file input for image update
+document.getElementById("fileInput").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            // Display the new image in the update modal
+            const imageData = e.target.result;
+            $("#imageUpdateView").html(
+                `<img src="${imageData}" alt="Updated Crop Image" style="width: 150px; height: 80px;">`
+            );
+        };
+        reader.readAsDataURL(file); // Convert file to base64 string
+    }
+});
+
 function closeModal() {
     document.getElementById("viewModal").style.display = "none";
 }
@@ -337,13 +357,18 @@ document.getElementById("changeImage").addEventListener("click", function () {
 });
 
 document.getElementById("cropUpdateBtn").addEventListener("click", function () {
-    const cropCode = document.getElementById("upCode").value;
-    const cropName = document.getElementById("upName").value;
-    const scientificName = document.getElementById("upsName").value;
-    const cropImage = document.getElementById("fileInput").files[0];
-    const category = document.getElementById("upCat").value;
-    const season = document.getElementById("upSea").value;
-    const field = document.getElementById("upField").value;
+    var cropCode = $("#upCode").val();
+    var cropName = $("#upName").val();
+    var scientificName = $("#upsName").val();
+    var category = $("#upCat").val();
+    var season = $("#upSea").val();
+    var field = $("#upField").val();
+
+    // Check if a new image is selected
+    var cropImage = $("#fileInput")[0].files[0];
+
+    // If no new image is selected, use the currently displayed image
+    var imageBase64 = $("#imageUpdateView img").attr("src");
 
     if (!cropCode || !cropName || !scientificName || !category || !season || !field) {
         alert("All fields except the image are required!");
@@ -356,18 +381,61 @@ document.getElementById("cropUpdateBtn").addEventListener("click", function () {
     formData.append("scientificName", scientificName);
     formData.append("category", category);
     formData.append("season", season);
-    formData.append("fieldCode", field);
+    formData.append("field_code", field);
 
+    // Attach the image data
     if (cropImage) {
-        formData.append("image", cropImage);
+        formData.append("image", cropImage); // New image file
+    } else if (imageBase64) {
+        // Convert base64 string to Blob and attach it
+        const blob = base64ToBlob(imageBase64);
+        formData.append("image", blob, "existing-image.png");
+    } else {
+        alert("No image provided!");
+        return;
     }
 
     updateCropDetails(cropCode, formData);
 });
 
+// Helper function to convert base64 to Blob
+function base64ToBlob(base64Data) {
+    const byteString = atob(base64Data.split(",")[1]); // Decode base64
+    const mimeString = base64Data.split(",")[0].split(":")[1].split(";")[0]; // Extract MIME type
+
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
+
+// Trigger the file input when the "Change Image" button is clicked
+document.getElementById("changeImage").addEventListener("click", function () {
+    document.getElementById("fileInput").click();
+});
+
+// Listen for file input change and update the preview
+document.getElementById("fileInput").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            // Display the new image in the update modal
+            const imageData = e.target.result;
+            $("#imageUpdateView").html(
+                `<img src="${imageData}" alt="Updated Crop Image" style="width: 100px; height: 80px;">`
+            );
+        };
+        reader.readAsDataURL(file); // Convert file to base64 string
+    }
+});
+
 function updateCropDetails(cropCode, formData) {
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`,
+        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint for updating crop
         type: "PUT",
         processData: false,
         contentType: false,
@@ -382,4 +450,7 @@ function updateCropDetails(cropCode, formData) {
         },
     });
 }
+
+
+
 

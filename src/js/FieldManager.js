@@ -149,3 +149,58 @@ function populateCropTable(crops) {
         console.error("Error populating table:", e);
     }
 }
+
+$("#subBtn").on('click', function() {
+    // Get values from input fields
+    var cropCode = $("#inpF1").val();
+    var cropName = $("#inpF2").val();
+    var cropScientificName = $("#inpF3").val();
+    var cropCategory = $("#inpF5").val();
+    var cropSeason = $("#inpF6").val();
+    var cropField = $("#inpF7").val();
+
+    // Collect file input
+    var cropImage = $("#inpF4")[0].files[0];
+
+    // Create a FormData object for file upload
+    var formData = new FormData();
+    formData.append("cropCode", cropCode);
+    formData.append("commonName", cropName);
+    formData.append("scientificName", cropScientificName);
+    formData.append("image", cropImage);
+    formData.append("category", cropCategory);
+    formData.append("season", cropSeason);
+    formData.append("field_code", cropField); // Corrected the name to field_code
+
+    // Send AJAX POST request to the backend
+    $.ajax({
+        url: "http://localhost:5050/green/api/v1/crop", // Backend endpoint
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: formData, // Form data with fields and file
+        success: (response) => {
+            console.log("Crop added successfully:", response);
+            alert("Crop added successfully!");
+            clearFields();
+            cropIdGenerate(); // Clear input fields after success
+        },
+        error: (error) => {
+            console.error("Error adding crop:", error);
+            alert("Failed to add crop. Please try again.");
+        }
+    });
+});
+
+
+
+// Function to clear input fields
+function clearFields() {
+    $("#inpF1").val('');
+    $("#inpF2").val('');
+    $("#inpF3").val('');
+    $("#inpF5").val('');
+    $("#inpF6").val('');
+    $("#inpF7").val('');
+    $("#inpF4").val('');
+}

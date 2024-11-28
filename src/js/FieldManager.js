@@ -139,7 +139,7 @@ function populateCropTable(crops) {
                     <td class="action-icons">
                         <i class="fas fa-edit" title="Update" onclick="openUpdateModal('${crop.fieldCode}')"></i>
                         <i class="fas fa-eye" title="View" onclick="openViewModal('${crop.fieldCode}')"></i>
-                        <i class="fas fa-trash-alt" title="Delete" onclick="deleteCrop('${crop.fieldCode}')"></i>
+                        // <i class="fas fa-trash-alt" title="Delete" onclick="deleteCrop('${crop.fieldCode}')"></i>
                     </td>
                 </tr>
             `;

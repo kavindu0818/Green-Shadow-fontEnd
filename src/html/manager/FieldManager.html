@@ -157,6 +157,7 @@
                 <th>Field ID</th>
                 <th>Field Name</th>
                 <th>Category</th>
+                <th>Image</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -179,21 +180,21 @@
             <lbl class="field_viewLbl">Code: </lbl>
             <lbl class="field_viewLbl">Name: </lbl>
             <lbl class="field_viewLbl">Field location: </lbl>
-            <lbl class="field_viewLbl">Extent size of the Field: </lbl>
-            <lbl class="field_viewLbl">Crops: </lbl>
-            <lbl class="field_viewLbl">Staff: </lbl>
+            <lbl class="field_viewLbl">Extent size of<br> the Field: </lbl>
             <lbl class="field_viewLbl">Image: </lbl>
+<!--            <lbl class="field_viewLbl">Staff: </lbl>-->
+<!--            <lbl class="field_viewLbl">Image: </lbl>-->
 
         </section>
 
 
         <section id="field_viewDetailsResultLbl">
-            <lbl class="field_viewLblR"></lbl>
-            <lbl class="field_viewLblR"></lbl>
-            <lbl class="field_viewLblR"></lbl>
-            <lbl class="field_viewLblR"></lbl>
-            <lbl class="field_viewLblR"></lbl>
-            <lbl class="field_viewLblR"></lbl>
+            <lbl class="field_viewLblR" id="viewFieldCode"></lbl>
+            <lbl class="field_viewLblR" id="viewFieldName"></lbl>
+            <lbl class="field_viewLblR" id="viewFieldLocation"></lbl>
+            <lbl class="field_viewLblR" id="viewFieldSize"></lbl>
+<!--            <lbl class="field_viewLblR"></lbl>-->
+<!--            <lbl class="field_viewLblR"></lbl>-->
             <div id="field_imageView"></div>
         </section>
 
@@ -213,30 +214,25 @@
         <section id="field_updateDetailsLbl">
 
             <lbl class="field_viewLbl">Code: </lbl>
-            <lbl class="field_viewLbl">Name: </lbl>
+            <lbl class="field_viewLbl">Field Name: </lbl>
             <lbl class="field_viewLbl">Field location: </lbl>
-            <lbl class="field_viewLbl">Extent size of the Field: </lbl>
-            <lbl class="field_viewLbl">Crop: </lbl>
-            <lbl class="field_viewLbl">Staff: </lbl>
-            <lbl class="field_viewLbl">Images: </lbl>
+            <lbl class="field_viewLbl">Extent size of <br>the Field: </lbl>
+            <lbl class="field_viewLbl">Image: </lbl>
+<!--            <lbl class="field_viewLbl">Staff: </lbl>-->
+<!--            <lbl class="field_viewLbl">Images: </lbl>-->
 
         </section>
 
 
         <section id="field_updateDetailsResultLbl">
-            <input class="field_viewLblR" id="upCode"/>
-            <input class="field_viewLblR" id="upName"/>
-            <input class="field_viewLblR" id="upsName"/>
-            <input class="field_viewLblR" id="upCat"/>
-            <input class="field_viewLblR" id="upSea"/>
-            <input class="field_viewLblR" id="upField"/>
-            <div class="field_viewLblR" id="imageUpdateView">
-                <div id="field_camerBack">
-                    <img src="/Aseats/image-gallery.png" id="field_camera" onclick="triggerFileInput()" style="cursor: pointer;">
-                </div>
-                <input type="file" id="field_fileInput" accept="image/*" style="display: none;" onchange="displaySelectedImage(event)">
-            </div>
+            <input class="field_viewLblR" id="upFCode"/>
+            <input class="field_viewLblR" id="upFName"/>
+            <input class="field_viewLblR" id="upFlocation"/>
+            <input class="field_viewLblR" id="upFsize"/>
+            <div class="viewLblR" id="imageUpdateFieldView"></div>
+<!--            <button id="changeImage">Change Image</button>-->
 
+            <input type="file" id="fieldFileInput" accept="image/*">
             <button id="field_cropUpdateBtn">Update</button>
 
         </section>

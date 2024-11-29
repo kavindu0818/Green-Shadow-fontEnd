@@ -331,97 +331,84 @@ $(document).ready(function () {
     });
 });
 
-document.getElementById("field_cropUpdateBtn").addEventListener("click", function () {
-    var fieldCode = $("#upFCode").val();
-    var fieldName = $("#upFName").val();
-    var fieldLocation = $("#upFlocation").val();
-    var fieldSize = $("#upFsize").val();
-    // var season = $("#upSea").val();
-    // var field = $("#upField").val();
-
-    // Check if a new image is selected
-    var fieldImage = $("#fieldFileInput")[0].files[0];
-
-    // If no new image is selected, use the currently displayed image
-    var imageBase64 = $("#imageUpdateFieldView img").attr("src");
-
-    if (!fieldCode || !fieldName || !fieldLocation ||  !fieldSize || !field) {
-        alert("All fields except the image are required!");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("fieldCode", fieldCode);
-    formData.append("fieldName", fieldName);
-    formData.append("fieldLocation", fieldLocation);
-    formData.append("fieldSize", fieldSize);
-    // Attach the image data
-    if (fieldImage) {
-        formData.append("fieldImage", fieldImage); // New image file
-    } else if (imageBase64) {
-        // Convert base64 string to Blob and attach it
-        const blob = base64ToBlob(imageBase64);
-        formData.append("fieldImage", blob, "existing-image.png");
-    } else {
-        alert("No image provided!");
-        return;
-    }
-
-    updateCropDetails(fieldCode, formData);
-});
-
-// Helper function to convert base64 to Blob
-function base64ToBlob(base64Data) {
-    const byteString = atob(base64Data.split(",")[1]); // Decode base64
-    const mimeString = base64Data.split(",")[0].split(":")[1].split(";")[0]; // Extract MIME type
-
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: mimeString });
-}
-
-
-// Trigger the file input when the "Change Image" button is clicked
-document.getElementById("changeImage").addEventListener("click", function () {
-    document.getElementById("fileInput").click();
-});
-
-// Listen for file input change and update the preview
+// Add event listener to update the image preview when a new file is selected
 document.getElementById("fieldFileInput").addEventListener("change", function (event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            // Display the new image in the update modal
             const imageData = e.target.result;
             $("#imageUpdateFieldView").html(
                 `<img src="${imageData}" alt="Updated Crop Image" style="width: 100px; height: 80px;">`
             );
         };
-        reader.readAsDataURL(file); // Convert file to base64 string
+        reader.readAsDataURL(file);
     }
 });
 
-function updateCropDetails(fieldCode, formData) {
+// Add event listener for the update button
+document.getElementById("field_cropUpdateBtn").addEventListener("click", function () {
+    const fieldCode = $("#upFCode").val();
+    const fieldName = $("#upFName").val();
+    const fieldLocation = $("#upFlocation").val();
+    const fieldSize = $("#upFsize").val();
+    const fieldImageFile = $("#fieldFileInput")[0].files[0];
+    const existingImageBase64 = $("#imageUpdateFieldView img").attr("src");
+
+    // Validate required fields
+    if (!fieldCode || !fieldName || !fieldLocation || !fieldSize) {
+        alert("All fields are required!");
+        return;
+    }
+
+    // Convert the uploaded file or use the existing base64
+    if (fieldImageFile) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const base64Image = event.target.result.split(",")[1]; // Extract base64 without prefix
+            sendUpdateRequest(fieldCode, fieldName, fieldLocation, fieldSize, base64Image);
+        };
+        reader.readAsDataURL(fieldImageFile);
+    } else if (existingImageBase64) {
+        const base64Image = existingImageBase64.split(",")[1]; // Extract base64 without prefix
+        sendUpdateRequest(fieldCode, fieldName, fieldLocation, fieldSize, base64Image);
+    } else {
+        alert("Please upload or select an image!");
+        return;
+    }
+});
+
+// Function to send the update request
+function sendUpdateRequest(fieldCode, fieldName, fieldLocation, fieldSize, base64Image) {
+    const updateFieldDTO = {
+        fieldCode: fieldCode,
+        fieldName: fieldName,
+        fieldLocation: fieldLocation,
+        fieldSize: fieldSize,
+        fieldImage: base64Image, // Include base64 image in JSON payload
+    };
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/field/${fieldCode}`, // API endpoint for updating crop
+        url: `http://localhost:5050/green/api/v1/field/${fieldCode}`,
         type: "PUT",
-        processData: false,
-        contentType: false,
-        data: formData,
-        success: function (data) {
-            console.log("Success:", data);
+        contentType: "application/json", // Send JSON data
+        data: JSON.stringify(updateFieldDTO),
+        success: function () {
             alert("Field updated successfully!");
+            loadTable();
+            document.getElementById("field_updateModal").style.display = "none";
         },
-        error: function (xhr, status, error) {
-            console.error("Error response:", xhr.responseText || error);
-            alert(`Failed to update field details. Error: ${xhr.responseText || error}`);
+        error: function (xhr) {
+            console.error("Error:", xhr.responseText || xhr.statusText);
+            alert(`Failed to update field details. Error: ${xhr.responseText || xhr.statusText}`);
         },
     });
 }
+
+
+
+
+
 
 
 

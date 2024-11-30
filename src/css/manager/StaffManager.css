@@ -595,27 +595,37 @@ body {
 
 #viewDetailsLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 7vw;
+    left: 3vw;
 }
 
+#viewDetailsLbl2{
+    position: absolute;
+    top: 100px;
+    flex-direction: column;
+    display: flex;
+    left: 30vw;
+}
 #viewDetailsLbl lbl{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+#viewDetailsLbl2 lbl{
+    margin-bottom: 20px
 }
 
 #viewDetailsResultLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 20vw;
+    left: 10vw;
 }
 
 #viewDetailsResultLbl lbl{
-    font-weight: bold;
-    margin-bottom: 10px;
+    /*font-weight: bold;*/
+    margin-bottom: 20px;
 }
 
 #imageView{
@@ -703,17 +713,33 @@ body {
     margin-bottom: 20px;
 }
 
+/*#viewDetailsResultLbl{*/
+/*    position: absolute;*/
+/*    top: 70px;*/
+/*    flex-direction: column;*/
+/*    display: flex;*/
+/*    left: 10vw;*/
+/*}*/
+
 #viewDetailsResultLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 20vw;
+    left: 11vw;
+}
+
+#viewDetailsResultLbl2{
+    position: absolute;
+    top: 100px;
+    flex-direction: column;
+    display: flex;
+    left: 40vw;
 }
 
 .staff_viewLblR{
-    margin-bottom: 13px;
-    background-color: black;
+    margin-bottom: 20px;
+    /*background-color: black;*/
 }
 
 #updateDetailsResultLbl lbl{
@@ -756,6 +782,14 @@ body {
     width: 10vw;
     /*margin-bottom: 40px;*/
 }
+#staff_upAddress{
+    width: 34vw;
+}
+
+#staff_upEmail{
+    width: 34vw;
+}
+
 
 #updateDetailsResultLbl2{
     position: absolute;

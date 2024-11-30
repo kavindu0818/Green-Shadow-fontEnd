@@ -506,10 +506,10 @@ body {
 
 #viewDetailsLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 7vw;
+    left: 10vw;
 }
 
 #viewDetailsLbl lbl{
@@ -521,7 +521,11 @@ body {
     top: 70px;
     flex-direction: column;
     display: flex;
-    left: 20vw;
+    left: 60vw;
+}
+
+#veh_staff{
+    margin-bottom: 40px;
 }
 
 #viewDetailsResultLbl lbl{
@@ -616,15 +620,15 @@ body {
 
 #viewDetailsResultLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 20vw;
+    left: 25vw;
 }
 
 .veh_viewLblR{
     margin-bottom: 13px;
-    background-color: black;
+    /*background-color: black;*/
 }
 
 #updateDetailsResultLbl lbl{
@@ -645,7 +649,7 @@ body {
     top: 75px;
     flex-direction: column;
     display: flex;
-    left: 3vw;
+    left: 6vw;
     font-size: 15px;
 }
 
@@ -663,8 +667,8 @@ body {
     top: 75px;
     flex-direction: column;
     display: flex;
-    left: 11vw;
-    width: 10vw;
+    left: 22vw;
+    width: 20vw;
     /*margin-bottom: 40px;*/
 }
 
@@ -731,11 +735,11 @@ body {
     border: 1px solid black;
 }
 
-#vehUpdateBtn{
+#VehUpdateBtn{
     position: absolute;
-    right: 4vw;
+    left: 12vw;
     background-color: black;
-    top: 420px;
+    top: 330px;
     width: 8vw;
     border-radius: 10px;
     border: 1px solid black;

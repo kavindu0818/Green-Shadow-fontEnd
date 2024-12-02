@@ -1,0 +1,397 @@
+body {
+    margin: 0; /* Removes default margins */
+    display: flex; /* Sets the body as a flex container */
+    height: 100vh; /* Ensures the body spans the full viewport height */
+    overflow: hidden; /* Prevents scrolling */
+    /*background: linear-gradient(135deg, #4e6956, #1f2633); !* Adds a gradient background *!*/
+    background-color: #b5b5b5;
+    color: white; /* Sets text color to white for readability */
+}
+
+#nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 17vw;
+    height: 100vh;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633);
+     !* Adds a gradient background *!*/
+    background-color: white;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+
+#navSet {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    width: 200px; /* Set a fixed width for the navigation */
+    /*background-color: #f4f4f4; !* Default background for the navigation *!*/
+    padding: 10px 0; /* Add padding for spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+    top: 100px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Internal spacing */
+    border-radius: 5px; /* Rounded corners for a clean look */
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.nav-item:hover {
+    background-color: black; /* Hover background color */
+    color: white; /* Text color changes to white */
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between the icon and the text */
+    transition: filter 0.3s; /* Smooth transition for icon color */
+}
+
+.nav-item:hover img {
+    filter: brightness(0) invert(1); /* Makes the icon white on hover */
+}
+
+.nav-item a {
+    color: inherit; /* Inherit color from the parent */
+    text-decoration: none; /* No underline for links */
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+#logo{
+    position: absolute;
+    top: -60px;
+    width: 17vw;
+}
+
+#borderNav{
+    position: fixed;
+    width: 82vw;
+    top: 0px;
+    height: 50px;
+    background-color: white;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633); !* Adds a gradient background *!*/
+    left: 17vw;
+    border-bottom: 1px solid black;
+    /*z-index: ;*/
+}
+
+#userImg{
+    position: absolute;
+    width: 3vw;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    right: 10vw;
+    top: 5px;
+    border-radius: 100px;
+}
+
+#userName{
+    position: absolute;
+    font-weight: bold;
+    color: black;
+    right: 1vw;
+    top: 10px;
+    font-size: 18px;
+}
+
+#borderTopic{
+    position: absolute;
+    left: 1vw;
+    font-weight: bold;
+    font-size: 15px;
+    top: 15px;
+
+}
+
+#viewDateAndTime{
+    position: absolute;
+    width: 22vw;
+    height: 30px;
+    left: 45vw;
+    top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#calenderView{
+    position: absolute;
+    width: 2vw;
+    height: 30px;
+    top: 10px;
+    left: 41vw;
+    background-color: white;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#calenderView image{
+    position: absolute;
+    width: 1vw;
+    height: 10px;
+}
+
+#viewDateAndTimeBack{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    /*color: black;*/
+}
+
+#viewDetails{
+    overflow-y: auto;
+}
+/* Crop table styling */
+#cropTable {
+    position: absolute;
+    left: 18vw;
+    top: 330px; /* Adjusted to fit within view */
+    width: 80vw;
+    height: 60vh; /* Set height for scrolling to work (adjust this value as needed) */
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+
+.table {
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#cropTable thead {
+    background-color: black; /* Black background */
+    color: white; /* White text for contrast */
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Stick to the top */
+    z-index: 1; /* Ensure the header is above the body content */
+}
+
+.table thead {
+    background-color: black;
+    color: #333;
+    font-weight: bold;
+}
+
+.action-icons {
+    display: flex;
+    gap: 40px; /* Space between icons */
+    justify-content: center; /* Horizontally center icons */
+    align-items: center; /* Vertically center icons */
+    text-align: center;
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fas fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=========================================*/
+.action-icons {
+    display: flex;
+    gap: 20px; /* Adjust gap */
+    justify-content: center; /* Center icons */
+    align-items: center; /* Vertically align icons */
+    text-align: center;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=================================*/
+#search{
+    position: absolute;
+    left: 18vw;
+    width: 80vw;
+    height: 70px;
+    background-color: #b5b5b5;
+    top: 250px;
+    border-radius: 10px;
+}
+
+#lblCrop {
+    position: absolute;
+    left: 1vw;
+    font-family: Arial, sans-serif; /* Set a font family */
+    font-style: revert;
+    font-weight: bold; /* Make text bold */
+}
+
+#sbar{
+    position: absolute;
+    top: 25px;
+    width: 20vw;
+    left: 1vw;
+    border-radius: 10px;
+}
+
+#addBtn{
+    position: absolute;
+    width: 8vw;
+    height: 30px;
+    right: 5vw;
+    top: 90px;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+/*#addUserDiv{*/
+/*    position: absolute;*/
+/*    background-color: #4f5050;*/
+/*    width: 60vw;*/
+/*    top: 100px;*/
+/*    left: 25vw;*/
+/*    height: 150px;*/
+/*}*/
+/*#lbl1{*/
+/*    position: absolute;*/
+/*    font-weight: bold;*/
+/*    left: 3vw;*/
+/*}*/
+
+/*#email{*/
+/*    position: absolute;*/
+/*    border-radius: 10px;*/
+/*    width: 15vw;*/
+/*    top: 70px;*/
+/*    left: 3vw;*/
+/*}*/
+
+/*#lbl2{*/
+/*    position: absolute;*/
+/*    font-weight: bold;*/
+/*    left: 20vw;*/
+/*}*/
+
+/*#password{*/
+/*    position: absolute;*/
+/*    border-radius: 10px;*/
+/*    width: 15vw;*/
+/*    top: 70px;*/
+/*    left: 20vw;*/
+/*}*/
+
+#addUserDiv {
+    position: absolute;
+    width: 400px; /* Set the container width */
+    margin: 20px auto; /* Center the div */
+    padding: 20px; /* Add padding */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 10px; /* Round corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    background-color: #d2d4d9; /* Light background color */
+    font-family: Arial, sans-serif; /* Use a clean font */
+    display: none;
+    height: 400px;
+    top: 100px;
+    left: 40vw;
+}
+
+#addUserDiv h2 {
+    text-align: center; /* Center the heading */
+    font-size: 1.5rem; /* Adjust font size */
+    color: #333; /* Dark text color */
+    margin-bottom: 20px; /* Add spacing below heading */
+}
+
+#addUserDiv label {
+    display: block; /* Ensure label is above input */
+    font-size: 1rem; /* Adjust font size */
+    color: #555; /* Slightly lighter text color */
+    margin-bottom: 5px; /* Add spacing below label */
+    font-weight: bold; /* Make the label bold */
+}
+
+#addUserDiv input,
+#addUserDiv select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Add padding */
+    margin-bottom: 15px; /* Space between fields */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+    font-size: 1rem; /* Consistent font size */
+    background-color: #fff; /* White background */
+}
+
+#addUserDiv input:focus,
+#addUserDiv select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+}
+
+#addUserDiv select {
+    cursor: pointer; /* Pointer cursor for dropdown */
+}
+
+#addUserDiv input::placeholder {
+    color: #aaa; /* Light placeholder color */
+}
+
+#addUser{
+    position: absolute;
+    margin-top: 400px;
+}
+
+#usAdd{
+    position: absolute;
+    left: 10vw;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 10vw;
+    top: 350px;
+}

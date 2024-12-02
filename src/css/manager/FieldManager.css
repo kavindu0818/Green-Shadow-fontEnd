@@ -738,3 +738,8 @@ body {
     top: 280px;
     /*width: 5vw;*/
 }
+
+#addUser{
+    position: absolute;
+    margin-top: 400px;
+}

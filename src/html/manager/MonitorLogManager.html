@@ -20,6 +20,10 @@
     <img src="/Aseats/logo2-GreenShadow.png" id="logo">
     <section id="navSet">
         <div class="nav-item">
+            <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
+            <a href="../Dashboard/ManagerDashboard.html">Dashboard</a>
+        </div>
+        <div class="nav-item">
             <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
             <a href="../manager/CropManger.html">Crop</a>
         </div>
@@ -43,6 +47,10 @@
             <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
             <a href="../manager/MonitorLogManager.html">Monitoring Log</a>
         </div>
+        <div class="nav-item" id="addUser">
+            <img src="/Aseats/addIcon.png" alt="Monitoring Log Icon" class="icon">
+            <a href="../manager/AddUsers.html">ADD USERS</a>
+        </div>
     </section>
 </section>
 
@@ -62,7 +70,7 @@
 </section>
 
 
-<section id="veh_viewDetails" style="display: block">
+<section id="mlm_viewDetails" style="display: block">
     <section id="search">
         <label id="lblmlm">Search Log</label>
         <input id="mlm_sbar" placeholder="Enter Log Date">
@@ -166,8 +174,8 @@
         <label class="lblF" id="lblF1">Log code</label>
         <input placeholder="Enter Log code" type="text" class="form-control" id="mlm_inpF1">
 
-        <label class="lblF" id="lblF2">Log Name</label>
-        <input placeholder="Enter Log Name" type="text" class="form-control" id="mlm_inpF2">
+        <label class="lblF" id="lblF2">Log Data</label>
+        <input placeholder="Enter Log Date" type="date" class="form-control" id="mlm_inpF2">
 
         <label class="lblF" id="lblF3">Log Staff</label>
         <input placeholder="Enter Log Staff" type="text" class="form-control" id="mlm_inpF3">
@@ -176,10 +184,10 @@
         <input placeholder="Enter Log Crop" type="text" class="form-control" id="mlm_inpF4">
 
         <label class="lblF" id="lblF5">Log Field</label>
-        <input placeholder="Enter Log Field type="text" class="form-control" id="mlm_inpF5">
+        <input placeholder="Enter Log Field" type="text" class="form-control" id="mlm_inpF5">
 
         <label class="lblF" id="lblF6">Log Image</label>
-        <input placeholder="Enter Log Image" type="image" class="form-control" id="mlm_inpF6">
+        <input type="file" accept="image/*" class="form-control" id="mlm_inpF6">
 
         <label class="lblF" id="lblF7">Log Details</label>
         <input placeholder="Enter Log Details" type="text" class="form-control" id="mlm_inpF7">
@@ -201,7 +209,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../boostrap/js/bootstrap.js"></script>
-<script src="/js/MonitorLogManager.js.js"></script> <!-- Your custom JS file -->
+<script src="/js/MonitorLogManager.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 </html>

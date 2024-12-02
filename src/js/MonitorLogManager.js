@@ -104,10 +104,11 @@ function displaySelectedImage(event) {
     }
 }
 
-function loadTable() {
+loadMonitorTable()
+function loadMonitorTable() {
     // Fetch data from the backend API
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/veh",
+        url: "http://localhost:5050/green/api/v1/mlog",
         type: "GET",
         contentType: "application/json",
         success: (response) => {
@@ -116,36 +117,36 @@ function loadTable() {
                     populateVehicleTable(response); // Pass the response to populate the table
                 } else {
                     console.error("Expected an array, but received:", response);
-                    alert("Failed to load vehicle data. Invalid response format.");
+                    alert("Failed to load MonitorLog data. Invalid response format.");
                 }
             } catch (error) {
                 console.error("Error processing response:", error);
             }
         },
         error: (xhr, status, error) => {
-            console.error("Error fetching vehicle data:", error);
-            alert("Failed to load vehicle data. Please try again later.");
+            console.error("Error fetching MonitorLog data:", error);
+            alert("Failed to load MonitorLog data. Please try again later.");
         }
     });
 }
 
-function populateVehicleTable(vehicle) {
+function populateVehicleTable(monitor) {
     try {
-        const tableBody = $("#vehTable tbody");
+        const tableBody = $("#mlmTable tbody");
         tableBody.empty(); // Clear existing rows
 
         // Loop through each vehicle object and create table rows
-        vehicle.forEach((veh) => {
+        monitor.forEach((mon) => {
             const row = `
                 <tr>
-                    <td>${veh.code || "N/A"}</td>
-                    <td>${veh.licensePlateNum || "N/A"}</td>
-                    <td>${veh.category || "N/A"}</td>
-                    <td>${veh.fuelType || "N/A"}</td>
+                    <td>${mon.logCode || "N/A"}</td>
+                    <td>${mon.date || "N/A"}</td>
+                    <td>${mon.observation || "N/A"}</td>
+                   <td><img src="data:image/png;base64,${mon.observationImage}" alt="Crop Image" style="width: 50px; height: 50px;"></td>
                     <td class="action-icons">
-                        <i class="fas fa-edit" title="Update" onclick="openUpdateVehicleModal('${veh.code || ""}')"></i>
-                        <i class="fas fa-eye" title="View" onclick="viewVehicleDetails('${veh.code || ""}')"></i>
-                        <i class="fas fa-trash-alt" title="Delete" onclick="deleteField('${veh.code || ""}')"></i>
+                        <i class="fas fa-edit" title="Update" onclick="openUpdateVehicleModal('${mon.logCode || ""}')"></i>
+                        <i class="fas fa-eye" title="View" onclick="viewVehicleDetails('${mon.logCode || ""}')"></i>
+                        <i class="fas fa-trash-alt" title="Delete" onclick="deleteField('${mon.logCode || ""}')"></i>
                     </td>
                 </tr>
             `;
@@ -157,106 +158,122 @@ function populateVehicleTable(vehicle) {
     }
 }
 
-// Call the function to load the table on page load or as needed
-loadTable();
-
-
 fieldIdGenerate();
-$("#veh_subBtn").on('click', function () {
-    // Get values from input fields
-    var code = $("#veh_inpF1").val();
-    var liPlateNum = $("#veh_inpF2").val();
-    var vehCat = $("#veh_inpF3").val();
-    var fuelType = $("#veh_inpF4").val();
-    var status = $("#veh_inpF5").val();
-    var staff = $("#veh_inpF6").val(); // Correct variable for staff
-    var remarks = $("#veh_inpF7").val();
+$("#mlm_subBtn").on('click', function() {
+        // Get values from input fields
+        var logCode = $("#mlm_inpF1").val();
+        var logDate = $("#mlm_inpF2").val();
+        var logDetails = $("#mlm_inpF7").val();
+        var logField = $("#mlm_inpF5").val();
+        var logCrop = $("#mlm_inpF4").val();
+        var logStaff = $("#mlm_inpF3").val();
 
-    // Create a FormData object for file upload
-    var formData = new FormData();
-    formData.append("code", code);
-    formData.append("licensePlateNum", liPlateNum);
-    formData.append("category", vehCat);
-    formData.append("fuelType", fuelType);
-    formData.append("status", status);
-    formData.append("remarks", remarks);
-    formData.append("staffId", staff); // Corrected to send the staffId field
+        // Collect file input
+        var logImage = $("#mlm_inpF6")[0].files[0];
 
-    // Send AJAX POST request to the backend
-    $.ajax({
-        url: "http://localhost:5050/green/api/v1/veh", // Backend endpoint
-        type: "POST",
-        processData: false,
-        contentType: false,
-        data: formData, // Form data with fields
-        success: (response) => {
-            console.log("Vehicle added successfully:", response);
-            alert("Vehicle added successfully!");
-            clearFields();
-            fieldIdGenerate(); // Clear input fields after success
-        },
-        error: (error) => {
-            console.error("Error adding vehicle:", error);
-            alert("Failed to add vehicle. Please try again.");
+        // Validate required inputs
+        if (!logCode || !logDate || !logDetails || !logField || !logCrop || !logStaff) {
+            alert("Please fill out all required fields.");
+            return;
         }
+
+        if (!logImage) {
+            alert("Please upload an observation image.");
+            return;
+        }
+
+        // Create a FormData object for file upload
+        var formData = new FormData();
+        formData.append("logCode", logCode);
+        formData.append("date", logDate);
+        formData.append("observation", logDetails);
+        formData.append("observationImage", logImage);
+        formData.append("fieldCode", logField); // Ensure this matches your backend parameter
+        formData.append("cropCode", logCrop); // Ensure this matches your backend parameter
+        formData.append("staffId", logStaff);
+
+        // Send AJAX POST request to the backend
+        $.ajax({
+            url: "http://localhost:5050/green/api/v1/mlog", // Backend endpoint
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: (response) => {
+                console.log("MonitorLog added successfully:", response);
+                alert("MonitorLog added successfully!");
+                clearFields();
+                MonitorIdGenerate(); // Generate the next ID
+            },
+            error: (xhr, status, error) => {
+                console.error("Error adding monitorLog:", xhr.responseText || error);
+                if (xhr.responseText) {
+                    alert("Failed to add MonitorLog: " + xhr.responseText);
+                } else {
+                    alert("Failed to add MonitorLog. Please try again.");
+                }
+            }
+        });
     });
-});
-
-
-
 
 // Function to clear input fields
 function clearFields() {
-    $("#inpFe1").val('');
-    $("#inpFe2").val('');
-    $("#inpFe3").val('');
-    $("#inpFe5").val('');
-    $("#inpFe4").val('');
-    // $("#inpF7").val('');
-    // $("#inpF4").val('');
+
+    $("#mlm_inpF1").val('');
+    $("#mlm_inpF2").val('');
+    $("#mlm_inpF7").val('');
+    $("#mlm_inpF6").val('');
+
 }
 
-function fieldIdGenerate() {
+function MonitorIdGenerate() {
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/veh", // API endpoint to fetch fields
+        url: "http://localhost:5050/green/api/v1/mlog", // API endpoint to fetch logs
         type: "GET",
         success: function (response) {
-            // Validate the response is an array
-            if (Array.isArray(response) && response.length > 0) {
-                // Sort the array by fieldCode in ascending order (if necessary)
-                response.sort((a, b) => a.code.localeCompare(b.code));
+            try {
+                // Validate response as an array
+                if (Array.isArray(response) && response.length > 0) {
+                    // Sort by logCode in ascending order
+                    response.sort((a, b) => a.logCode.localeCompare(b.logCode));
 
-                // Get the last field in the sorted array
-                const lastField = response[response.length - 1];
+                    // Get the last log from the sorted array
+                    const lastLog = response[response.length - 1];
 
-                // Validate that fieldCode exists and follows the expected format
-                if (lastField && lastField.code) {
-                    const lastFieldCode = lastField.code;
+                    // Check if logCode exists and follows the expected format
+                    if (lastLog && lastLog.logCode) {
+                        const lastLogCode = lastLog.logCode;
 
-                    // Split the fieldCode using '-' and extract the numeric part
-                    const lastIdParts = lastFieldCode.split('-');
-                    if (lastIdParts.length === 2 && !isNaN(lastIdParts[1])) {
-                        const lastNumber = parseInt(lastIdParts[1], 10);
+                        // Split the logCode by '-' and extract the numeric part
+                        const logParts = lastLogCode.split('-');
+                        if (logParts.length === 2 && !isNaN(logParts[1])) {
+                            const lastNumber = parseInt(logParts[1], 10);
 
-                        // Generate the next ID
-                        const nextId = `VEH-${String(lastNumber + 1).padStart(4, '0')}`;
-                        $("#veh_inpF1").val(nextId);
-                        return;
+                            // Generate the next ID
+                            const nextId = `LOG-${String(lastNumber + 1).padStart(4, '0')}`;
+                            $("#mlm_inpF1").val(nextId);
+                            return; // Successfully generated ID
+                        }
                     }
                 }
-            }
 
-            // If response is empty or no valid fieldCode found, set default value
-            $("#veh_inpF1").val("VEH-0001");
+                // If response is empty or logCode is invalid, set default ID
+                $("#mlm_inpF1").val("LOG-0001");
+            } catch (error) {
+                console.error("Error processing response:", error);
+                $("#mlm_inpF1").val("LOG-0001"); // Fallback to default ID
+            }
         },
         error: function (xhr, status, error) {
-            console.error("Error fetching last Field ID:", error);
-            alert("Unable to fetch the last Field ID. Using default ID.");
-            $("#inpFe1").val("FIELD-0001"); // Set default ID in case of error
+            console.error("Error fetching last log ID:", error);
+            alert("Unable to fetch the last log ID. Using default ID.");
+            $("#mlm_inpF1").val("LOG-0001"); // Fallback to default ID
         }
     });
 }
 
+
+MonitorIdGenerate();
 function deleteField(vehCode) {
     if (confirm("Are you sure you want to delete this Field?")) {
         $.ajax({

@@ -335,7 +335,7 @@ body {
     width: 23vw;
 }
 
-#mlmF2{
+#lblF2{
     position: absolute;
     left: 26vw;
 }
@@ -788,4 +788,7 @@ body {
     cursor: pointer;
 }
 
-
+#addUser{
+    position: absolute;
+    margin-top: 400px;
+}

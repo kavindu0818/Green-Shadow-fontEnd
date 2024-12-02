@@ -31,7 +31,7 @@ h1 {
     width: 20vw;
     height: 300px;
     border-radius: 20px;
-    background-color: #b5b5b5;
+    background-color: transparent;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow */
     padding: 20px; /* Add padding for better spacing */
 }
@@ -43,21 +43,24 @@ h1 {
     padding: 5px; /* Add padding inside the input */
     border: 1px solid #ccc; /* Add border */
     border-radius: 5px; /* Rounded corners */
-    font-size: 14px; /* Font size for better readability */
+    font-size: 14px;
+    background-color: #d6d6d6;/* Font size for better readability */
 }
 
 #lbl1 {
     position: relative;
     left: -7vw;
     margin-bottom: 5px; /* Space between label and input */
-    font-weight: bold; /* Make label bold */
+    font-weight: bold;
+    color: white/* Make label bold */
 }
 
 #lbl2 {
     position: relative;
     left: -6vw;
     margin-bottom: 5px; /* Space between label and input */
-    font-weight: bold; /* Make label bold */
+    font-weight: bold;
+    color: white/* Make label bold */
 }
 
 .login-btn {
@@ -76,4 +79,8 @@ h1 {
 
     background-color: transparent;
     color: black;
+}
+
+h3{
+    color: white;
 }

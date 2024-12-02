@@ -1,12 +1,12 @@
 
-document.getElementById('veh_addBtn').addEventListener('click',function (){
-    document.getElementById('vehForm').style.display='block';
-    document.getElementById('veh_viewDetails').style.display='none';
+document.getElementById('mlm_addBtn').addEventListener('click',function (){
+    document.getElementById('mlmForm').style.display='block';
+    document.getElementById('mlm_viewDetails').style.display='none';
     document.getElementById('addIcon').style.display='block';
-    document.getElementById('vehTop').style.display='block';
+    document.getElementById('mlmTop').style.display='block';
 
 });
-document.getElementById("VehUpdateBtn").addEventListener("click", function () {
+document.getElementById("mlmUpdateBtn").addEventListener("click", function () {
     const vehCode = $("#veh_upCode").val();
     const vehPlatNum = $("#veh_upPlateNumber").val();
     const vehCat = $("#veh_upCategory").val();
@@ -104,39 +104,39 @@ function displaySelectedImage(event) {
     }
 }
 
-    function loadTable() {
-        // Fetch data from the backend API
-        $.ajax({
-            url: "http://localhost:5050/green/api/v1/veh",
-            type: "GET",
-            contentType: "application/json",
-            success: (response) => {
-                try {
-                    if (Array.isArray(response)) {
-                        populateVehicleTable(response); // Pass the response to populate the table
-                    } else {
-                        console.error("Expected an array, but received:", response);
-                        alert("Failed to load vehicle data. Invalid response format.");
-                    }
-                } catch (error) {
-                    console.error("Error processing response:", error);
+function loadTable() {
+    // Fetch data from the backend API
+    $.ajax({
+        url: "http://localhost:5050/green/api/v1/veh",
+        type: "GET",
+        contentType: "application/json",
+        success: (response) => {
+            try {
+                if (Array.isArray(response)) {
+                    populateVehicleTable(response); // Pass the response to populate the table
+                } else {
+                    console.error("Expected an array, but received:", response);
+                    alert("Failed to load vehicle data. Invalid response format.");
                 }
-            },
-            error: (xhr, status, error) => {
-                console.error("Error fetching vehicle data:", error);
-                alert("Failed to load vehicle data. Please try again later.");
+            } catch (error) {
+                console.error("Error processing response:", error);
             }
-        });
-    }
+        },
+        error: (xhr, status, error) => {
+            console.error("Error fetching vehicle data:", error);
+            alert("Failed to load vehicle data. Please try again later.");
+        }
+    });
+}
 
-    function populateVehicleTable(vehicle) {
-        try {
-            const tableBody = $("#vehTable tbody");
-            tableBody.empty(); // Clear existing rows
+function populateVehicleTable(vehicle) {
+    try {
+        const tableBody = $("#vehTable tbody");
+        tableBody.empty(); // Clear existing rows
 
-            // Loop through each vehicle object and create table rows
-            vehicle.forEach((veh) => {
-                const row = `
+        // Loop through each vehicle object and create table rows
+        vehicle.forEach((veh) => {
+            const row = `
                 <tr>
                     <td>${veh.code || "N/A"}</td>
                     <td>${veh.licensePlateNum || "N/A"}</td>
@@ -149,58 +149,58 @@ function displaySelectedImage(event) {
                     </td>
                 </tr>
             `;
-                tableBody.append(row);
-            });
-        } catch (e) {
-            console.error("Error populating table:", e);
-            alert("An error occurred while populating the table. Please try again.");
-        }
+            tableBody.append(row);
+        });
+    } catch (e) {
+        console.error("Error populating table:", e);
+        alert("An error occurred while populating the table. Please try again.");
     }
+}
 
-    // Call the function to load the table on page load or as needed
-    loadTable();
+// Call the function to load the table on page load or as needed
+loadTable();
 
 
 fieldIdGenerate();
-    $("#veh_subBtn").on('click', function () {
-        // Get values from input fields
-        var code = $("#veh_inpF1").val();
-        var liPlateNum = $("#veh_inpF2").val();
-        var vehCat = $("#veh_inpF3").val();
-        var fuelType = $("#veh_inpF4").val();
-        var status = $("#veh_inpF5").val();
-        var staff = $("#veh_inpF6").val(); // Correct variable for staff
-        var remarks = $("#veh_inpF7").val();
+$("#veh_subBtn").on('click', function () {
+    // Get values from input fields
+    var code = $("#veh_inpF1").val();
+    var liPlateNum = $("#veh_inpF2").val();
+    var vehCat = $("#veh_inpF3").val();
+    var fuelType = $("#veh_inpF4").val();
+    var status = $("#veh_inpF5").val();
+    var staff = $("#veh_inpF6").val(); // Correct variable for staff
+    var remarks = $("#veh_inpF7").val();
 
-        // Create a FormData object for file upload
-        var formData = new FormData();
-        formData.append("code", code);
-        formData.append("licensePlateNum", liPlateNum);
-        formData.append("category", vehCat);
-        formData.append("fuelType", fuelType);
-        formData.append("status", status);
-        formData.append("remarks", remarks);
-        formData.append("staffId", staff); // Corrected to send the staffId field
+    // Create a FormData object for file upload
+    var formData = new FormData();
+    formData.append("code", code);
+    formData.append("licensePlateNum", liPlateNum);
+    formData.append("category", vehCat);
+    formData.append("fuelType", fuelType);
+    formData.append("status", status);
+    formData.append("remarks", remarks);
+    formData.append("staffId", staff); // Corrected to send the staffId field
 
-        // Send AJAX POST request to the backend
-        $.ajax({
-            url: "http://localhost:5050/green/api/v1/veh", // Backend endpoint
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: formData, // Form data with fields
-            success: (response) => {
-                console.log("Vehicle added successfully:", response);
-                alert("Vehicle added successfully!");
-                clearFields();
-                fieldIdGenerate(); // Clear input fields after success
-            },
-            error: (error) => {
-                console.error("Error adding vehicle:", error);
-                alert("Failed to add vehicle. Please try again.");
-            }
-        });
+    // Send AJAX POST request to the backend
+    $.ajax({
+        url: "http://localhost:5050/green/api/v1/veh", // Backend endpoint
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: formData, // Form data with fields
+        success: (response) => {
+            console.log("Vehicle added successfully:", response);
+            alert("Vehicle added successfully!");
+            clearFields();
+            fieldIdGenerate(); // Clear input fields after success
+        },
+        error: (error) => {
+            console.error("Error adding vehicle:", error);
+            alert("Failed to add vehicle. Please try again.");
+        }
     });
+});
 
 
 

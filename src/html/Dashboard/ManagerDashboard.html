@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenhouse Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .dashboard-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .dashboard-header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+    .action-btn {
+      margin-top: 20px;
+    }
+    .row {
+      position: absolute;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 1px;
+      top: 10px;
+    }
+
+    .custom-div {
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center items horizontally */
+      align-items: center; /* Center items vertically */
+      position: absolute;
+      width: 80vw; /* 80% of the viewport width */
+      margin: 0 auto; /* Center the div horizontally */
+      background-color: transparent; /* Set background color to black */
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      left: 18vw;
+      top: 60px;
+      height: 200px;
+      color: black; /* Optional: Ensure text is visible on black background */
+    }
+
+    .custom-div > .row > div:nth-child(5) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%); /* Center the element */
+    }
+
+
+
+    #nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 17vw;
+      height: 100vh;
+      /*background: linear-gradient(135deg, #e6f7ea, #1f2633);
+       !* Adds a gradient background *!*/
+      background-color: white;
+      color: white;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+
+    #navSet {
+      position: absolute;
+      display: flex;
+      flex-direction: column; /* Arrange items vertically */
+      width: 200px; /* Set a fixed width for the navigation */
+      /*background-color: #f4f4f4; !* Default background for the navigation *!*/
+      padding: 10px 0; /* Add padding for spacing */
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+      top: 100px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px; /* Internal spacing */
+      border-radius: 5px; /* Rounded corners for a clean look */
+      color: black; /* Default text color */
+      text-decoration: none; /* Remove underline for links */
+      transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+      cursor: pointer;
+      margin-bottom: 6px;
+    }
+
+    .nav-item:hover {
+      background-color: black; /* Hover background color */
+      color: white; /* Text color changes to white */
+    }
+
+    .nav-item img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px; /* Space between the icon and the text */
+      transition: filter 0.3s; /* Smooth transition for icon color */
+    }
+
+    .nav-item:hover img {
+      filter: brightness(0) invert(1); /* Makes the icon white on hover */
+    }
+
+    .nav-item a {
+      color: inherit; /* Inherit color from the parent */
+      text-decoration: none; /* No underline for links */
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+
+    #logo{
+      position: absolute;
+      top: -60px;
+      width: 17vw;
+    }
+
+    #borderNav{
+      position: fixed;
+      width: 82vw;
+      top: 0px;
+      height: 50px;
+      background-color: white;
+      /*background: linear-gradient(135deg, #e6f7ea, #1f2633); !* Adds a gradient background *!*/
+      left: 17vw;
+      border-bottom: 1px solid black;
+      /*z-index: ;*/
+    }
+
+    #userImg{
+      position: absolute;
+      width: 3vw;
+      height: 40px;
+      background-color: white;
+      border: 1px solid black;
+      right: 10vw;
+      top: 5px;
+      border-radius: 100px;
+    }
+
+    #userName{
+      position: absolute;
+      font-weight: bold;
+      color: black;
+      right: 1vw;
+      top: 10px;
+      font-size: 18px;
+    }
+
+    #borderTopic{
+      position: absolute;
+      left: 1vw;
+      font-weight: bold;
+      font-size: 15px;
+      top: 15px;
+
+    }
+
+    #viewDateAndTime{
+      position: absolute;
+      width: 22vw;
+      height: 30px;
+      left: 45vw;
+      top: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+    }
+
+    #calenderView{
+      position: absolute;
+      width: 2vw;
+      height: 30px;
+      top: 10px;
+      left: 41vw;
+      background-color: white;
+      box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #calenderView image{
+      position: absolute;
+      width: 1vw;
+      height: 10px;
+    }
+
+    #viewDateAndTimeBack{
+      position: absolute;
+      margin-top: 5px;
+      margin-left: 5px;
+      /*color: black;*/
+    }
+
+    .custom-div {
+      display: flex; /* Enable flexbox */
+      justify-content: space-around; /* Distribute items evenly */
+      align-items: center; /* Center items vertically */
+      flex-wrap: wrap; /* Allow items to wrap if needed */
+      position: absolute;
+      width: 80vw; /* 80% of the viewport width */
+      margin: 0 auto; /* Center the div horizontally */
+      background-color: transparent; /* Transparent background for the container */
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      left: 18vw; /* Adjust to center in the viewport */
+      top: 60px;
+      color: black; /* Ensure text is visible */
+    }
+
+    .count-dive {
+      background-color: black;
+      width: 12vw;
+      height: 120px;
+      color: white;
+      margin: 10px; /* Adjust spacing between items */
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center items horizontally */
+      justify-content: center; /* Center items vertically */
+      position: relative;
+      padding: 10px;
+    }
+
+    .img-count {
+      width: 40px; /* Adjust the size of icons */
+      height: auto;
+      margin-bottom: 10px; /* Spacing between image and text */
+      filter: brightness(0) invert(1); /* Make icons white */
+    }
+
+    .count-h5 {
+      margin: 0; /* Reset margin for consistent spacing */
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .count-dive h2 {
+      margin: 5px 0 0; /* Adjust margin for spacing */
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-item:hover img {
+      filter: brightness(0) invert(1); /* Makes the icon white on hover */
+    }
+
+    #des{
+      position: absolute;
+      width: 60vw;
+      border: 2px solid black;
+      border-radius: 10px;
+      background-color: transparent;
+      top: 270px;
+      left: 18vw;
+      height: 275px;
+
+    }
+
+    #des_h1{
+      position: absolute;
+      flex-direction: column;
+      align-items: center; /* Center items horizontally */
+      justify-content: center;
+      font-weight: bold;
+      left: 15vw;
+    }
+
+    #des_h3{
+      position: absolute;
+      left: 25vw;
+      font-weight: bold;
+      top: 40px;
+    }
+
+    #des_p{
+      position: absolute;
+      left: 2vw;
+      font-weight: bold;
+      top: 75px;
+    }
+
+    .contact-info {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      top: 100px;
+    }
+
+    .contact-info img.contact-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2vw;
+      height: 20px;
+      /* Place the image behind the text */
+    }
+
+    #con1{
+      position: absolute;
+      left: 5vw;
+      top: 80px;
+    }
+
+    #con2{
+      position: absolute;
+      left: 5vw;
+      top: 105px;
+    }
+    #con3{
+      position: absolute;
+      left: 5vw;
+      top: 130px;
+    }
+
+    #conP1{
+      position: absolute;
+      left: 8vw;
+      top: 75px;
+      font-weight: bold;
+    }
+
+    #conP2{
+      position: absolute;
+      left: 8vw;
+      top: 105px;
+      font-weight: bold;
+    }
+
+    #conP3{
+      position: absolute;
+      left: 8vw;
+      top: 130px;
+      font-weight: bold;
+    }
+
+    /*.contact-info p {*/
+    /*  position: relative;*/
+    /*  padding-left: 30px; !* Adjust to avoid text overlap *!*/
+    /*}*/
+
+
+
+  </style>
+</head>
+<body>
+
+<section id="nav">
+
+  <img src="/Aseats/logo2-GreenShadow.png" id="logo">
+  <section id="navSet">
+    <div class="nav-item">
+      <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
+      <a href="../manager/CropManger.html">Crop</a>
+    </div>
+    <div class="nav-item">
+      <img src="/Aseats/fieldIcon.png" alt="Field Icon" class="icon">
+      <a href="../manager/FieldManager.html">Field</a>
+    </div>
+    <div class="nav-item">
+      <img src="/Aseats/staffe.png" alt="Staffe Icon" class="icon">
+      <a href="../manager/StaffManger.html">Staffe</a>
+    </div>
+    <div class="nav-item">
+      <img src="/Aseats/vehicelLogo.png" alt="Vehicle Icon" class="icon">
+      <a href="../manager/VehicleManger.html">Vehicle</a>
+    </div>
+    <div class="nav-item">
+      <img src="/Aseats/equipementIcon.png" alt="Equipment Icon" class="icon">
+      <a href="../manager/EquipmentManager.html">Equipment</a>
+    </div>
+    <div class="nav-item">
+      <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
+      <a href="../manager/MonitorLogManager.html">Monitoring Log</a>
+    </div>
+  </section>
+</section>
+
+<section id="borderNav">
+  <div id="userImg"></div>
+  <h3 id="userName">Kavindu Mw</h3>
+  <h2 id="borderTopic">Crop Management</h2>
+  <img src="/Aseats/calendar.png" id="calenderView">
+
+  <div id="viewDateAndTime">
+    <div id="viewDateAndTimeBack">
+      <label id="viewDay">Wendsday</label>
+      <label id="viewDate">17 November 2024</label>
+      <label id="atlbl"> at </label>
+      <label id="time">8.00 AM</label>
+    </div>
+  </div>
+</section>
+
+<div id="calendar-container">
+  <div class="calendar-header">
+    <button onclick="prevMonth()">Prev</button>
+    <span id="month-year"></span>
+    <button onclick="nextMonth()">Next</button>
+  </div>
+  <table id="calendar"></table>
+</div>
+
+<div class="custom-div">
+    <!-- Crop Count -->
+
+      <div class="count-dive">
+        <img src="/Aseats/cropsIcon.png" class="img-count">
+        <h5 class="text-colour" class="count-h5" id="coun1-h5">Crops</h5>
+        <h2 id="cropCount">0</h2>
+      </div>
+
+    <!-- Field Count -->
+
+      <div class="count-dive">
+        <img src="/Aseats/fieldIcon.png" class="img-count">
+        <h5 class="text-colour" class="count-h5" id="coun2-h5">Fields</h5>
+        <h2 id="fieldCount"></h2>
+      </div>
+
+    <!-- Staff Count -->
+
+      <div class="count-dive">
+        <img src="/Aseats/staffe.png" class="img-count">
+        <h5 class="text-colour" class="count-h5" id="coun3-h5">Staff</h5>
+        <h2 id="staffCount"></h2>
+      </div>
+
+    <!-- Vehicle Count -->
+
+      <div class="count-dive">
+        <img src="/Aseats/vehicelLogo.png" class="img-count">
+        <h5 class="text-colour" class="count-h5" id="coun4-h5">Vehicles</h5>
+        <h2 id="vehicleCount"></h2>
+      </div>
+    <!-- Equipment Count -->
+      <div class="count-dive">
+        <img src="/Aseats/equipementIcon.png" class="img-count">
+        <h5 class="text-colour" class="count-h5" id="coun5-h5">Equipment</h5>
+        <h2 id="equipmentCount"></h2>
+      </div>
+
+  </div>
+</div>
+
+<div id="des">
+  <h1 id="des_h1"></h1>
+  <h3 id="des_h3">(Pvt)Ltd</h3>
+  <p id="des_p">Green Shadow (Pvt) Ltd. specializes in root crops and cereals,
+    operating nationally and internationally. With expanding fields and a shift to large-scale production,
+    the proposed system aims to streamline crop management and asset tracking. It will provide comprehensive
+    monitoring, ensuring efficient operations, quality control, and scalability for future growth.</p>
+
+  <div class="contact-info">
+    <img src="../../Aseats/email.png" class="contact-icon" id="con1">
+    <p id="conP1">greenshadow@gmail.com</p>
+
+    <img src="../../Aseats/call.png" class="contact-icon" id="con2">
+    <p id="conP2">+94 774257738 / +94 661252888</p>
+
+    <img src="../../Aseats/address.png" class="contact-icon" id="con3">
+    <p id="conP3">No 159 panadura, colombo</p>
+  </div>
+
+</div>
+
+<script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../../boostrap/js/bootstrap.js"></script>
+<script src="/js/ManagerDashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossOrigin="anonymous"></script>
+
+</script>
+</body>
+</html>

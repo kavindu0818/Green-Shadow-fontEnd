@@ -1,0 +1,791 @@
+body {
+    margin: 0; /* Removes default margins */
+    display: flex; /* Sets the body as a flex container */
+    height: 100vh; /* Ensures the body spans the full viewport height */
+    overflow: hidden; /* Prevents scrolling */
+    /*background: linear-gradient(135deg, #4e6956, #1f2633); !* Adds a gradient background *!*/
+    background-color: #b5b5b5;
+    overflow-y: auto;
+    color: white; /* Sets text color to white for readability */
+}
+
+
+#nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 17vw;
+    height: 100vh;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633);
+     !* Adds a gradient background *!*/
+    background-color: white;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+
+#navSet {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    width: 200px; /* Set a fixed width for the navigation */
+    /*background-color: #f4f4f4; !* Default background for the navigation *!*/
+    padding: 10px 0; /* Add padding for spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0); /* Optional: shadow for a polished look */
+    top: 100px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Internal spacing */
+    border-radius: 5px; /* Rounded corners for a clean look */
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.nav-item:hover {
+    background-color: black; /* Hover background color */
+    color: white; /* Text color changes to white */
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between the icon and the text */
+    transition: filter 0.3s; /* Smooth transition for icon color */
+}
+
+.nav-item:hover img {
+    filter: brightness(0) invert(1); /* Makes the icon white on hover */
+}
+
+.nav-item a {
+    color: inherit; /* Inherit color from the parent */
+    text-decoration: none; /* No underline for links */
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+#logo{
+    position: absolute;
+    top: -60px;
+    width: 17vw;
+}
+
+#borderNav{
+    position: fixed;
+    width: 82vw;
+    top: 0px;
+    height: 50px;
+    background-color: white;
+    /*background: linear-gradient(135deg, #e6f7ea, #1f2633); !* Adds a gradient background *!*/
+    left: 17vw;
+    border-bottom: 1px solid black;
+    /*z-index: ;*/
+}
+
+#userImg{
+    position: absolute;
+    width: 3vw;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    right: 10vw;
+    top: 5px;
+    border-radius: 100px;
+}
+
+#userName{
+    position: absolute;
+    font-weight: bold;
+    color: black;
+    right: 1vw;
+    top: 10px;
+    font-size: 18px;
+}
+
+#borderTopic{
+    position: absolute;
+    left: 1vw;
+    font-weight: bold;
+    font-size: 15px;
+    top: 15px;
+
+}
+
+#viewDateAndTime{
+    position: absolute;
+    width: 22vw;
+    height: 30px;
+    left: 45vw;
+    top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#calenderView{
+    position: absolute;
+    width: 2vw;
+    height: 30px;
+    top: 10px;
+    left: 41vw;
+    background-color: white;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#calenderView image{
+    position: absolute;
+    width: 1vw;
+    height: 10px;
+}
+
+#viewDateAndTimeBack{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    /*color: black;*/
+}
+/* Crop table styling */
+#mlmTable {
+    position: absolute;
+    left: 18vw;
+    top: 230px; /* Adjusted to fit within view */
+    width: 80vw;
+}
+
+.table {
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#mlmTable thead {
+    background-color: black; /* Black background */
+    color: white; /* White text for contrast */
+}
+
+.table thead {
+    background-color: black;
+    color: #333;
+    font-weight: bold;
+}
+
+.action-icons {
+    display: flex;
+    gap: 40px; /* Space between icons */
+    justify-content: center; /* Horizontally center icons */
+    align-items: center; /* Vertically center icons */
+    text-align: center;
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fas fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=========================================*/
+.action-icons {
+    display: flex;
+    gap: 20px; /* Adjust gap */
+    justify-content: center; /* Center icons */
+    align-items: center; /* Vertically align icons */
+    text-align: center;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.action-icons i {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+}
+
+.action-icons .fa-eye {
+    color: #06357a;
+}
+
+.action-icons .fa-trash-alt {
+    color: darkred;
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+/*=================================*/
+#search{
+    position: absolute;
+    left: 18vw;
+    width: 80vw;
+    height: 70px;
+    background-color: #b5b5b5;
+    top: 150px;
+    border-radius: 10px;
+}
+
+#lblmlm {
+    position: absolute;
+    left: 1vw;
+    font-family: Arial, sans-serif; /* Set a font family */
+    font-style: revert;
+    font-weight: bold; /* Make text bold */
+}
+
+#mlm_sbar{
+    position: absolute;
+    top: 25px;
+    width: 20vw;
+    left: 1vw;
+    border-radius: 10px;
+}
+
+#mlm_addBtn{
+    position: absolute;
+    width: 8vw;
+    height: 30px;
+    right: 5vw;
+    top: 90px;
+    font-size: 9px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+#addIcon{
+    position: absolute;
+    left: 20vw;
+    top: 80px;
+    border-radius: 100px;
+    width: 5vw;
+    height: 50px;
+    display: none;
+}
+
+#mlmTop{
+    position: absolute;
+    left: 26vw;
+    font-size: 35px;
+    font-weight: bold;
+    top: 80px;
+    display: none;
+
+}
+#mlmForm{
+    display: none;
+}
+#mlmFormSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between elements */
+    position: absolute;
+    top: 150px;
+    left: 20vw;
+    width: 75vw; /* Adjust the width as needed */
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-bottom: 100px;
+    background-color: #d2d4d9;/* Add shadow *//* Set a fixed height */
+    /* Hides horizontal overflow if needed */
+}
+
+
+/* Common styling for all labels (lblF1, lblF2, lblF3, etc.) */
+.lblF{
+    font-weight: bold;
+}
+
+#lblF1{
+    position: absolute;
+    left: 1vw;
+}
+
+#mlm_inpF1{
+    position: absolute;
+    left: 1vw;
+    top: 25px;
+    width: 23vw;
+}
+
+#mlmF2{
+    position: absolute;
+    left: 26vw;
+}
+
+#mlm_inpF2{
+    position: absolute;
+    left: 26vw;
+    top: 25px;
+    width: 23vw;
+}
+
+#lblF3{
+    position: absolute;
+    left: 50vw;
+}
+
+#mlm_inpF3{
+    position: absolute;
+    left: 50vw;
+    top: 25px;
+    width: 23vw;
+}
+
+#lblF4{
+    position: absolute;
+    left: 1vw;
+    top: 75px;
+}
+
+#mlm_inpF4{
+    position: absolute;
+    left: 1vw;
+    top: 100px;
+    width: 23vw;
+}
+
+#lblF5{
+    position: absolute;
+    left: 26vw;
+    top: 75px;
+}
+
+#mlm_inpF5{
+    position: absolute;
+    left: 26vw;
+    top: 100px;
+    width: 23vw;
+}
+
+#lblF6{
+    position: absolute;
+    left: 50vw;
+    top: 75px;
+}
+
+#mlm_inpF6{
+    position: absolute;
+    left: 50vw;
+    top: 100px;
+    width: 23vw;
+}
+
+#lblF7{
+    position: absolute;
+    left: 1vw;
+    top: 150px;
+}
+
+#mlm_inpF7{
+    position: absolute;
+    left: 1vw;
+    top: 175px;
+    width: 23vw;
+}
+
+
+/* Input file container styling */
+#mlm_imageUpdateView {
+    position: absolute;
+    top: 242px;
+    left: 1vw;
+    width: 73vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f8f8f8;
+}
+
+
+#mlm_subBtn{
+    position: absolute;
+    left: 62vw;
+    top: 250px;
+    background-color: black;
+    width: 8vw;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+#mlm_cleBtn{
+    position: absolute;
+    left: 53vw;
+    top: 250px;
+    background-color: transparent;
+    width: 8vw;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+#mlm_cleBtn:hover{
+    background-color: black;
+    color: white;
+}
+
+#mlm_subBtn:hover{
+    background-color: transparent;
+    color: black;
+}
+
+/* Overlay styles */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+}
+
+.overlay-content .progress {
+    width: 100%;
+    height: 30px;
+}
+
+.overlay-content p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.viewLbl{
+    font-weight: bold;
+}
+#viewH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#viewDetailsLbl{
+    position: absolute;
+    top: 100px;
+    flex-direction: column;
+    display: flex;
+    left: 10vw;
+}
+
+#viewDetailsLbl lbl{
+    margin-bottom: 10px;
+}
+
+#viewDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 60vw;
+}
+
+#mlm_staff{
+    margin-bottom: 40px;
+}
+
+#viewDetailsResultLbl lbl{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#imageView{
+    position: absolute;
+    width: 40vw;
+    height: 20vh;
+    left: -13vw;
+    background-color: #4f5050;
+    top: 240px;
+
+}
+
+
+
+
+/*==============*/
+
+
+/*.updateModal {*/
+/*    display: none; !* Hide modal by default *!*/
+/*    position: fixed; !* Stay in place *!*/
+/*    z-index: 3; !* Sit on top *!*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 100%; !* Full width *!*/
+/*    height: 100%; !* Full height *!*/
+/*    overflow: auto; !* Enable scroll if needed *!*/
+/*    background-color: rgba(0, 0, 0, 0.4); !* Black w/ opacity *! !* Use flexbox *!*/
+/*    justify-content: center; !* Center horizontally *!*/
+/*    align-items: center; !* Center vertically *!*/
+/*}*/
+
+/*!* Modal content *!*/
+/*.upmodal-content{*/
+/*    background-color: white;*/
+/*    width: 10vw; !* Set to 80vw *!*/
+/*    height: 70vh; !* Set to 70vh *!*/
+/*    overflow-y: auto;*/
+/*    !* Add scroll if needed *!*/
+/*    padding: 20px;*/
+/*    border: 1px solid #888;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+/*.close {*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 15px;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.viewLbl{
+    font-weight: bold;
+}
+#updateH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#updateDetailsLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 7vw;
+}
+
+#updateDetailsResultLbl{
+    position: absolute;
+    top: 70px;
+    flex-direction: column;
+    display: flex;
+    left: 5vw;
+    width: 15vw;
+    /*margin-bottom: 40px;*/
+}
+
+#updateDetailsLbl lbl{
+    margin-bottom: 20px;
+}
+
+#viewDetailsResultLbl{
+    position: absolute;
+    top: 100px;
+    flex-direction: column;
+    display: flex;
+    left: 25vw;
+}
+
+.mlm_viewLblR{
+    margin-bottom: 13px;
+    /*background-color: black;*/
+}
+
+#updateDetailsResultLbl lbl{
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+#updateH2{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: 15vw;
+    color: #0c4128;
+    margin-bottom: 20px;
+}
+
+#updateDetailsLbl{
+    position: absolute;
+    top: 75px;
+    flex-direction: column;
+    display: flex;
+    left: 6vw;
+    font-size: 15px;
+}
+
+#updateDetailsLbl2{
+    position: absolute;
+    top: 75px;
+    flex-direction: column;
+    display: flex;
+    left: 23vw;
+
+}
+
+#updateDetailsResultLbl{
+    position: absolute;
+    top: 75px;
+    flex-direction: column;
+    display: flex;
+    left: 22vw;
+    width: 20vw;
+    /*margin-bottom: 40px;*/
+}
+
+#updateDetailsResultLbl2{
+    position: absolute;
+    top: 75px;
+    flex-direction: column;
+    display: flex;
+    left: 35vw;
+    width: 10vw;
+    /*margin-bottom: 40px;*/
+}
+
+#updateDetailsLbl lbl{
+    margin-bottom: 20px;
+}
+
+#updateDetailsLbl2 lbl{
+    margin-bottom: 20px;
+}
+
+.viewLblR{
+    margin-bottom: 13px;
+    left: 5vw;
+}
+
+#imageView{
+    position: absolute;
+    width: 40vw;
+    height: 20vh;
+    left: -13vw;
+    background-color: #4f5050;
+    top: 240px;
+
+}
+#mlm_imageUpdateView{
+    position: absolute;
+    width: 10vw;
+    height: 80px;
+    border: 1px solid black;
+    background-color: #b5b5b5;
+    top: 260px;
+}
+
+#camera{
+    position: absolute;
+    top: 6px;
+    right: 0.5vw;
+    width: 1vw;
+    height: 10px;
+    z-index: 100;
+    /*background-color: white;*/
+    /*border-radius: 100px;*/
+}
+
+#camerBack{
+    position: absolute;
+    background-color: white;
+    width: 2vw;
+    height: 20px;
+    border-radius: 100px;
+    right: -1vw;
+    top: -10px;
+    border: 1px solid black;
+}
+
+#mlmUpdateBtn{
+    position: absolute;
+    left: 12vw;
+    background-color: black;
+    top: 330px;
+    width: 8vw;
+    border-radius: 10px;
+    border: 1px solid black;
+    color: white;
+    font-weight: bold;
+}
+
+#mlmUpdateBtn:hover{
+    background-color: transparent;
+    color: black;
+    border: 3px solid black;
+}
+
+.upmodal {
+    display: none; /* Enable flexbox */
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+    position: fixed;
+    z-index: 1;
+    left: 0vw;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Modal content box */
+.upmodal-content {
+    width: 50vw; /* 50% of viewport width */
+    max-width: 600px; /* Optional: max width */
+    height: 85vh; /* 85% of viewport height */
+    padding: 20px;
+    left: 25vw;
+    top: 50px;
+    background: #fff;
+    border-radius: 8px;
+    overflow-y: auto; /* Enables vertical scroll if content is too long */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    position: relative; /* Ensure the close button positions relative to the modal */
+}
+
+/* Close button */
+.upclose {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+

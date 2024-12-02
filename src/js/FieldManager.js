@@ -405,6 +405,27 @@ function sendUpdateRequest(fieldCode, fieldName, fieldLocation, fieldSize, base6
     });
 }
 
+function updateDateTime() {
+    const now = new Date();
+
+    // Get day, date, and time
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const day = daysOfWeek[now.getDay()]; // Get current day of the week
+    const date = now.toLocaleDateString("en-US", { day: '2-digit', month: 'long', year: 'numeric' }); // Format date
+    const time = now.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit', hour12: true }); // Format time (AM/PM)
+
+    // Set the dynamic values to HTML
+    document.getElementById("viewDay").textContent = day;
+    document.getElementById("viewDate").textContent = date;
+    document.getElementById("time").textContent = time;
+}
+
+// Call the updateDateTime function to set the current time and date
+updateDateTime();
+
+// Optionally, update the time every minute
+setInterval(updateDateTime, 60000); // Update every 60 seconds
+
 
 
 

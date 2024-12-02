@@ -8,7 +8,7 @@
 </head>
 <body>
 
-   <h1>Welcome to Manager</h1>
+   <h1 id="animatedText"></h1>
 
    <section id="log">
        <h3>Login</h3>
@@ -21,9 +21,25 @@
    </section>
 
 
-   <img src="../../Aseats/mangerLogin2.jpg" id="image2">
+   <img src="../../Aseats/magerLoginBack.jpg" id="image2">
 
+<script>
+    const text = "Welcome to Manager"; // The text to animate
+    const h1Element = document.getElementById("animatedText");
+    let index = 0;
 
+    function typeWriter() {
+        if (index < text.length) {
+            h1Element.innerHTML += text[index];
+            index++;
+            setTimeout(typeWriter, 100); // Adjust the typing speed here
+        }
+    }
+
+    // Start the animation
+    typeWriter();
+
+</script>
 
 </body>
 </html>

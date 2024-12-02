@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Monitor Log Manager</title>
+
+    <title>Crop Manager</title>
+    <link rel="stylesheet" href="/css/manager/MonitorLogManager.css">
+
+    <link rel="stylesheet" href="../boostrap/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
 <section id="nav">
@@ -11,7 +21,7 @@
     <section id="navSet">
         <div class="nav-item">
             <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
-            <a href="../html/Dashboard/CropManger.htmlCrop">Crop</a>
+            <a href="../manager/CropManger.html">Crop</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/fieldIcon.png" alt="Field Icon" class="icon">
@@ -39,7 +49,7 @@
 <section id="borderNav">
     <div id="userImg"></div>
     <h3 id="userName">Kavindu Mw</h3>
-    <h2 id="borderTopic">Field Management</h2>
+    <h2 id="borderTopic">Monitor Log Management</h2>
     <img src="/Aseats/calendar.png" id="calenderView">
     <div id="viewDateAndTime">
         <div id="viewDateAndTimeBack">
@@ -52,51 +62,29 @@
 </section>
 
 
-<section id="viewDetails" style="display: block">
+<section id="veh_viewDetails" style="display: block">
     <section id="search">
-        <label id="lblField">Search Field</label>
-        <input id="Fieldsbar" placeholder="Enter Field Name">
+        <label id="lblmlm">Search Log</label>
+        <input id="mlm_sbar" placeholder="Enter Log Date">
 
     </section>
 
     <section>
-        <button id="FieldaddBtn">+ADD FIELD</button>
+        <button id="mlm_addBtn">+ADD CHANGE</button>
     </section>
 
-    <section id="fieldTable">
+    <section id="mlmTable">
         <table class="table table table-borderless" >
             <thead class="table-dark">
             <tr class="table-dark">
-                <th>Field ID</th>
-                <th>Field Name</th>
-                <th>Category</th>
+                <th>Log code</th>
+                <th>Log Date</th>
+                <th>Log details</th>
+                <th>Observed image</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-
-
-            <tr>
-                <td>1</td>
-                <td>Wheat</td>
-                <td>Cereal</td>
-                <td class="action-icons">
-                    <i class="fas fa-edit" title="Update" onclick="openUpdateModal()"></i>
-                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
-                    <i class="fas fa-trash-alt" title="Delete"></i>
-                </td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Wheat</td>
-                <td>Cereal</td>
-                <td class="action-icons">
-                    <i class="fas fa-edit" title="Update"></i>
-                    <i class="fas fa-eye" title="View" onclick="openModal()"></i>
-                    <i class="fas fa-trash-alt" title="Delete"></i>
-                </td>
-            </tr>
             <!-- Add more rows as needed -->
             </tbody>
         </table>
@@ -104,5 +92,116 @@
 
 </section>
 
+<div id="viewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="viewH2" class="animate__backInDown">MONITOR LOG DETAILS </h2>
+
+
+        <section id="viewDetailsLbl">
+            <lbl class="viewLbl">Log code.: </lbl>
+            <lbl class="viewLbl">Log Date: </lbl>
+            <lbl class="viewLbl">Log image: </lbl>
+            <lbl class="viewLbl">Log Staff: </lbl>
+            <lbl class="viewLbl">Log Field: </lbl>
+            <lbl class="viewLbl">Log Crop: </lbl>
+            <lbl class="viewLbl">Log Details: </lbl>
+        </section>
+
+        <section id="viewDetailsResultLbl">
+            <lbl class="veh_viewLblR" id="mlm_code"></lbl>
+            <lbl class="veh_viewLblR" id="mlm_name"></lbl>
+            <lbl class="veh_viewLblR" id="mlm_sfatt"></lbl>
+            <lbl class="veh_viewLblR" id="mlm_crop"></lbl>
+            <lbl class="veh_viewLblR" id="mlm_field"></lbl>
+            <lbl class="veh_viewLblR" id="mlm_image"></lbl>
+            <lbl class="veh_viewLblR" id="mlm_details"></lbl>
+
+        </section>
+
+    </div>
+</div>
+
+
+<div id="updateModal" class="upmodal">
+    <div class="upmodal-content">
+        <span class="upclose" onclick="upcloseModal()">&times;</span>
+        <h2 id="updateH2" class="animate__backInDown">MONITOR LOG UPDATE </h2>
+
+
+        <section id="updateDetailsLbl">
+            <lbl class="viewLbl">Log code.: </lbl>
+            <lbl class="viewLbl">Log Date: </lbl>
+            <lbl class="viewLbl">Log image: </lbl>
+            <lbl class="viewLbl">Log Staff: </lbl>
+            <lbl class="viewLbl">Log Field: </lbl>
+            <lbl class="viewLbl">Log Crop: </lbl>
+            <lbl class="viewLbl">Log Details: </lbl>>
+        </section>
+
+
+        <section id="updateDetailsResultLbl">
+            <input class="viewLblR" id="mlm_upCode"/>
+            <input class="viewLblR" id="mlm_upName"/>
+            <input class="viewLblR" id="mlm_upStaff"/>
+            <input class="viewLblR" id="mlm_upField"/>
+            <input class="viewLblR" id="mlm_upCrop"/>
+            <input class="viewLblR" id="mlm_upDetails"/>
+            <input class="viewLblR" id="mlm_upImage"/>
+
+            <button id="mlmUpdateBtn">Update</button>
+
+        </section>
+
+    </div>
+</div>
+
+<section>
+    <img src="/Aseats/addIcon.png" id="addIcon">
+    <h1 id="mlmTop">ADD MONITOR LOG</h1>
+</section>
+
+<section id="mlmForm" style="display: none">
+    <section id="mlmFormSection">
+        <label class="lblF" id="lblF1">Log code</label>
+        <input placeholder="Enter Log code" type="text" class="form-control" id="mlm_inpF1">
+
+        <label class="lblF" id="lblF2">Log Name</label>
+        <input placeholder="Enter Log Name" type="text" class="form-control" id="mlm_inpF2">
+
+        <label class="lblF" id="lblF3">Log Staff</label>
+        <input placeholder="Enter Log Staff" type="text" class="form-control" id="mlm_inpF3">
+
+        <label class="lblF" id="lblF4">Log Crop</label>
+        <input placeholder="Enter Log Crop" type="text" class="form-control" id="mlm_inpF4">
+
+        <label class="lblF" id="lblF5">Log Field</label>
+        <input placeholder="Enter Log Field type="text" class="form-control" id="mlm_inpF5">
+
+        <label class="lblF" id="lblF6">Log Image</label>
+        <input placeholder="Enter Log Image" type="image" class="form-control" id="mlm_inpF6">
+
+        <label class="lblF" id="lblF7">Log Details</label>
+        <input placeholder="Enter Log Details" type="text" class="form-control" id="mlm_inpF7">
+
+
+        <button id="mlm_subBtn">Submit</button>
+        <button id="mlm_cleBtn">Clear</button>
+
+        <div id="overlay" style="display: none;">
+            <div class="overlay-content">
+                <div class="progress" role="progressbar" aria-label="Loading" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                </div>
+                <p>Processing, please wait...</p>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../boostrap/js/bootstrap.js"></script>
+<script src="/js/MonitorLogManager.js.js"></script> <!-- Your custom JS file -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,12 +1,3 @@
-document.getElementById('subBtn').addEventListener('click', function () {
-    // Show the overlay
-    document.getElementById('overlay').style.display = 'flex';
-
-    // Simulate a delay (e.g., for form submission) and then hide the overlay
-    setTimeout(() => {
-        document.getElementById('overlay').style.display = 'none';
-    }, 3000); // Adjust delay as needed
-});
 
 document.getElementById('addBtn').addEventListener('click',function (){
     document.getElementById('cropForm').style.display='block';
@@ -451,6 +442,92 @@ function updateCropDetails(cropCode, formData) {
     });
 }
 
+function updateDateTime() {
+    const now = new Date();
+
+    // Get day, date, and time
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const day = daysOfWeek[now.getDay()]; // Get current day of the week
+    const date = now.toLocaleDateString("en-US", { day: '2-digit', month: 'long', year: 'numeric' }); // Format date
+    const time = now.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit', hour12: true }); // Format time (AM/PM)
+
+    // Set the dynamic values to HTML
+    document.getElementById("viewDay").textContent = day;
+    document.getElementById("viewDate").textContent = date;
+    document.getElementById("time").textContent = time;
+}
+
+// Call the updateDateTime function to set the current time and date
+updateDateTime();
+
+// Optionally, update the time every minute
+setInterval(updateDateTime, 60000); // Update every 60 seconds
+
+
+let currentDate = new Date();
+
+// Function to render the calendar
+function renderCalendar() {
+    const month = currentDate.getMonth(); // Current month (0-11)
+    const year = currentDate.getFullYear(); // Current year
+    const firstDay = new Date(year, month, 1); // First day of the month
+    const lastDay = new Date(year, month + 1, 0); // Last day of the month
+
+    const daysInMonth = lastDay.getDate(); // Total days in the month
+    const startDay = firstDay.getDay(); // Day of the week the month starts on
+
+    // Get month and year to display in header
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    document.getElementById("month-year").innerHTML = `${monthNames[month]} ${year}`;
+
+    // Create the table rows and columns for the calendar
+    let calendarHTML = "<tr>";
+    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    // Add the weekday names as headers
+    for (let i = 0; i < weekdays.length; i++) {
+        calendarHTML += `<th>${weekdays[i]}</th>`;
+    }
+    calendarHTML += "</tr><tr>";
+
+    // Add empty cells for the days before the 1st of the month
+    for (let i = 0; i < startDay; i++) {
+        calendarHTML += "<td></td>";
+    }
+
+    // Add the actual days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+        calendarHTML += `<td>${day}</td>`;
+        if ((startDay + day) % 7 === 0) {
+            calendarHTML += "</tr><tr>"; // Start a new row every week
+        }
+    }
+
+    // Fill the table with the calendar HTML
+    document.getElementById("calendar").innerHTML = calendarHTML;
+}
+
+// Function to go to the previous month
+function prevMonth() {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+}
+
+// Function to go to the next month
+function nextMonth() {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+}
+
+// Event listener for the image click
+document.getElementById("calenderView").addEventListener("click", function() {
+    // Hide the image and show the calendar container
+    document.getElementById("calenderView").style.display = "none";
+    document.getElementById("calendar-container").style.display = "block";
+
+    // Render the current month's calendar
+    renderCalendar();
+});
 
 
 

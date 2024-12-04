@@ -17,29 +17,17 @@
 
        <label id="lbl2">Password</label>
        <input type="password" placeholder="Enter your password" id="passwordInput" class="input">
-       <button class="login-btn">Login</button>
+       <button class="login-btn" id="loginManager">Login</button>
    </section>
 
 
    <img src="../../Aseats/magerLoginBack.jpg" id="image2">
 
-<script>
-    const text = "Welcome to Manager"; // The text to animate
-    const h1Element = document.getElementById("animatedText");
-    let index = 0;
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="../boostrap/js/bootstrap.js"></script>
+   <script src="/js/ManagerLoginPage.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    function typeWriter() {
-        if (index < text.length) {
-            h1Element.innerHTML += text[index];
-            index++;
-            setTimeout(typeWriter, 100); // Adjust the typing speed here
-        }
-    }
-
-    // Start the animation
-    typeWriter();
-
-</script>
 
 </body>
 </html>

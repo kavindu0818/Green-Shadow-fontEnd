@@ -220,7 +220,7 @@ function setStaffId() {
 
                 // If no valid fieldCode found, set default option
                 if ($("#equ_inpF6").children().length === 0) {
-                    $("#equ_inpF7").append(
+                    $("#equ_inpF6").append(
                         `<option value="FIELD-0001">FIELD-0001</option>`
                     );
                 }
@@ -258,7 +258,9 @@ function viewEquDetails(equCode) {
             $("#equ_type").text(equ.equipmentType || "N/A");
             $("#equ_status").text(equ.status || "N/A");
             $("#equ_staff").text(equ.staffId || "N/A");
-            $("#equ_field").text(equ.fieldId || "N/A");
+            $("#equ_field").text( equ.fieldId?.fieldCode || "N/A");
+            console.log(equ)
+
 
             // Display the image (in a separate div or img tag)
             $("#field_imageView").html(
@@ -290,7 +292,7 @@ function openUpdateEqeModal(equCode) {
             $("#equ_upType").val(equ.equipmentType || "N/A");
             $("#equ_upCat").val(equ.status || "N/A");
             $("#equ_upSea").val(equ.staffId || "N/A");
-            $("#equ_upField").val(equ.fieldId || "N/A");
+            $("#equ_upField").val(equ.fieldId?.fieldCode || "N/A");
 
             // Display the image (in a separate div or img tag)
 
@@ -336,8 +338,11 @@ document.getElementById("equUpdateBtn").addEventListener("click", function () {
         equipmentType: equType,
         status: equStatus,
         staffId: equStaff,
-        fieldId: equField,
+        fieldId: {
+            fieldCode: equField, // Assuming `equField` is the field code
+        },
     };
+
 
     console.log("Form data:", formData);
 

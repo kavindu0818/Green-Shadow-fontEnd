@@ -159,10 +159,10 @@ body {
     overflow-y: auto;
 }
 /* Crop table styling */
-#cropTable {
+#userTable {
     position: absolute;
     left: 18vw;
-    top: 330px; /* Adjusted to fit within view */
+    top: 230px; /* Adjusted to fit within view */
     width: 80vw;
     height: 60vh; /* Set height for scrolling to work (adjust this value as needed) */
     overflow-y: auto; /* Enables vertical scrolling */
@@ -180,7 +180,7 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-#cropTable thead {
+#userTable thead {
     background-color: black; /* Black background */
     color: white; /* White text for contrast */
     position: sticky; /* Make the header sticky */
@@ -255,11 +255,11 @@ body {
     width: 80vw;
     height: 70px;
     background-color: #b5b5b5;
-    top: 250px;
+    top: 150px;
     border-radius: 10px;
 }
 
-#lblCrop {
+#lbluser {
     position: absolute;
     left: 1vw;
     font-family: Arial, sans-serif; /* Set a font family */
@@ -267,7 +267,7 @@ body {
     font-weight: bold; /* Make text bold */
 }
 
-#sbar{
+#userbar{
     position: absolute;
     top: 25px;
     width: 20vw;

@@ -21,6 +21,8 @@ function viewCropDetails(cropCode) {
                 return;
             }
 
+            console.log(crop)
+
             // const fieldId = crop.fieldEntity.fieldCode;
             // Populate the details section with the fetched crop data
             $("#cropCode").text(crop.cropCode);
@@ -28,7 +30,7 @@ function viewCropDetails(cropCode) {
             $("#csiName").text(crop.scientificName || "N/A");
             $("#cropCat").text(crop.category || "N/A");
             $("#cropSeason").text(crop.season || "N/A");
-            $("#cropField").text(crop.field || "N/A");
+            $("#cropField").text(crop.field_code?.fieldCode || "N/A");
             $("#imageView").html(`<img src="data:image/png;base64,${crop.image}" alt="Crop Image" style="width: 150px; height: 100px;">`);
         },
         error: (xhr, status, error) => {
@@ -56,7 +58,9 @@ function openUpdateModal(cropCode) {
             $("#upsName").val(crop.scientificName || "N/A");
             $("#upCat").val(crop.category || "N/A");
             $("#upSea").val(crop.season || "N/A");
-            $("#upField").val(crop.field || "N/A");
+            $("#upField").val(crop.field_code?.fieldCode || "N/A");
+
+            console.log(crop)
 
             // Display the image (in a separate div or img tag)
             $("#imageUpdateView").html(
@@ -529,5 +533,45 @@ document.getElementById("calenderView").addEventListener("click", function() {
     renderCalendar();
 });
 
+setfieldId();
+function setfieldId() {
+    $.ajax({
+        url: "http://localhost:5050/green/api/v1/field", // API endpoint to fetch fields
+        type: "GET",
+        success: function (response) {
+            if (Array.isArray(response)) {
+                // Clear existing options
+                $("#inpF7").empty();
 
+                // Populate the dropdown with fieldCodes
+                response.forEach(function (field) {
+                    if (field.fieldCode) { // Ensure fieldCode exists
+                        $("#inpF7").append(
+                            `<option value="${field.fieldCode}">${field.fieldCode}</option>`
+                        );
+                    }
+                });
+
+                // If no valid fieldCode found, set default option
+                if ($("#inpF7").children().length === 0) {
+                    $("#inpF7").append(
+                        `<option value="FIELD-0001">FIELD-0001</option>`
+                    );
+                }
+            } else {
+                console.warn("Invalid response format. Setting default field ID.");
+                $("#inpF7").html(
+                    `<option value="FIELD-0001">FIELD-0001</option>`
+                );
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching fields:", error);
+            alert("Unable to fetch fields. Using default field ID.");
+            $("#staff_inpF13").html(
+                `<option value="FIELD-0001">FIELD-0001</option>`
+            );
+        }
+    });
+}
 

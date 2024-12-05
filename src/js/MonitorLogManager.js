@@ -7,7 +7,15 @@ document.getElementById('mlm_addBtn').addEventListener('click',function (){
 
 });
 document.getElementById("mlmUpdateBtn").addEventListener("click", function () {
-    const vehCode = $("#veh_upCode").val();
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
+    const vehCode = $("#ml_upCode").val();
     const vehPlatNum = $("#veh_upPlateNumber").val();
     const vehCat = $("#veh_upCategory").val();
     const vehFuel = $("#veh_upFuelType").val();
@@ -33,10 +41,14 @@ document.getElementById("mlmUpdateBtn").addEventListener("click", function () {
     console.log("Form data:", formData);
 
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/veh/${formData.code}`,
+        url: `http://localhost:8080/api/v1/veh/${formData.code}`,
         type: "PUT",
         contentType: "application/json",
         data: JSON.stringify(formData),
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+
         success: function () {
             alert("Vehicle details updated successfully!");
             document.getElementById("updateModal").style.display = "none";
@@ -281,7 +293,7 @@ function deleteField(vehCode) {
             type: "DELETE",
             success: function (response) {
                 alert("Vehicle deleted successfully.");
-                loadTable();
+                //loadTable();
                 // Remove the specific row using a unique identifier
                 $(`#vehTable tbody tr`).filter(function () {
                     return $(this).find("td").eq(0).text().trim() === vehCode; // Match the first <td> (Crop ID)

@@ -1,12 +1,3 @@
-document.getElementById('field_subBtn').addEventListener('click', function () {
-    // Show the overlay
-    document.getElementById('overlay').style.display = 'flex';
-
-    // Simulate a delay (e.g., for form submission) and then hide the overlay
-    setTimeout(() => {
-        document.getElementById('overlay').style.display = 'none';
-    }, 3000); // Adjust delay as needed
-});
 
 document.getElementById('FieldaddBtn').addEventListener('click',function (){
     document.getElementById('fieldForm').style.display='block';
@@ -72,44 +63,45 @@ function displaySelectedImage(event) {
     }
 }
 loadTable();
+
 function loadTable() {
-    // $('#fieldTable tbody').empty(); // Clear the table body before appending new rows
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
+    // Clear the table body before appending new rows
+    $('#fieldTable tbody').empty();
 
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field",
-        type: "GET",
-        contentType: "application/json",
-        success: (response) => {
-           console.log(response)
-            let fieldsArray;
-            try {
-                populateCropTable(response)
-            } catch (error) {
-                console.error("Invalid JSON response:", response);
-                return;
-            }
-
-            // Iterate over the array and populate the table
-            fieldsArray.forEach((item) => {
-                const row = `
-                <tr>
-                <td>${item.fieldCode}</td>
-                <td>${item.fieldName}</td>
-                <td>${item.fieldLocation}</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-primary mx-2" onclick="editField('${item.id}')">Edit</button>
-                    <button class="btn btn-sm btn-outline-danger mx-2" onclick="deleteField('${item.id}')">Delete</button>
-                </td>
-            </tr>`;
-                $('#fieldTable tbody').append(row);
-            });
+        url: "http://localhost:8080/api/v1/field",
+        method: "GET",
+        timeout: 0,
+        headers: {
+            "Authorization": "Bearer " + token
         },
-        error: (xhr, status, error) => {
-            console.error("Error fetching data:", error);
-            alert("Failed to load data. Please try again.");
-        }
-    });
+    })
+        .done(function (fields){
+                try {
+                    populateCropTable(fields)
+                } catch (error) {
+                    console.error("Invalid JSON response:", response);
+                    return;
+                }
+
+                // Iterate over the array and populate the table
+
+            error: (xhr, status, error) => {
+        console.error("Error fetching data:", error);
+        alert("Failed to load data. Please try again.");
+    }
+});
+
+
 }
+
 function populateCropTable(field) {
 
     console.log(field)
@@ -140,6 +132,13 @@ function populateCropTable(field) {
 
 fieldIdGenerate();
 $("#field_subBtn").on('click', function() {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     // Get values from input fields
     var code = $("#inpFe1").val();
     var fieldName = $("#inpFe2").val();
@@ -163,10 +162,13 @@ $("#field_subBtn").on('click', function() {
 
     // Send AJAX POST request to the backend
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field", // Backend endpoint
-        type: "POST",
+        url: "http://localhost:8080/api/v1/field", // Backend endpoint
+        method: "POST",
         processData: false,
         contentType: false,
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         data: formData, // Form data with fields and file
         success: (response) => {
             console.log("Field added successfully:", response);
@@ -195,9 +197,20 @@ function clearFields() {
 }
 
 function fieldIdGenerate() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field", // API endpoint to fetch fields
-        type: "GET",
+        url: "http://localhost:8080/api/v1/field", // API endpoint to fetch fields
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             // Validate the response is an array
             if (Array.isArray(response) && response.length > 0) {
@@ -236,10 +249,21 @@ function fieldIdGenerate() {
 }
 
 function deleteField(fieldCode) {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     if (confirm("Are you sure you want to delete this Field?")) {
         $.ajax({
-            url: `http://localhost:5050/green/api/v1/field/${fieldCode}`, // API endpoint to delete crop
-            type: "DELETE",
+            url: `http://localhost:8080/api/v1/field/${fieldCode}`, // API endpoint to delete crop
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: function (response) {
                 alert("Crop deleted successfully.");
                 // Remove the specific row using a unique identifier
@@ -256,12 +280,24 @@ function deleteField(fieldCode) {
 }
 
 function openUpdateFieldModal(fieldCode) {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     document.getElementById("field_updateModal").style.display = "block";
 
+
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/field/${fieldCode}`, // API endpoint
-        type: "GET",
+        url: `http://localhost:8080/api/v1/field/${fieldCode}`, // API endpoint
+        method: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (field) => {
             if (!field) {
                 alert("No data found for the selected field.");
@@ -292,10 +328,20 @@ function viewCropDetails(fieldCode) {
 
     document.getElementById("fieldviewModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/field/${fieldCode}`, // API endpoint
-        type: "GET",
+        url: `http://localhost:8080/api/v1/field/${fieldCode}`, // API endpoint
+        method: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (field) => {
             if (!field) {
                 alert("No data found for the selected field.");
@@ -380,6 +426,13 @@ document.getElementById("field_cropUpdateBtn").addEventListener("click", functio
 
 // Function to send the update request
 function sendUpdateRequest(fieldCode, fieldName, fieldLocation, fieldSize, base64Image) {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     const updateFieldDTO = {
         fieldCode: fieldCode,
         fieldName: fieldName,
@@ -389,13 +442,16 @@ function sendUpdateRequest(fieldCode, fieldName, fieldLocation, fieldSize, base6
     };
 
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/field/${fieldCode}`,
-        type: "PUT",
-        contentType: "application/json", // Send JSON data
+        url: `http://localhost:8080/api/v1/field/${fieldCode}`,
+        method: "PUT",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },// Send JSON data
         data: JSON.stringify(updateFieldDTO),
         success: function () {
             alert("Field updated successfully!");
-            loadTable();
+            //loadTable();
             document.getElementById("field_updateModal").style.display = "none";
         },
         error: function (xhr) {

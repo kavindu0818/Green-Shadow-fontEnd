@@ -112,7 +112,7 @@
     }
 
     .nav-item:hover {
-      background-color: black; /* Hover background color */
+      background-color: #092b0e; /* Hover background color */
       color: white; /* Text color changes to white */
     }
 
@@ -184,6 +184,7 @@
       font-weight: bold;
       font-size: 15px;
       top: 15px;
+      color: #092b0e;
 
     }
 
@@ -242,7 +243,7 @@
     }
 
     .count-dive {
-      background-color: black;
+      background-color: #092b0e;
       width: 12vw;
       height: 120px;
       color: white;
@@ -280,7 +281,7 @@
       filter: brightness(0) invert(1); /* Makes the icon white on hover */
     }
 
-    #des{
+    #des {
       position: absolute;
       width: 60vw;
       border: 2px solid black;
@@ -289,7 +290,9 @@
       top: 270px;
       left: 18vw;
       height: 275px;
-
+      background-image: url('/Aseats/dashboardDisBackground.jpg'); /* Replace with your image path */
+      background-size: cover; /* Optional: scales the image to cover the element */
+      background-position: center; /* Optional: centers the image */
     }
 
     #des_h1{
@@ -299,6 +302,7 @@
       justify-content: center;
       font-weight: bold;
       left: 15vw;
+      color: white;
     }
 
     #des_h3{
@@ -306,6 +310,7 @@
       left: 25vw;
       font-weight: bold;
       top: 40px;
+      color: white;
     }
 
     #des_p{
@@ -313,6 +318,7 @@
       left: 2vw;
       font-weight: bold;
       top: 75px;
+      color: white;
     }
 
     .contact-info {
@@ -320,6 +326,7 @@
       display: flex;
       flex-direction: column;
       top: 100px;
+      color: white;
     }
 
     .contact-info img.contact-icon {
@@ -390,31 +397,31 @@
     </div>
     <div class="nav-item">
       <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
-      <a href="../manager/CropManger.html">Crop</a>
+      <a href="CropManger.html">Crop</a>
     </div>
     <div class="nav-item">
       <img src="/Aseats/fieldIcon.png" alt="Field Icon" class="icon">
-      <a href="../manager/FieldManager.html">Field</a>
+      <a href="FieldManager.html">Field</a>
     </div>
     <div class="nav-item">
       <img src="/Aseats/staffe.png" alt="Staffe Icon" class="icon">
-      <a href="../manager/StaffManger.html">Staffe</a>
+      <a href="html/manager/StaffManger.html">Staffe</a>
     </div>
     <div class="nav-item">
       <img src="/Aseats/vehicelLogo.png" alt="Vehicle Icon" class="icon">
-      <a href="../manager/VehicleManger.html">Vehicle</a>
+      <a href="html/manager/VehicleManger.html">Vehicle</a>
     </div>
     <div class="nav-item">
       <img src="/Aseats/equipementIcon.png" alt="Equipment Icon" class="icon">
-      <a href="../manager/EquipmentManager.html">Equipment</a>
+      <a href="EquipmentManager.html">Equipment</a>
     </div>
     <div class="nav-item" id="">
       <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
-      <a href="../manager/MonitorLogManager.html">Monitoring Log</a>
+      <a href="html/manager/MonitorLogManager.html">Monitoring Log</a>
     </div>
     <div class="nav-item" id="addUser">
       <img src="/Aseats/addIcon.png" alt="Monitoring Log Icon" class="icon">
-      <a href="../manager/AddUsers.html">ADD USERS</a>
+      <a href="html/manager/AddUsers.html">ADD USERS</a>
     </div>
   </section>
 </section>
@@ -495,13 +502,13 @@
     monitoring, ensuring efficient operations, quality control, and scalability for future growth.</p>
 
   <div class="contact-info">
-    <img src="../../Aseats/email.png" class="contact-icon" id="con1">
+    <img src="Aseats/email.png" class="contact-icon" id="con1">
     <p id="conP1">greenshadow@gmail.com</p>
 
-    <img src="../../Aseats/call.png" class="contact-icon" id="con2">
+    <img src="Aseats/call.png" class="contact-icon" id="con2">
     <p id="conP2">+94 774257738 / +94 661252888</p>
 
-    <img src="../../Aseats/address.png" class="contact-icon" id="con3">
+    <img src="Aseats/address.png" class="contact-icon" id="con3">
     <p id="conP3">No 159 panadura, colombo</p>
   </div>
 
@@ -509,7 +516,7 @@
 
 <script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="../../boostrap/js/bootstrap.js"></script>
+<script src="boostrap/js/bootstrap.js"></script>
 <script src="/js/ManagerDashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

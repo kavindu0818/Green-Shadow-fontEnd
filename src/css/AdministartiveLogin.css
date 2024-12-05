@@ -41,7 +41,7 @@ h1 {
     height: 20px; /* Increased height for better usability */
     margin-bottom: 20px;
     padding: 5px; /* Add padding inside the input */
-    border: 1px solid #ccc; /* Add border */
+    border: 2px solid black; /* Add border */
     border-radius: 5px; /* Rounded corners */
     font-size: 14px; /* Font size for better readability */
 }
@@ -76,4 +76,6 @@ h1 {
 
     background-color: transparent;
     color: black;
+    border: 2px solid black;
+    font-weight: bold;
 }

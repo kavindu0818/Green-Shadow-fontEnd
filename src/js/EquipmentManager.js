@@ -43,34 +43,43 @@ function triggerFileInput() {
 }
 
 function displaySelectedImage(event) {
-    const file = event.target.files[0]; // Get the selected file
+    const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Create an image element and set its src to the selected file's data
+
             const img = document.createElement('img');
             img.src = e.target.result;
-            img.style.width = "100%"; // Adjust size as needed
-            img.style.height = "auto"; // Maintain aspect ratio
-            img.style.borderRadius = "8px"; // Optional: Style the image
+            img.style.width = "100%";
+            img.style.height = "auto";
+            img.style.borderRadius = "8px";
 
-            // Clear previous content in the div and append the new image
+
             const imageUpdateView = document.getElementById('imageUpdateView');
             imageUpdateView.innerHTML = '';
             imageUpdateView.appendChild(img);
         };
-        reader.readAsDataURL(file); // Read the file as a data URL
+        reader.readAsDataURL(file);
     }
 }
 
 loadTable();
 function loadTable() {
-    // $('#fieldTable tbody').empty(); // Clear the table body before appending new rows
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
 
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/equ",
+        url: "http://localhost:8080/api/v1/equ",
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (response) => {
             console.log(response)
             let fieldsArray;
@@ -112,6 +121,13 @@ function populateEqaTable(equ) {
 }
 
 $("#equ_subBtn").on('click', function () {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     // Get values from input fields
     var equId = $("#equ_inpF1").val();
     var equName = $("#equ_inpF2").val();
@@ -138,11 +154,14 @@ $("#equ_subBtn").on('click', function () {
 
     // AJAX POST request
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/equ", // Backend endpoint
+        url: "http://localhost:8080/api/v1/equ", // Backend endpoint
         type: "POST",
         processData: false,
         contentType: false,
         data: formData,
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (response) => {
             console.log("Equipment added successfully:", response);
             alert("Equipment added successfully!");
@@ -159,24 +178,35 @@ $("#equ_subBtn").on('click', function () {
 
 setfieldId();
 function setfieldId() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field", // API endpoint to fetch fields
+        url: "http://localhost:8080/api/v1/field",
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             if (Array.isArray(response)) {
                 // Clear existing options
                 $("#equ_inpF7").empty();
 
-                // Populate the dropdown with fieldCodes
+
                 response.forEach(function (field) {
-                    if (field.fieldCode) { // Ensure fieldCode exists
+                    if (field.fieldCode) {
                         $("#equ_inpF7").append(
                             `<option value="${field.fieldCode}">${field.fieldCode}</option>`
                         );
                     }
                 });
 
-                // If no valid fieldCode found, set default option
+
                 if ($("#equ_inpF7").children().length === 0) {
                     $("#equ_inpF7").append(
                         `<option value="FIELD-0001">FIELD-0001</option>`
@@ -201,15 +231,26 @@ function setfieldId() {
 
 setStaffId();
 function setStaffId() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/staff", // API endpoint to fetch fields
+        url: "http://localhost:8080/api/v1/staff",
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             if (Array.isArray(response)) {
-                // Clear existing options
+
                 $("#equ_inpF6").empty();
 
-                // Populate the dropdown with fieldCodes
+
                 response.forEach(function (staff) {
                     if (staff.id) { // Ensure fieldCode exists
                         $("#equ_inpF6").append(
@@ -244,10 +285,20 @@ function viewEquDetails(equCode) {
 
     document.getElementById("viewModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/equ/${equCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/equ/${equCode}`, // API endpoint
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (equ) => {
             if (!equ) {
                 alert("No data found for the selected field.");
@@ -277,10 +328,20 @@ function viewEquDetails(equCode) {
 function openUpdateEqeModal(equCode) {
     document.getElementById("updateModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/equ/${equCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/equ/${equCode}`, // API endpoint
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (equ) => {
             if (!equ) {
                 alert("No data found for the selected field.");
@@ -320,6 +381,15 @@ $(document).ready(function () {
 });
 
 document.getElementById("equUpdateBtn").addEventListener("click", function () {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
+
     const equId = $("#equ_upid").val();
     const equName =$("#equ_upName").val();
     const equType =$("#equ_upType").val();
@@ -347,10 +417,13 @@ document.getElementById("equUpdateBtn").addEventListener("click", function () {
     console.log("Form data:", formData);
 
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/equ/${formData.equipmentId}`,
+        url: `http://localhost:8080/api/v1/equ/${formData.equipmentId}`,
         type: "PUT",
         contentType: "application/json",
         data: JSON.stringify(formData),
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function () {
             alert("Equipment details updated successfully!");
             document.getElementById("updateModal").style.display = "none";
@@ -361,12 +434,64 @@ document.getElementById("equUpdateBtn").addEventListener("click", function () {
         },
     });
 });
+equIdGenerate();
+function equIdGenerate() {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
+    $.ajax({
+        url: "http://localhost:8080/api/v1/equ", // API endpoint to fetch crops
+        type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+        success: function (response) {
+            // Assuming the response is an array of crop objects
+            if (Array.isArray(response) && response.length > 0) {
+                // Get the last crop in the array
+                const lastequ = response[response.length - 1];
+                const lastCropCode = lastequ.equipmentId;
+
+                // Split the last crop code and generate the next ID
+                const lastIdParts = lastCropCode.split('-');
+                const lastNumber = parseInt(lastIdParts[1]);
+                const nextId = `EQU-${String(lastNumber + 1).padStart(4, '0')}`;
+
+                // Set the next crop ID in the input field
+                $("#equ_inpF1").val(nextId);
+            } else {
+                // If no crops found, set to default value
+                $("#equ_inpF1").val("EQU-0001");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching last Crop ID:", error);
+            alert("Unable to fetch the last Crop ID. Using default ID.");
+            $("#equ_inpF1").val('EQU-0001'); // Set default ID in case of error
+        }
+    });
+}
 
 function deleteField(equCode) {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     if (confirm("Are you sure you want to delete this Equipment ?")) {
         $.ajax({
-            url: `http://localhost:5050/green/api/v1/equ/${equCode}`, // API endpoint to delete crop
+            url: `http://localhost:8080/api/v1/equ/${equCode}`, // API endpoint to delete crop
             type: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: function (response) {
                 alert("Equipment deleted successfully.");
                 // Remove the specific row using a unique identifier

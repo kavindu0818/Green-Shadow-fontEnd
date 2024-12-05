@@ -7,6 +7,13 @@ document.getElementById('veh_addBtn').addEventListener('click',function (){
 
 });
 document.getElementById("VehUpdateBtn").addEventListener("click", function () {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     const vehCode = $("#veh_upCode").val();
     const vehPlatNum = $("#veh_upPlateNumber").val();
     const vehCat = $("#veh_upCategory").val();
@@ -33,10 +40,13 @@ document.getElementById("VehUpdateBtn").addEventListener("click", function () {
     console.log("Form data:", formData);
 
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/veh/${formData.code}`,
+        url: `http://localhost:8080/api/v1/veh/${formData.code}`,
         type: "PUT",
         contentType: "application/json",
         data: JSON.stringify(formData),
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function () {
             alert("Vehicle details updated successfully!");
             document.getElementById("updateModal").style.display = "none";
@@ -105,11 +115,21 @@ function displaySelectedImage(event) {
 }
 
     function loadTable() {
+
+        const token = localStorage.getItem("token");
+        console.log(token)
+        if (!token) {
+            alert("No token found");
+            return;
+        }
         // Fetch data from the backend API
         $.ajax({
-            url: "http://localhost:5050/green/api/v1/veh",
+            url: "http://localhost:8080/api/v1/veh",
             type: "GET",
             contentType: "application/json",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: (response) => {
                 try {
                     if (Array.isArray(response)) {
@@ -163,6 +183,13 @@ function displaySelectedImage(event) {
 
 fieldIdGenerate();
     $("#veh_subBtn").on('click', function () {
+
+        const token = localStorage.getItem("token");
+        console.log(token)
+        if (!token) {
+            alert("No token found");
+            return;
+        }
         // Get values from input fields
         var code = $("#veh_inpF1").val();
         var liPlateNum = $("#veh_inpF2").val();
@@ -184,11 +211,14 @@ fieldIdGenerate();
 
         // Send AJAX POST request to the backend
         $.ajax({
-            url: "http://localhost:5050/green/api/v1/veh", // Backend endpoint
+            url: "http://localhost:8080/api/v1/veh", // Backend endpoint
             type: "POST",
             processData: false,
             contentType: false,
-            data: formData, // Form data with fields
+            data: formData,
+            headers: {
+                "Authorization": "Bearer " + token
+            },// Form data with fields
             success: (response) => {
                 console.log("Vehicle added successfully:", response);
                 alert("Vehicle added successfully!");
@@ -217,9 +247,19 @@ function clearFields() {
 }
 
 function fieldIdGenerate() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/veh", // API endpoint to fetch fields
+        url: "http://localhost:8080/api/v1/veh", // API endpoint to fetch fields
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             // Validate the response is an array
             if (Array.isArray(response) && response.length > 0) {
@@ -258,10 +298,21 @@ function fieldIdGenerate() {
 }
 
 function deleteField(vehCode) {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     if (confirm("Are you sure you want to delete this Field?")) {
         $.ajax({
-            url: `http://localhost:5050/green/api/v1/veh/${vehCode}`, // API endpoint to delete crop
+            url: `http://localhost:8080/api/v1/veh/${vehCode}`, // API endpoint to delete crop
             type: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: function (response) {
                 alert("Vehicle deleted successfully.");
                 loadTable();
@@ -281,10 +332,20 @@ function deleteField(vehCode) {
 function openUpdateVehicleModal(vehCode) {
     document.getElementById("updateModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/veh/${vehCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/veh/${vehCode}`, // API endpoint
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (veh) => {
             if (!veh) {
                 alert("No data found for the selected field.");
@@ -315,10 +376,20 @@ function viewVehicleDetails(vehCode) {
 
     document.getElementById("viewModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/veh/${vehCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/veh/${vehCode}`, // API endpoint
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (veh) => {
             if (!veh) {
                 alert("No data found for the selected field.");

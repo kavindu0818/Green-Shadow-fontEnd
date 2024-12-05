@@ -5,6 +5,46 @@
     <title>MangerLogin</title>
 
    <link rel="stylesheet" href="../../css/ManagerLogin.css">
+
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+        }
+
+        /* Modal content box */
+        .modal-content {
+            position: absolute;
+            width: 20vw; /* 80% of viewport width */
+            height: 55vh; /* 80% of viewport height */
+            padding: 20px;
+            left: 40vw;
+            top: 100px;
+            z-index: 200000;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -18,10 +58,36 @@
        <label id="lbl2">Password</label>
        <input type="password" placeholder="Enter your password" id="passwordInput" class="input">
        <button class="login-btn" id="loginManager">Login</button>
+
+       <label id="signUp_lbl">You have account? <button id="sing_upSet">Sing up</button></label>
    </section>
 
+   <div id="viewModal" class="modal">
+       <div class="modal-content">
+           <span class="close" onclick="closeModal()">&times;</span>
+           <h3 id="sign_uph3">Sign up</h3>
 
-   <img src="../../Aseats/magerLoginBack.jpg" id="image2">
+       <label id="lbl3" class="lbl">Email</label>
+       <input placeholder="Enter Email" type="text" id="email_signUp" class="up_inp">
+
+       <label id="lbl4" class="lbl">Password</label>
+       <input placeholder="Enter Password" type="text" id="password_signUp" class="up_inp">
+
+       <label id="lbl5" class="lbl">Role</label>
+       <select id="roleSelect_signUp" class="up_inp">
+           <option>MANAGER</option>
+           <option>ADMINISTRATIVE</option>
+           <option>SCIENTIST</option>
+       </select>
+
+       <button id="singUp_btn">Sing Up</button>
+       <button id="SingIn_btn">Sing In</button>
+
+       </div>
+   </div>
+
+
+   <img src="../../Aseats/loginBackground.jpg" id="image2">
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="../boostrap/js/bootstrap.js"></script>

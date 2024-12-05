@@ -9,12 +9,22 @@ document.getElementById('addBtn').addEventListener('click',function (){
 
 function viewCropDetails(cropCode) {
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     document.getElementById("viewModal").style.display = "block";
 
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/crop/${cropCode}`,
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (crop) => {
             if (!crop) {
                 alert("No data found for the selected crop.");
@@ -23,8 +33,6 @@ function viewCropDetails(cropCode) {
 
             console.log(crop)
 
-            // const fieldId = crop.fieldEntity.fieldCode;
-            // Populate the details section with the fetched crop data
             $("#cropCode").text(crop.cropCode);
             $("#comName").text(crop.commonName);
             $("#csiName").text(crop.scientificName || "N/A");
@@ -41,18 +49,26 @@ function viewCropDetails(cropCode) {
 }
 
 function openUpdateModal(cropCode) {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     document.getElementById("updateModal").style.display = "block";
 
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/crop/${cropCode}`,
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (crop) => {
             if (!crop) {
                 alert("No data found for the selected crop.");
                 return;
             }
-            // Populate the details section with the fetched crop data
             $("#upCode").val(crop.cropCode);
             $("#upName").val(crop.commonName);
             $("#upsName").val(crop.scientificName || "N/A");
@@ -78,19 +94,18 @@ function openUpdateModal(cropCode) {
 }
 
 
-// Handle file input for image update
 document.getElementById("fileInput").addEventListener("change", function (event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            // Display the new image in the update modal
+
             const imageData = e.target.result;
             $("#imageUpdateView").html(
                 `<img src="${imageData}" alt="Updated Crop Image" style="width: 150px; height: 80px;">`
             );
         };
-        reader.readAsDataURL(file); // Convert file to base64 string
+        reader.readAsDataURL(file);
     }
 });
 
@@ -103,7 +118,6 @@ function upcloseModal() {
 }
 
 
-// Close modal if user clicks outside of it
 window.onclick = function(event) {
     const modal = document.getElementById("viewModal");
     if (event.target == modal) {
@@ -129,18 +143,18 @@ document.getElementById("fileInput").addEventListener("change", function (event)
     if (file) {
         const reader = new FileReader();
 
-        // When the file is loaded, display it inside the div
+
         reader.onload = function (e) {
             const imageUpdateView = document.getElementById("imageUpdateView");
             imageUpdateView.innerHTML = ''; // Clear any existing content
             const img = document.createElement("img");
             img.src = e.target.result;
-            img.style.maxWidth = "100%"; // Adjust style as needed
-            img.style.maxHeight = "100%"; // Adjust style as needed
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "100%";
             imageUpdateView.appendChild(img);
         };
 
-        reader.readAsDataURL(file); // Convert the file to a data URL
+        reader.readAsDataURL(file);
     }
 });
 
@@ -150,27 +164,32 @@ function triggerFileInput() {
 }
 
 function displaySelectedImage(event) {
-    const file = event.target.files[0]; // Get the selected file
+    const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Create an image element and set its src to the selected file's data
+
             const img = document.createElement('img');
             img.src = e.target.result;
-            img.style.width = "100%"; // Adjust size as needed
-            img.style.height = "auto"; // Maintain aspect ratio
-            img.style.borderRadius = "8px"; // Optional: Style the image
+            img.style.width = "100%";
+            img.style.height = "auto";
+            img.style.borderRadius = "8px";
 
-            // Clear previous content in the div and append the new image
+
             const imageUpdateView = document.getElementById('imageUpdateView');
             imageUpdateView.innerHTML = '';
             imageUpdateView.appendChild(img);
         };
-        reader.readAsDataURL(file); // Read the file as a data URL
+        reader.readAsDataURL(file);
     }
 }
-// =================================================================== crud section==============
 $("#subBtn").on('click', function() {
+    const token=localStorage.getItem("token");
+    if (!token){
+        alert("No token found");
+        return
+    }
+
     // Get values from input fields
     var cropCode = $("#inpF1").val();
     var cropName = $("#inpF2").val();
@@ -190,20 +209,23 @@ $("#subBtn").on('click', function() {
     formData.append("image", cropImage);
     formData.append("category", cropCategory);
     formData.append("season", cropSeason);
-    formData.append("field_code", cropField); // Corrected the name to field_code
+    formData.append("field_code", cropField);
 
     // Send AJAX POST request to the backend
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/crop", // Backend endpoint
+        url: "http://localhost:8080/api/v1/crop",
         type: "POST",
         processData: false,
         contentType: false,
-        data: formData, // Form data with fields and file
+        data: formData,
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (response) => {
             console.log("Crop added successfully:", response);
             alert("Crop added successfully!");
             clearFields();
-            cropIdGenerate(); // Clear input fields after success
+            cropIdGenerate();
         },
         error: (error) => {
             console.error("Error adding crop:", error);
@@ -229,20 +251,41 @@ function clearFields() {
 // =====================================Loard value in table===========
 loadCropTable();
 function loadCropTable() {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("No token found. Please log in again.");
+        console.error("Token is missing from localStorage.");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/crop",
+        url: "http://localhost:8080/api/v1/crop",
         type: "GET",
-        dataType: "json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (response) => {
             console.log("Crops fetched successfully:", response);
             populateCropTable(response);
         },
         error: (xhr, status, error) => {
-            console.error("Error fetching crops:", xhr.responseText || error);
-            alert("Failed to load crops.");
+            if (xhr.status === 401) {
+                alert("Unauthorized: Invalid or expired token. Please log in again.");
+                console.error("Unauthorized access:", xhr.responseText || error);
+                // Optionally redirect to login page
+                window.location.href = "/login";
+            } else if (xhr.status === 500) {
+                alert("Server error. Please try again later.");
+                console.error("Server error:", xhr.responseText || error);
+            } else {
+                alert("Failed to load crops. Please check your network or contact support.");
+                console.error("Error fetching crops:", xhr.responseText || error);
+            }
         }
     });
 }
+
 
 function populateCropTable(crops) {
 
@@ -290,9 +333,21 @@ $(document).ready(function () {
 // ==========================Genrate crop Id=========================================
 
 function cropIdGenerate() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/crop", // API endpoint to fetch crops
+        url: "http://localhost:8080/api/v1/crop", // API endpoint to fetch crops
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+
         success: function (response) {
             // Assuming the response is an array of crop objects
             if (Array.isArray(response) && response.length > 0) {
@@ -321,10 +376,20 @@ function cropIdGenerate() {
 }
 
 function deleteCrop(cropCode) {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     if (confirm("Are you sure you want to delete this crop?")) {
         $.ajax({
-            url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint to delete crop
+            url: `http://localhost:8080/api/v1/crop/${cropCode}`, // API endpoint to delete crop
             type: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: function (response) {
                 alert("Crop deleted successfully.");
                 // Remove the specific row using a unique identifier
@@ -376,7 +441,7 @@ document.getElementById("cropUpdateBtn").addEventListener("click", function () {
     formData.append("scientificName", scientificName);
     formData.append("category", category);
     formData.append("season", season);
-    formData.append("field_code", field);
+    formData.append("fieldCode", field);
 
     // Attach the image data
     if (cropImage) {
@@ -429,12 +494,25 @@ document.getElementById("fileInput").addEventListener("change", function (event)
 });
 
 function updateCropDetails(cropCode, formData) {
+    console.log("hiiiiiiiii" + cropCode)
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/crop/${cropCode}`, // API endpoint for updating crop
+        url: `http://localhost:8080/api/v1/crop/${cropCode}`, // API endpoint for updating crop
         type: "PUT",
         processData: false,
         contentType: false,
         data: formData,
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+
         success: function (data) {
             console.log("Success:", data);
             alert("Crop updated successfully!");
@@ -535,9 +613,21 @@ document.getElementById("calenderView").addEventListener("click", function() {
 
 setfieldId();
 function setfieldId() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field", // API endpoint to fetch fields
+        url: "http://localhost:8080/api/v1/field", // API endpoint to fetch fields
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             if (Array.isArray(response)) {
                 // Clear existing options

@@ -52,7 +52,7 @@ body {
 }
 
 .nav-item:hover {
-    background-color: black; /* Hover background color */
+    background-color: #092b0e; /* Hover background color */
     color: white; /* Text color changes to white */
 }
 
@@ -256,7 +256,8 @@ body {
     left: 1vw;
     font-family: Arial, sans-serif; /* Set a font family */
     font-style: revert;
-    font-weight: bold; /* Make text bold */
+    font-weight: bold;
+    color: #092b0e/* Make text bold */
 }
 
 #equ_sbar{

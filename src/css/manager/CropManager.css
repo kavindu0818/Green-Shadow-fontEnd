@@ -53,7 +53,7 @@ body {
 }
 
 .nav-item:hover {
-    background-color: black; /* Hover background color */
+    background-color: #092b0e; /* Hover background color */
     color: white; /* Text color changes to white */
 }
 
@@ -120,14 +120,15 @@ body {
     font-weight: bold;
     font-size: 15px;
     top: 15px;
+    color: #092b0e;
 
 }
 
 #viewDateAndTime{
     position: absolute;
-    width: 22vw;
+    width: 24vw;
     height: 30px;
-    left: 45vw;
+    left: 44vw;
     top: 10px;
     border-radius: 10px;
     font-size: 14px;
@@ -288,6 +289,10 @@ body {
     background-color: black;
     color: white;
     font-weight: bold;
+}
+
+#addBtn :hover{
+
 }
 
 

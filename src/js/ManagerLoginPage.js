@@ -13,6 +13,17 @@ function typeWriter() {
 // Start the animation
 typeWriter();
 
+document.getElementById('sing_upSet').addEventListener('click',function (){
+    document.getElementById('viewModal').style.display='block';
+    document.getElementById('log').style.display='none';
+
+
+});
+
+function closeModal() {
+    document.getElementById("viewModal").style.display = "none";
+    document.getElementById("log").style.display = "block";
+}
 $("#loginManager").on("click", function () {
     const myEmail = $("#emailInput").val(); // Get the email on click
     const checkPassword = $("#passwordInput").val(); // Get password on click
@@ -25,32 +36,80 @@ $("#loginManager").on("click", function () {
     sendEmail(myEmail, checkPassword);
 });
 
+
 function sendEmail(email, password) {
+
+    const data = {
+        email: email,
+        password: password,
+    };
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/user/${email}`, // API endpoint
-        type: "GET",
+        url: "http://localhost:8080/api/v1/auth/signin",
+        method: "POST",
         contentType: "application/json",
-        success: (us) => {
-            if (!us) {
-                alert("No user found with the provided email.");
-                return;
-            }
-
-            const truePassword = us.password;
-            const trueRole = us.role;
-            const defaultRole = "MANAGER";
-
-            // Validate password and role
-            if (truePassword === password && trueRole === defaultRole) {
-                alert("Login successful! Redirecting...");
-                window.location.href = "../Dashboard/ManagerDashboard.html";
+        data: JSON.stringify(data),
+    })
+        .done((response) => {
+            console.log("User logged in successfully:", response);
+            if (response != null) {
+                localStorage.setItem('token', response.token);
+                window.location.href = "../ManagerDashboard.html";
             } else {
-                alert("Invalid password or role.");
+                alert("Invalid email or password. Please try again.");
             }
+        })
+        .fail((error) => {
+            console.error("Error logging in:", error);
+            alert(
+                error.responseJSON?.message || "Failed to log in. Please try again."
+            );
+        });
+}
+
+
+$("#singUp_btn").on('click', function () {
+    // Get values from input fields
+    var email = $("#email_signUp").val();
+    var password = $("#password_signUp").val();
+    var role = $("#roleSelect_signUp").val();
+
+
+
+    // Validate inputs
+    if (!email || !password || !role) {
+        alert("All User are required.");
+        return;
+    }
+    // Create FormData
+    var formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("role", role);
+
+
+    // AJAX POST request
+    $.ajax({
+        url: "http://localhost:8080/api/v1/auth/signup", // Backend endpoint
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: formData,
+        success: (response) => {
+            console.log("Manager added successfully:", response);
+            alert("Manager added successfully!");
+            clearTextField(); // Clear input fields
+            fieldIdGenerate(); // Refresh field IDs
         },
-        error: (xhr, status, error) => {
-            console.error("Error fetching user details:", xhr.responseText, status, error);
-            alert("Failed to fetch user details: " + (xhr.responseText || error));
-        },
+        error: (error) => {
+            console.error("Error adding User:", error);
+            alert("Failed to add manager. Please try again.");
+        }
     });
+});
+
+function clearTextField(){
+    $("#email").val("");
+    $("#password").val("");
+    $("#roleSelect").val("");
 }

@@ -50,7 +50,7 @@ body {
 }
 
 .nav-item:hover {
-    background-color: black; /* Hover background color */
+    background-color: #092b0e; /* Hover background color */
     color: white; /* Text color changes to white */
 }
 
@@ -117,6 +117,7 @@ body {
     font-weight: bold;
     font-size: 15px;
     top: 15px;
+    color: #092b0e;
 
 }
 

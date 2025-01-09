@@ -556,17 +556,17 @@ body {
     position: absolute;
     align-items: center;
     justify-content: center;
-    left: 15vw;
+    left: 17vw;
     color: #0c4128;
     margin-bottom: 20px;
 }
 
 #viewDetailsLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 7vw;
+    left: 15vw;
 }
 
 #viewDetailsLbl lbl{
@@ -673,10 +673,10 @@ body {
 
 #viewDetailsResultLbl{
     position: absolute;
-    top: 70px;
+    top: 100px;
     flex-direction: column;
     display: flex;
-    left: 20vw;
+    left: 28vw;
 }
 
 #updateDetailsResultLbl lbl{
@@ -696,6 +696,7 @@ body {
     left: 0vw;
     background-color: white;
     top: 210px;
+    border: 2px solid black;
 
 }
 #imageUpdatedView{

@@ -510,7 +510,7 @@ body {
     top: 100px;
     flex-direction: column;
     display: flex;
-    left: 10vw;
+    left: 13vw;
 }
 
 #viewDetailsLbl lbl{
@@ -530,7 +530,7 @@ body {
 }
 
 #viewDetailsResultLbl lbl{
-    font-weight: bold;
+    /*font-weight: bold;*/
     margin-bottom: 10px;
 }
 
@@ -610,7 +610,7 @@ body {
     top: 70px;
     flex-direction: column;
     display: flex;
-    left: 5vw;
+    left: 4vw;
     width: 15vw;
     /*margin-bottom: 40px;*/
 }
@@ -624,7 +624,7 @@ body {
     top: 100px;
     flex-direction: column;
     display: flex;
-    left: 25vw;
+    left: 29vw;
 }
 
 .veh_viewLblR{
@@ -650,7 +650,7 @@ body {
     top: 75px;
     flex-direction: column;
     display: flex;
-    left: 6vw;
+    left: 7vw;
     font-size: 15px;
 }
 

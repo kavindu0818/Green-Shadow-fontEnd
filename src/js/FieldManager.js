@@ -7,6 +7,48 @@ document.getElementById('FieldaddBtn').addEventListener('click',function (){
 
 });
 
+const fieldCodeRegEx = /^FIELD-[0-9]{4}$/;
+const fieldNameRegEx = /^[A-Za-z ]{3,50}$/;
+const fieldLocationRegEx = /^[A-Za-z0-9, ]{3,100}$/;
+const fieldSizeRegEx = /^[0-9]+(\.[0-9]+)$/;
+
+let fieldValidations = [
+    { reg: fieldCodeRegEx, field: $("#inpFe1"),  },
+    { reg: fieldNameRegEx, field: $("#inpFe2"),  },
+    { reg: fieldLocationRegEx, field: $("#inpFe3"), },
+    { reg: fieldSizeRegEx, field: $("#inpFe5"), },
+];
+
+function checkFieldValidity() {
+    let errorCount = 0;
+    for (let validation of fieldValidations) {
+        if (check(validation.reg, validation.field)) {
+            setSuccess(validation.field);
+        } else {
+            errorCount++;
+            setError(validation.field);
+        }
+    }
+    $("#saveField").attr("disabled", errorCount > 0);
+}
+
+function check(regex, field) {
+    return regex.test(field.val().trim()); // Added `.trim()` to avoid leading/trailing space issues
+}
+
+function setSuccess(field) {
+    field.css("border", "2px solid green").next();
+}
+
+function setError(field) {
+    field.css("border", "2px solid red").next();
+}
+
+$(document).ready(() => {
+    // Corrected event listener for keyup and blur events
+    $("#inpFe1, #inpFe2, #inpFe3, #inpFe5").on("keyup blur", checkFieldValidity);
+});
+
 function openModal() {
     document.getElementById("fieldviewModal").style.display = "block";
 }

@@ -1,4 +1,4 @@
-const text = "Welcome to Manager"; // The text to animate
+const text = "LOG IN"; // The text to animate
 const h1Element = document.getElementById("animatedText");
 let index = 0;
 
@@ -54,7 +54,7 @@ function sendEmail(email, password) {
             console.log("User logged in successfully:", response);
             if (response != null) {
                 localStorage.setItem('token', response.token);
-                window.location.href = "../ManagerDashboard.html";
+                window.location.href = "ManagerDashboard.html";
             } else {
                 alert("Invalid email or password. Please try again.");
             }

@@ -2,9 +2,18 @@ cropCount();
 
 // Fetch crop data from the API
 function cropCount() {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/crop", // API endpoint to fetch crops data
+        url: "http://localhost:8080/api/v1/crop", // API endpoint to fetch crops data
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             var cropCount = response.length; // Adjust this if the response structure is different
             $("#cropCount").text(cropCount); // Use .text() to update the <h2> element
@@ -19,9 +28,20 @@ function cropCount() {
 
 fieldCount();
 function fieldCount() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field", // API endpoint to fetch crops data
+        url: "http://localhost:8080/api/v1/field", // API endpoint to fetch crops data
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             var fieldCount = response.length; // Adjust this if the response structure is different
              $("#fieldCount").text(fieldCount) // Update the dashboard with the fetched crop count
@@ -35,9 +55,19 @@ function fieldCount() {
 
 staffCount();
 function staffCount() {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/staff", // API endpoint to fetch crops data
+        url: "http://localhost:8080/api/v1/staff", // API endpoint to fetch crops data
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             var staffCount = response.length; // Adjust this if the response structure is different
             $("#staffCount").text(staffCount) // Update the dashboard with the fetched crop count
@@ -51,9 +81,19 @@ function staffCount() {
 
 equCount();
 function equCount() {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/equ", // API endpoint to fetch crops data
+        url: "http://localhost:8080/api/v1/equ", // API endpoint to fetch crops data
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             var equCount = response.length; // Adjust this if the response structure is different
             $("#equipmentCount").text(equCount) // Update the dashboard with the fetched crop count
@@ -67,9 +107,20 @@ function equCount() {
 
 vehCount();
 function vehCount() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/veh", // API endpoint to fetch crops data
+        url: "http://localhost:8080/api/v1/veh", // API endpoint to fetch crops data
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             var vehCount = response.length; // Adjust this if the response structure is different
             $("#vehicleCount").text(vehCount) // Update the dashboard with the fetched crop count

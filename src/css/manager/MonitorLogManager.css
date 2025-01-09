@@ -358,6 +358,7 @@ body {
     left: 50vw;
     top: 25px;
     width: 23vw;
+    height: 35px;
 }
 
 #lblF4{
@@ -371,6 +372,7 @@ body {
     left: 1vw;
     top: 100px;
     width: 23vw;
+    height: 35px;
 }
 
 #lblF5{
@@ -384,6 +386,7 @@ body {
     left: 26vw;
     top: 100px;
     width: 23vw;
+    height: 35px;
 }
 
 #lblF6{
@@ -608,7 +611,7 @@ body {
     top: 70px;
     flex-direction: column;
     display: flex;
-    left: 5vw;
+    left: 4vw;
     width: 15vw;
     /*margin-bottom: 40px;*/
 }
@@ -625,6 +628,17 @@ body {
     left: 25vw;
 }
 
+#mlm_Image{
+    border: 2px solid black;
+    width: 150px;
+    height: 100px;
+}
+#mlm_uImage{
+    border: 2px solid black;
+    width: 150px;
+    height: 100px;
+}
+
 .mlm_viewLblR{
     margin-bottom: 13px;
     /*background-color: black;*/
@@ -638,7 +652,7 @@ body {
     position: absolute;
     align-items: center;
     justify-content: center;
-    left: 15vw;
+    left: 10vw;
     color: #0c4128;
     margin-bottom: 20px;
 }
@@ -648,7 +662,7 @@ body {
     top: 75px;
     flex-direction: column;
     display: flex;
-    left: 6vw;
+    left: 9vw;
     font-size: 15px;
 }
 
@@ -666,7 +680,7 @@ body {
     top: 75px;
     flex-direction: column;
     display: flex;
-    left: 22vw;
+    left: 18vw;
     width: 20vw;
     /*margin-bottom: 40px;*/
 }
@@ -736,9 +750,9 @@ body {
 
 #mlmUpdateBtn{
     position: absolute;
-    left: 12vw;
+    left: 14vw;
     background-color: black;
-    top: 330px;
+    top: 360px;
     width: 8vw;
     border-radius: 10px;
     border: 1px solid black;
@@ -769,10 +783,10 @@ body {
 .upmodal-content {
     width: 50vw; /* 50% of viewport width */
     max-width: 600px; /* Optional: max width */
-    height: 85vh; /* 85% of viewport height */
+    height: 90vh; /* 85% of viewport height */
     padding: 20px;
     left: 25vw;
-    top: 50px;
+    top: 40px;
     background: #fff;
     border-radius: 8px;
     overflow-y: auto; /* Enables vertical scroll if content is too long */

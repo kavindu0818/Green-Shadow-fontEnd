@@ -5,7 +5,7 @@ const scientistButton = document.getElementById("scientistBtn");
 
 // Add event listeners to buttons to navigate to different pages
 managerButton.addEventListener("click", function() {
-    window.location.href = "../html/manager/ManagerLoginPage.html";  // Replace with the actual URL for the manager page
+    window.location.href = "../ManagerLoginPage.html";  // Replace with the actual URL for the manager page
 });
 
 adminButton.addEventListener("click", function() {

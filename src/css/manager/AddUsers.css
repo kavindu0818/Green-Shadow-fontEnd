@@ -396,3 +396,63 @@ body {
     width: 10vw;
     top: 350px;
 }
+
+#upH2{
+    position: absolute;
+    left: 7vw;
+}
+
+.userLable{
+    font-weight: bold;
+}
+
+#fieldUser{
+    position: absolute;
+    top: 80px;
+    left: 4vw;
+}
+
+#upemail{
+    position: absolute;
+   top: 25px;
+    left: 0vw;
+}
+
+.inpUser{
+    width: 20vw;
+    border-radius: 10px;
+}
+
+#lbl5{
+    position: absolute;
+    top: 70px;
+    left: 0;
+}
+
+#upPassword{
+    position: absolute;
+    top: 95px;
+    left: 0vw;
+}
+
+#lbl6{
+    position: absolute;
+    top: 145px;
+    left: 0;
+}
+
+#upRoleSelect{
+    position: absolute;
+    top: 165px;
+    left: 0vw;
+}
+
+#usUpdate{
+    position: absolute;
+    top: 295px;
+    left: 10vw;
+    width: 10vw;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}

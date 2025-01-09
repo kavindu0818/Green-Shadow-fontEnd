@@ -14,44 +14,6 @@
 
 
     <style>
-        /* Modal background */
-        .upmodal {
-            display: none; /* Enable flexbox */
-            align-items: center; /* Centers vertically */
-            justify-content: center; /* Centers horizontally */
-            position: fixed;
-            z-index: 1;
-            left: 0vw;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        }
-
-        /* Modal content box */
-        .upmodal-content {
-            width: 50vw; /* 50% of viewport width */
-            max-width: 600px; /* Optional: max width */
-            height: 85vh; /* 85% of viewport height */
-            padding: 20px;
-            left: 25vw;
-            top: 50px;
-            background: #fff;
-            border-radius: 8px;
-            overflow-y: auto; /* Enables vertical scroll if content is too long */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
-            position: relative; /* Ensure the close button positions relative to the modal */
-        }
-
-        /* Close button */
-        .upclose {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -122,7 +84,7 @@
         </div>
         <div class="nav-item">
             <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
-            <a href="html/manager/MonitorLogManager.html">Monitoring Log</a>
+            <a href="MonitorLogManager.html">Monitoring Log</a>
         </div>
         <div class="nav-item" id="addUser">
             <img src="/Aseats/addIcon.png" alt="Monitoring Log Icon" class="icon">
@@ -281,21 +243,21 @@
         <label class="lblF" id="lblField5">Extent size of the Field</label>
         <input placeholder="Enter Extent size of the Field" type="text" class="form-control" id="inpFe5">
 
-        <label class="lblF" id="lblField6">Staff</label>
-        <select class="form-control" id="inpField6">
-            <option value="field1">Staff 1</option>
-            <option value="field2">Field 2</option>
-            <option value="field3">Field 3</option>
-            <!-- Add more fields as needed -->
-        </select>
+<!--        <label class="lblF" id="lblField6">Staff</label>-->
+<!--        <select class="form-control" id="inpField6">-->
+<!--            <option value="field1">Staff 1</option>-->
+<!--            <option value="field2">Field 2</option>-->
+<!--            <option value="field3">Field 3</option>-->
+<!--            &lt;!&ndash; Add more fields as needed &ndash;&gt;-->
+<!--        </select>-->
 
-        <label class="lblF" id="lblField7">Crops</label>
-        <select class="form-control" id="inpFe7">
-            <option value="field1">Crop 1</option>
-            <option value="field2">Field 2</option>
-            <option value="field3">Field 3</option>
-            <!-- Add more fields as needed -->
-        </select>
+<!--        <label class="lblF" id="lblField7">Crops</label>-->
+<!--        <select class="form-control" id="inpFe7">-->
+<!--            <option value="field1">Crop 1</option>-->
+<!--            <option value="field2">Field 2</option>-->
+<!--            <option value="field3">Field 3</option>-->
+<!--            &lt;!&ndash; Add more fields as needed &ndash;&gt;-->
+<!--        </select>-->
 
         <button id="field_subBtn">Submit</button>
         <button id="field_cleBtn">Clear</button>

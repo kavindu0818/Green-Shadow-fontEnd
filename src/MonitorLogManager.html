@@ -13,6 +13,44 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            align-items: center; /* Centers vertically */
+            justify-content: center; /* Centers horizontally */
+        }
+
+        /* Modal content box */
+        .modal-content {
+            width: 50vw; /* 80% of viewport width */
+            height: 85vh; /* 80% of viewport height */
+            padding: 20px;
+            left: 25vw;
+            top: 50px;
+            z-index: 200000;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto; /* Enables vertical scroll if content is too long */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
 <section id="nav">
@@ -21,27 +59,27 @@
     <section id="navSet">
         <div class="nav-item">
             <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
-            <a href="../../ManagerDashboard.html">Dashboard</a>
+            <a href="ManagerDashboard.html">Dashboard</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/cropsIcon.png" alt="Crop Icon" class="icon">
-            <a href="../../CropManger.html">Crop</a>
+            <a href="CropManger.html">Crop</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/fieldIcon.png" alt="Field Icon" class="icon">
-            <a href="../../FieldManager.html">Field</a>
+            <a href="FieldManager.html">Field</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/staffe.png" alt="Staffe Icon" class="icon">
-            <a href="../manager/StaffManger.html">Staffe</a>
+            <a href="html/manager/StaffManger.html">Staffe</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/vehicelLogo.png" alt="Vehicle Icon" class="icon">
-            <a href="../manager/VehicleManger.html">Vehicle</a>
+            <a href="html/manager/VehicleManger.html">Vehicle</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/equipementIcon.png" alt="Equipment Icon" class="icon">
-            <a href="../../EquipmentManager.html">Equipment</a>
+            <a href="EquipmentManager.html">Equipment</a>
         </div>
         <div class="nav-item">
             <img src="/Aseats/monitorIcon.png" alt="Monitoring Log Icon" class="icon">
@@ -49,7 +87,7 @@
         </div>
         <div class="nav-item" id="addUser">
             <img src="/Aseats/addIcon.png" alt="Monitoring Log Icon" class="icon">
-            <a href="../manager/AddUsers.html">ADD USERS</a>
+            <a href="html/manager/AddUsers.html">ADD USERS</a>
         </div>
     </section>
 </section>
@@ -109,11 +147,11 @@
         <section id="viewDetailsLbl">
             <lbl class="viewLbl">Log code.: </lbl>
             <lbl class="viewLbl">Log Date: </lbl>
-            <lbl class="viewLbl">Log image: </lbl>
             <lbl class="viewLbl">Log Staff: </lbl>
-            <lbl class="viewLbl">Log Field: </lbl>
             <lbl class="viewLbl">Log Crop: </lbl>
+            <lbl class="viewLbl">Log Field: </lbl>
             <lbl class="viewLbl">Log Details: </lbl>
+            <lbl class="viewLbl">Log image: </lbl>
         </section>
 
         <section id="viewDetailsResultLbl">
@@ -122,8 +160,10 @@
             <lbl class="veh_viewLblR" id="mlm_sfatt"></lbl>
             <lbl class="veh_viewLblR" id="mlm_crop"></lbl>
             <lbl class="veh_viewLblR" id="mlm_field"></lbl>
-            <lbl class="veh_viewLblR" id="mlm_image"></lbl>
             <lbl class="veh_viewLblR" id="mlm_details"></lbl>
+            <div id="mlm_Image">
+
+            </div>
 
         </section>
 
@@ -140,11 +180,11 @@
         <section id="updateDetailsLbl">
             <lbl class="viewLbl">Log code.: </lbl>
             <lbl class="viewLbl">Log Date: </lbl>
-            <lbl class="viewLbl">Log image: </lbl>
             <lbl class="viewLbl">Log Staff: </lbl>
             <lbl class="viewLbl">Log Field: </lbl>
             <lbl class="viewLbl">Log Crop: </lbl>
             <lbl class="viewLbl">Log Details: </lbl>>
+            <lbl class="viewLbl">Log image: </lbl>
         </section>
 
 
@@ -155,7 +195,12 @@
             <input class="viewLblR" id="mlm_upField"/>
             <input class="viewLblR" id="mlm_upCrop"/>
             <input class="viewLblR" id="mlm_upDetails"/>
-            <input class="viewLblR" id="mlm_upImage"/>
+            <div id="mlm_upImage">
+
+            </div>
+
+            <input type="file" id="fileInput" accept="image/*">
+
 
             <button id="mlmUpdateBtn">Update</button>
 
@@ -178,13 +223,19 @@
         <input placeholder="Enter Log Date" type="date" class="form-control" id="mlm_inpF2">
 
         <label class="lblF" id="lblF3">Log Staff</label>
-        <input placeholder="Enter Log Staff" type="text" class="form-control" id="mlm_inpF3">
+        <select  id="mlm_inpF3">
+
+        </select>
 
         <label class="lblF" id="lblF4">Log Crop</label>
-        <input placeholder="Enter Log Crop" type="text" class="form-control" id="mlm_inpF4">
+        <select id="mlm_inpF4">
+
+        </select>
 
         <label class="lblF" id="lblF5">Log Field</label>
-        <input placeholder="Enter Log Field" type="text" class="form-control" id="mlm_inpF5">
+        <select id="mlm_inpF5">
+
+        </select>
 
         <label class="lblF" id="lblF6">Log Image</label>
         <input type="file" accept="image/*" class="form-control" id="mlm_inpF6">
@@ -206,6 +257,67 @@
         </div>
     </section>
 </section>
+
+<script>
+
+    MonitorIdGenerate();
+    function MonitorIdGenerate() {
+
+        const token = localStorage.getItem("token");
+        console.log(token)
+        if (!token) {
+            alert("No token found");
+            return;
+        }
+
+        $.ajax({
+            url: "http://localhost:8080/api/v1/mlog",
+            type: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            success: function (response) {
+                try {
+
+                    if (Array.isArray(response) && response.length > 0) {
+
+                        response.sort((a, b) => a.logCode.localeCompare(b.logCode));
+
+
+                        const lastLog = response[response.length - 1];
+
+
+                        if (lastLog && lastLog.logCode) {
+                            const lastLogCode = lastLog.logCode;
+
+
+                            const logParts = lastLogCode.split('-');
+                            if (logParts.length === 2 && !isNaN(logParts[1])) {
+                                const lastNumber = parseInt(logParts[1], 10);
+
+
+                                const nextId = `LOG-${String(lastNumber + 1).padStart(4, '0')}`;
+                                $("#mlm_inpF1").val(nextId);
+                                return;
+                            }
+                        }
+                    }
+
+
+                    $("#mlm_inpF1").val("LOG-0001");
+                } catch (error) {
+                    console.error("Error processing response:", error);
+                    $("#mlm_inpF1").val("LOG-0001");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching last log ID:", error);
+                alert("Unable to fetch the last log ID. Using default ID.");
+                $("#mlm_inpF1").val("LOG-0001");
+            }
+        });
+    }
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../boostrap/js/bootstrap.js"></script>

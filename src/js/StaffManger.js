@@ -1,12 +1,3 @@
-// document.getElementById('subBtn').addEventListener('click', function () {
-//     // Show the overlay
-//     document.getElementById('overlay').style.display = 'flex';
-//
-//     // Simulate a delay (e.g., for form submission) and then hide the overlay
-//     setTimeout(() => {
-//         document.getElementById('overlay').style.display = 'none';
-//     }, 3000); // Adjust delay as needed
-// });
 
 document.getElementById('staff_addBtn').addEventListener('click',function (){
     document.getElementById('staffForm').style.display='block';
@@ -15,6 +6,59 @@ document.getElementById('staff_addBtn').addEventListener('click',function (){
     document.getElementById('staffTop').style.display='block';
 
 });
+
+const fieldCodeRegEx = /^STAFF-[0-9]{4}$/;
+const fieldNameRegEx = /^[A-Za-z ]{3,50}$/;
+const fieldLocationRegEx = /^[A-Za-z0-9, ]{3,100}$/;
+const fieldSizeRegEx = /^[0-9]+(\.[0-9]+)$/;
+const fieldNumberRegEx = /^[0-9]{3,11}$/;
+
+let fieldValidations = [
+    { reg: fieldCodeRegEx, field: $("#staff_inpF1"),  },
+    { reg: fieldNameRegEx, field: $("#staff_inpF2"),  },
+    { reg: fieldNameRegEx, field: $("#staff_inpF3"),  },
+    { reg: fieldLocationRegEx, field: $("#staff_inpF4"), },
+    { reg: fieldLocationRegEx, field: $("#staff_inpF7"), },
+    { reg: fieldLocationRegEx, field: $("#staff_inpF8"), },
+    { reg: fieldLocationRegEx, field: $("#staff_inpF9"), },
+    { reg: fieldNumberRegEx, field: $("#staff_inpF10"), },
+    { reg: fieldLocationRegEx, field: $("#staff_inpF11"), },
+
+    { reg: fieldNameRegEx, field: $("#inpF6"),  },
+
+    // { reg: fieldSizeRegEx, field: $("#inpFe5"), },
+];
+
+function checkFieldValidity() {
+    let errorCount = 0;
+    for (let validation of fieldValidations) {
+        if (check(validation.reg, validation.field)) {
+            setSuccess(validation.field);
+        } else {
+            errorCount++;
+            setError(validation.field);
+        }
+    }
+    $("#saveField").attr("disabled", errorCount > 0);
+}
+
+function check(regex, field) {
+    return regex.test(field.val().trim()); // Added `.trim()` to avoid leading/trailing space issues
+}
+
+function setSuccess(field) {
+    field.css("border", "2px solid green").next();
+}
+
+function setError(field) {
+    field.css("border", "2px solid red").next();
+}
+
+$(document).ready(() => {
+    // Corrected event listener for keyup and blur events
+    $("#staff_inpF1, #staff_inpF2, #staff_inpF3, #staff_inpF4, #staff_inpF7, #staff_inpF8, #staff_inpF9, #staff_inpF10, #staff_inpF11").on("keyup blur", checkFieldValidity);
+});
+
 
 function openModal() {
     document.getElementById("viewModal").style.display = "block";
@@ -74,10 +118,21 @@ function displaySelectedImage(event) {
 
 loadTable();
 function loadTable() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/staff",
+        url: "http://localhost:8080/api/v1/staff",
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (response) => {
             console.log(response);
             try {
@@ -101,7 +156,7 @@ function populateStaffTable(staff) {
                 <tr>
                     <td>${staffMember.id}</td>
                     <td>${staffMember.firstName}</td>
-                    <td>${staffMember.role}</td>
+                    <td>${staffMember.contact}</td>
                     <td>${staffMember.designation}</td>
                     <td class="action-icons">
                         <i class="fas fa-edit" title="Update" onclick="openUpdateStaffModal('${staffMember.id}')"></i>
@@ -131,13 +186,24 @@ $(document).ready(function () {
 });
 
 function deleteStaff(staffCode) {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     if (confirm("Are you sure you want to delete this Staff?")) {
         $.ajax({
-            url: `http://localhost:5050/green/api/v1/field/${staffCode}`, // API endpoint to delete crop
+            url: `http://localhost:8080/api/v1/field/${staffCode}`, // API endpoint to delete crop
             type: "DELETE",
+            headers: {
+            "Authorization": "Bearer " + token
+        },
             success: function (response) {
                 alert("Staff deleted successfully.");
-                // Remove the specific row using a unique identifier
+
                 $(`#staffTable tbody tr`).filter(function () {
                     return $(this).find("td").eq(0).text().trim() === staffCode; // Match the first <td> (Crop ID)
                 }).remove();
@@ -150,7 +216,116 @@ function deleteStaff(staffCode) {
     }
 }
 
+$("#staff_subBtn").on("click",function(){
+    saveStaffData();
+});
+
+
+async function saveStaffData() {
+
+    const fieldCode = $("#staff_inpF13").val();
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("No token found. Please log in.");
+        return;
+    }
+
+    let fields = [];
+    try {
+        const fieldResponse = await $.ajax({
+            url: `http://localhost:8080/api/v1/field/${fieldCode}`,
+            method: "GET",
+            timeout: 0,
+            headers: {
+            "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + token,
+            }
+        });
+        console.log("Field data fetched:", fieldResponse);
+
+        fields.push({
+            fieldCode: fieldResponse.fieldCode,
+            fieldName: fieldResponse.fieldName,
+            fieldLocation: fieldResponse.fieldLocation,
+            fieldSize: fieldResponse.fieldSize,
+            fieldImage: fieldResponse.fieldImage,
+        });
+    } catch (error) {
+        console.error("Failed to load field data:", error);
+        alert("Failed to load field data. Please try again.");
+        return; // Stop execution if field data cannot be loaded
+    }
+
+    // Collect staff data
+    const id = $("#staff_inpF1").val();
+    const firstName = $("#staff_inpF2").val();
+    const lastName = $("#staff_inpF3").val();
+    const designation = $("#staff_inpF4").val();
+    const gender = $("#staff_inpF5").val();
+    const joinedDate = $("#staff_inpF14").val();
+    const dob = $("#staff_inpF6").val();
+
+    const address1 = $("#staff_inpF7").val();
+   const address2 = $("#staff_inpF8").val();
+   const address3 = $("#staff_inpF9").val();
+    const address = address1 + " " + address2 + " " + address3;
+    const contact = $("#staff_inpF10").val();
+    const email = $("#staff_inpF11").val();
+    const role = $("#staff_inpF12").val();
+
+    if (!id || !firstName || !lastName || !designation || !gender || !dob || !address || !contact || !email || !role) {
+        alert("All fields are required!");
+        return;
+    }
+
+    const staffData = {
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        designation: designation,
+        gender: gender,
+        joinedDate: joinedDate,
+        dob: dob,
+        address: address,
+        contact: contact,
+        email: email,
+        role: role,
+        fields
+    };
+
+    console.log("Prepared staff data:", staffData);
+
+    // Save staff data
+    try {
+        const response = await $.ajax({
+            url: "http://localhost:8080/api/v1/staff",
+            type: "POST",
+            timeout: 0,
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + token
+            },
+            data: JSON.stringify(staffData),
+        });
+        console.log("Staff added successfully:", response);
+        alert("Staff added successfully!");
+        clearFields();
+        staffIdGenerate();
+        loadStaffTable();
+    } catch (xhr) {
+        console.error("Error adding staff:", xhr.responseText || xhr.statusText);
+        alert("Failed to add staff: " + (xhr.responseText || xhr.statusText));
+    }
+}
+
 $("#staff_subBtn").on('click', function() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     // Get values from input fields
     var code = $("#staff_inpF1").val();
     var firstName = $("#staff_inpF2").val();
@@ -188,11 +363,14 @@ $("#staff_subBtn").on('click', function() {
 
     // Send AJAX POST request to the backend
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/staff", // Backend endpoint
+        url: "http://localhost:8080/api/v1/staff", // Backend endpoint
         type: "POST",
         processData: false,
         contentType: false,
-        data: formData, // Form data with fields and file
+        data: formData,
+        headers: {
+            "Authorization": "Bearer " + token
+        },// Form data with fields and file
         success: (response) => {
             console.log("Staff added successfully:", response);
             alert("Staff added successfully!");
@@ -207,9 +385,19 @@ $("#staff_subBtn").on('click', function() {
 });
 
 function setfieldId() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/field", // API endpoint to fetch fields
+        url: "http://localhost:8080/api/v1/field", // API endpoint to fetch fields
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             if (Array.isArray(response)) {
                 // Clear existing options
@@ -264,15 +452,27 @@ function clearFields() {
 function openUpdateStaffModal(staffCode) {
     document.getElementById("updateModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/staff/${staffCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/staff/${staffCode}`, // API endpoint
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (staff) => {
             if (!staff) {
                 alert("No data found for the selected field.");
                 return;
             }
+
+            console.log(staff);
             // Populate the details section with the fetched crop data
             $("#staff_upid").val(staff.id);
             $("#staff_upfirstName").val(staff.firstName);
@@ -284,8 +484,8 @@ function openUpdateStaffModal(staffCode) {
             $("#staff_upContactNo").val(staff.contact || "N/A");
             $("#staff_upAddress").val(staff.address || "N/A");
             $("#staff_upEmail").val(staff.email || "N/A");
-            $("#staff_upRole").val(staff.role || "N/A");
-            $("#staff_upField").val(staff.fieldCodes || "N/A");
+            $("#staff_upRole").val(staff.role);
+            $("#staff_upField").val(staff.fields?.[0]?.fieldCode || "");
 
             // Display the image (in a separate div or img tag)
 
@@ -302,10 +502,20 @@ function viewCropDetails(staffCode) {
 
     document.getElementById("viewModal").style.display = "block";
 
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/staff/${staffCode}`, // API endpoint
+        url: `http://localhost:8080/api/v1/staff/${staffCode}`, // API endpoint
         type: "GET",
         contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: (field) => {
             if (!field) {
                 alert("No data found for the selected field.");
@@ -323,7 +533,7 @@ function viewCropDetails(staffCode) {
             $("#staff-contact").text(field.contact || "N/A");
             $("#staff-email").text(field.email || "N/A");
             $("#staff-role").text(field.role || "N/A");
-            $("#staff-field").text(field.fieldCodes || "N/A");
+            $("#staff-field").text(field.fields?.[0]?.fieldCode|| "N/A");
 
         },
         error: (xhr, status, error) => {
@@ -334,6 +544,13 @@ function viewCropDetails(staffCode) {
 }
 
 document.getElementById("staffUpdateBtn").addEventListener("click", function () {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
     // Collect input values
     const sid = $("#staff_upid").val();
     const sFirstname = $("#staff_upfirstName").val();
@@ -382,14 +599,24 @@ document.getElementById("staffUpdateBtn").addEventListener("click", function () 
 
 // Function to send the update request
 function sendUpdateRequest(updateFieldDTO) {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: `http://localhost:5050/green/api/v1/staff/${updateFieldDTO.id}`,
+        url: `http://localhost:8080/api/v1/staff/${updateFieldDTO.id}`,
         type: "PUT",
         contentType: "application/json", // Set content type as JSON
-        data: JSON.stringify(updateFieldDTO), // Convert data to JSON string
+        data: JSON.stringify(updateFieldDTO),
+        headers: {
+            "Authorization": "Bearer " + token
+        },// Convert data to JSON string
         success: function () {
             alert("Staff details updated successfully!");
-            loadTable(); // Refresh the table (assume this function exists)
+            loadTable();
             document.getElementById("updateModal").style.display = "none"; // Close the modal
         },
         error: function (xhr) {
@@ -401,9 +628,20 @@ function sendUpdateRequest(updateFieldDTO) {
 
 fieldIdGenerate();
 function fieldIdGenerate() {
+
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (!token) {
+        alert("No token found");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:5050/green/api/v1/staff", // API endpoint to fetch fields
+        url: "http://localhost:8080/api/v1/staff", // API endpoint to fetch fields
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (response) {
             // Validate the response is an array
             if (Array.isArray(response) && response.length > 0) {

@@ -15,12 +15,63 @@
     <input placeholder="Enter your email" id="emailInput" class="input">
 
     <label id="lbl2">Password</label>
-    <input type="password" placeholder="Enter your password" id="passwordInput" class="input">
-    <button class="login-btn">Login</button>
+    <input type="password" placeholder="Enter your password" id="password" class="input">
+    <button class="login-btn" id="addmistor-log">Login</button>
 </section>
 
 
 <img src="../Aseats/loginBackground.jpg" id="image2">
+
+<script>
+    // $("#login-btn").on("click", function () {
+    //     const myEmail = $("#emailInput").val(); // Get the email on click
+    //     const checkPassword = $("#password").val(); // Get password on click
+    //
+    //     if (!myEmail || !checkPassword) {
+    //         alert("Please enter both email and password.");
+    //         return;
+    //     }
+    //
+    //     sendEmail(myEmail, checkPassword);
+    // });
+    //
+    //
+    // function sendEmail(email, password) {
+    //
+    //     const data = {
+    //         email: email,
+    //         password: password,
+    //     };
+    //
+    //     $.ajax({
+    //         url: "http://localhost:8080/api/v1/auth/signin",
+    //         method: "POST",
+    //         contentType: "application/json",
+    //         data: JSON.stringify(data),
+    //     })
+    //         .done((response) => {
+    //             console.log("User logged in successfully:", response);
+    //             if (response != null) {
+    //                 localStorage.setItem('token', response.token);
+    //                 window.location.href = "../ManagerDashboard.html";
+    //             } else {
+    //                 alert("Invalid email or password. Please try again.");
+    //             }
+    //         })
+    //         .fail((error) => {
+    //             console.error("Error logging in:", error);
+    //             alert(
+    //                 error.responseJSON?.message || "Failed to log in. Please try again."
+    //             );
+    //         });
+    // }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../boostrap/js/bootstrap.js"></script>
+<script src="/js/AddmistatorLogin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

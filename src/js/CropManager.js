@@ -7,6 +7,51 @@ document.getElementById('addBtn').addEventListener('click',function (){
 
 });
 
+const fieldCodeRegEx = /^CROP-[0-9]{4}$/;
+const fieldNameRegEx = /^[A-Za-z ]{3,50}$/;
+const fieldLocationRegEx = /^[A-Za-z0-9, ]{3,100}$/;
+const fieldSizeRegEx = /^[0-9]+(\.[0-9]+)$/;
+
+let fieldValidations = [
+    { reg: fieldCodeRegEx, field: $("#inpF1"),  },
+    { reg: fieldNameRegEx, field: $("#inpF2"),  },
+    { reg: fieldNameRegEx, field: $("#inpF3"),  },
+    { reg: fieldLocationRegEx, field: $("#inpF5"), },
+    { reg: fieldNameRegEx, field: $("#inpF6"),  },
+
+    // { reg: fieldSizeRegEx, field: $("#inpFe5"), },
+];
+
+function checkFieldValidity() {
+    let errorCount = 0;
+    for (let validation of fieldValidations) {
+        if (check(validation.reg, validation.field)) {
+            setSuccess(validation.field);
+        } else {
+            errorCount++;
+            setError(validation.field);
+        }
+    }
+    $("#saveField").attr("disabled", errorCount > 0);
+}
+
+function check(regex, field) {
+    return regex.test(field.val().trim()); // Added `.trim()` to avoid leading/trailing space issues
+}
+
+function setSuccess(field) {
+    field.css("border", "2px solid green").next();
+}
+
+function setError(field) {
+    field.css("border", "2px solid red").next();
+}
+
+$(document).ready(() => {
+    // Corrected event listener for keyup and blur events
+    $("#inpF1, #inpF2, #inpF3, #inpF5, #inpF6").on("keyup blur", checkFieldValidity);
+});
+
 function viewCropDetails(cropCode) {
 
     const token = localStorage.getItem("token");
@@ -475,6 +520,10 @@ function base64ToBlob(base64Data) {
 // Trigger the file input when the "Change Image" button is clicked
 document.getElementById("changeImage").addEventListener("click", function () {
     document.getElementById("fileInput").click();
+});
+
+document.getElementById("cleBtn").addEventListener("click", function () {
+    clearFields();
 });
 
 // Listen for file input change and update the preview
